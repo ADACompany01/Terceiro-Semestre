@@ -1,74 +1,69 @@
-<span id="topo">
+< span  id = " topo " >
 
-<h1 align="center">Sprint 1: 06/05/2024 a 20/05/2024</h1>
+< h1  align = " center " >Sprint 1: 27/09 /2024 a 05/10 /2024</ h1 >
 
-<p align="center">
-    <a href="#objetivos">Objetivos da sprint</a> &nbsp |&nbsp &nbsp
-    <a href="#entregas">Entregas</a> &nbsp |&nbsp &nbsp
-    <a href="#links">Links úteis</a>
-</p>
+< p  align = " centro " >
+    <a href="#objetivos">Objetivos de sprint</a>   |   
+	@@ -15,15 +15,12 @@ O desenvolvimento do site visa facilitar o trabalho do funcionário responsável
+## : dart : Objetivos da Sprint
 
-O desenvolvimento do site teste visa facilitar o trabalho do funcionário responsável pelo trabalho de compras foi desenvolvido, como um sistema de envio de solicitações de produtos e gerenciamento de solicitações. Tendo em mente o MVC, o primeiro sprint teve como objetivo desenvolver o cadastro e login de usuários, além de realizar a implementação inicial do Web Services de busca da Bolsa Eletrônica de Compras (BEC), utilizada para a pesquisa de produtos e integrada ao projeto com o objetivo de ajudar na exatidão dos pedidos realizados. Para isso, foram levantados e validados os requisitos e o protótipo, construindo serviços e interfaces visando uma entrega de grande valor condizente com a dor do cliente.
+Os requisitos abrangidos por esse sprint são:
+-  ** 01: ** Consultas Básicas
+-  ** 02: ** Consultas Geoespaciais
+-  ** 03: ** Atualizar o MER (Modelo Entidade-Relacionamento)
+-  ** 04: ** Desenvolver API RESTful CRUD
+-  ** 05: ** Hospedar uma API no Vercel e Subir no GitHub
+-  ** 06: ** Junções
 
-<span id="objetivos">
+< span  id = " entregas " >
 
-## :dart: Objetivos da Sprint
+	@@ -41,16 +38,37 @@ Para extrair e entender os desejos do cliente, foi construído um protótipo ini
 
-Os requisitos abrangidos por essa sprint são:
-- **RF 01:** Realizar cadastro
-- **RF 02:** Login do usuário
-- **RF 03:** Pesquisa de produtos pelo Web Service da BEC
-- **RNF 12:** Utilizar HTML e CSS
-- **RNF 13:** Utilizar JavaScript
-- **RNF 14:** Utilizar Angular
-- **RNF 15:** Utilizar banco NoSQL
-- **RNF 16:** Autenticação de Usuário via JWT
-- **RNF 17:** Implementar Web Service de pesquisa da BEC
+Este protótipo é válido para a entrega dos requisitos confirmados para o sprint, onde seus regulamentos podem ser verificados a seguir:
 
-<span id="entregas">
+### 01 e 02: Consultar bases e consultas geoespaciais
 
-## :heavy_check_mark: Entregas
+Realizar pelo menos 5 consultas utilizando os operadores do checklist.
 
-Para entregas da sprint, tivemos os artefatos SCRUM validados, como Backlog do Produto, Backlog das Sprints e User Stories, através de comunicação direta entre o P.O. e o cliente.
+Ex: encontrar todos os produtos com preço maior que X, listar todos os pedidos de um determinado usuário, etc.
 
-Para extrair e entender os desejos do cliente, foi construído um protótipo inicial no Figma, criando a identidade visual e design do sistema e apresentando para validação com o cliente, onde o resultado deste protótipo, escrito utilizando Angular e com a integração das funcionalidades acordadas para a primeira sprint pode ser observado a seguir:
+Armazenamento: Armazene dados geográficos ( por exemplo, a localização de lojas ou clientes) utilizando o tipo GeoJSON .
 
-<div align="center">
+Consultas: Realize pelo menos 2 consultas geoespaciais para encontrar documentos dentro de um raio específico de um ponto ou dentro de um polígono. Por exemplo, encontre todas as lojas em um raio de 5km de um endereço específico, ou liste todos os clientes dentro de uma determinada cidade.
 
-![demo](./demo.gif)
+### 03: Atualizar o MER (Modelo Entidade-Relacionamento)
 
-<div>
+Este requisito se trata da atualização do MER, realizando todos os ajustes necessários.
 
-Este protótipo valida a entrega dos requisitos confirmados para a sprint, onde suas descrições podem ser checadas a seguir:
+### 04 e 05: Desenvolver API RESTful CRUD e hospedar a API no Vercel e Subir no GitHub
 
-### RF 01 e RF 02: Realizar cadastro e login de usuário
+Desenvolvimento de uma API RESTful completa que permite a realização das operações básicas: GET, POST, PUT e DELETE. Cada operação deve ser mapeada para as rotas atribuídas no seu servidor.
 
-Este requisito se trata do cadastro e login de usuários, apenas os funcionários gerais realizam o cadastro, como descrito no caso de uso. Ambos os usuários realizarão login, porém terão telas especificas, por exemplo: 
-- **Funcionário geral** tem uma página com a opção de realizar pesquisas com a web service da BEC, opção de quantidade e discrição do pedido.
-- **Funcionário diretor de serviços administrativos** tem uma página com o histórico dos pedidos realizados e um filtro para realizar pesquisas especificas.
+Utilização da arquitetura MVC para desenvolvimento da aplicação.
 
-### RF 03: Pesquisa de produtos pela web service da BEC
+Deverá conter obrigatoriamente um microsserviço.
 
-Este requisito se trata da pesquisa de produtos por uma web service conectada a bolsa eletrônica de compras, que retornara os produtos pesquisados e a natureza do produto em questão e seu id para adicioná-lo a um pedido.
+API documentada utilizando uma das ferramentas de documentação apresentadas em aula. Exemplo Postman ou Swagger.
 
+A aplicação deverá ser hospedada no GitHub e ter sua documentação descrita no arquivo READMe. Não esqueça de incluir o nome dos membros do grupo.
 
-<details>
-   <summary>Diagrama de classes</summary>
-   <h4>Diagrama de classes mapeado do frontend</h4>
+Aplicação hospedada em nuvem, através do vercel
+
+### 05: Junções
+
+Utilização do operador $lookup em pelo menos 2 consultas para realizar junções entre coleções e obter informações relacionadas. Por exemplo, encontre os detalhes dos produtos de um pedido específico.
+
+< detalhes >
+   < resumo >Diagrama de classes</ resumo >
+   < h4 >Diagrama de classes mapeado do frontend</ h4 >
     
-   ![image](https://github.com/paulovictorio/Documentacao_projetoCompras/assets/78160698/16ba36aa-3361-4ae2-bb36-3c48d4ffdd10)
-
-
+   ![ imagem ] ( https://github.com/paulovictorio/Documentacao_projetoCompras/assets/78160698/16ba36aa-3361-4ae2-bb36-3c48d4ffdd10 )
     
-</details>
-
-→ [Voltar ao topo](#topo)
-
+</ detalhes >
+→ [ Voltar ao topo ] ( #topo )
     
-<span id="links">
-
-## :link: Links úteis
-
-- Repositório do projeto: [Projeto de compras](https://github.com/thiago-diegoli/Projeto-MVC-RESTful)
-- Site do projeto: [https://projeto-mvc-restful-frontend.vercel.app](https://projeto-mvc-restful-frontend.vercel.app) (usuário exemplo - email: `usuario@email.com`, senha: `senha123`)
-- Voltar ao [documento principal](https://github.com/paulovictorio/Documentacao_projetoCompras/blob/main/README.md)
+< span  id = " links " >
+## : link : Links úteis
+- Repositório do projeto: [ Projeto de compras ] ( https://github.com/thiago-diegoli/Projeto-MVC-RESTful )
+- Site do projeto: [ https://projeto-mvc-restful-frontend.vercel.app ] ( https://projeto-mvc-restful-frontend.vercel.app ) (usuário exemplo - email: ` usuario@email. com ` , senha: ` senha123 ` )
+- Voltar ao [ documento principal ] ( https://github.com/paulovictorio/Documentacao_projetoCompras/blob/main/README.md )
