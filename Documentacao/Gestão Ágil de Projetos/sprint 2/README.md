@@ -38,3 +38,11 @@
 - Aplicação hospedada na **Vercel** e acessível online.
 
 → [Voltar ao topo](#topo)
+
+<span id="links"></span>
+
+## :link: Links Úteis  
+- **Repositório do Projeto:** [ADA Company](https://github.com/ADACompany01/Terceiro-Semestre)  
+- **Site do Projeto:** [Projeto Frontend na Vercel](https://adacompany.vercel.app/)  
+- **Documento Principal:** [Documentação Completa](https://github.com/ADACompany01/Terceiro-Semestre/tree/main/Documentacao)
+
