@@ -34,9 +34,11 @@ A partir desta ideia, o aplicativo utiliza APIs e microsserviçoes desenvolvidos
 ### 🏁 Entregas de Sprints
 | Sprint | Previsão | Status | Histórico |
 |:--:|:----------:|:----------------|:-------------------------------------------------:|
-| 01 | 20/05/2024 |  ✔️Concluído    |[ver relatório](https://github.com/paulovictorio/Documentacao_projetoCompras/blob/sprint-01/README.md)|
-| 02 | 03/06/2024 |  ✔️Concluído    |[ver relatório](https://github.com/paulovictorio/Documentacao_projetoCompras/blob/sprint-02/README.md)|
-| 03 | 17/06/2024 |  ✔️Concluído    |[ver relatório](https://github.com/paulovictorio/Documentacao_projetoCompras/blob/sprint-03/README.md)|
+| 01 | 05/10/2024 |  ✔️Concluído    |[ver relatório](https://github.com/ADACompany01/Terceiro-Semestre/blob/main/Documentacao/Gest%C3%A3o%20%C3%81gil%20de%20Projetos/sprint%201/README.md)|
+| 02 | 10/10/2024 |  ✔️Concluído    |[ver relatório](https://github.com/ADACompany01/Terceiro-Semestre/blob/main/Documentacao/Gest%C3%A3o%20%C3%81gil%20de%20Projetos/sprint%202/README.md)|
+| 03 | 28/10/2024 |  ✔️Concluído    |[ver relatório](https://github.com/ADACompany01/Terceiro-Semestre/blob/main/Documentacao/Gest%C3%A3o%20%C3%81gil%20de%20Projetos/sprint%203/README.md)|
+| 04 | 09/11/2024 |  ✔️Concluído    |[ver relatório](https://github.com/ADACompany01/Terceiro-Semestre/blob/main/Documentacao/Gest%C3%A3o%20%C3%81gil%20de%20Projetos/sprint%204/README.md)|
+| 05 | 19/11/2024 |  ✔️Concluído    |[ver relatório](https://github.com/ADACompany01/Terceiro-Semestre/blob/main/Documentacao/Gest%C3%A3o%20%C3%81gil%20de%20Projetos/sprint%205/README.md)|
 
 ### :clapper: Apresentação Final
 Confira a seguir uma demonstraão das funcionalidades para cada tipo de usuário do sistema:
