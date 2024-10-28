@@ -183,7 +183,7 @@ export default function SignIn(props) {
             </FormControl>
             <FormControl>
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <FormLabel htmlFor="password">Password</FormLabel>
+                <FormLabel htmlFor="password">Senha</FormLabel>
                 <Link
                   component="button"
                   type="button"
@@ -191,13 +191,13 @@ export default function SignIn(props) {
                   variant="body2"
                   sx={{ alignSelf: 'baseline' }}
                 >
-                  Forgot your password?
+                  Esqueceu a senha?
                 </Link>
               </Box>
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
-                name="password"
+                name="senha"
                 placeholder="••••••"
                 type="password"
                 id="password"
@@ -223,7 +223,7 @@ export default function SignIn(props) {
               Sign in
             </Button>
             <Typography sx={{ textAlign: 'center' }}>
-              Don&apos;t have an account?{' '}
+              Não&apos;tem uma conta?{' '}
               <span>
                 <Link
                   href="/signup"
@@ -243,7 +243,7 @@ export default function SignIn(props) {
               onClick={() => alert('Sign in with Google')}
               startIcon={<GoogleIcon />}
             >
-              Sign in with Google
+              Login com Google
             </Button>
             <Button
               fullWidth
@@ -251,7 +251,7 @@ export default function SignIn(props) {
               onClick={() => alert('Sign in with Facebook')}
               startIcon={<FacebookIcon />}
             >
-              Sign in with Facebook
+              Login com Facebook
             </Button>
           </Box>
         </Card>
