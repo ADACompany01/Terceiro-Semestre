@@ -67,6 +67,7 @@ export default function SignIn(props) {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -75,18 +76,41 @@ export default function SignIn(props) {
     setOpen(false);
   };
  
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
     if (emailError || passwordError) {
-      event.preventDefault();
       return;
     }
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
 
+    const data = new FormData(event.currentTarget);
+    const email = data.get('email');
+    const password = data.get('password');
+
+    try {
+      const response = await fetch('https://api-ada-company.vercel.app/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        // Salva o token de autenticação, por exemplo no localStorage
+        localStorage.setItem('token', result.token);
+        console.log('Login bem-sucedido');
+        navigate('/');
+        // Redirecionar ou atualizar a UI após login
+      } else {
+        const error = await response.json();
+        console.error('Erro:', error.message);
+      }
+    } catch (error) {
+      console.error('Erro de rede:', error);
+    }
+  };
   const validateInputs = () => {
     const email = document.getElementById('email');
     const password = document.getElementById('password');
