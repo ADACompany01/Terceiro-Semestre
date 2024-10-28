@@ -7,6 +7,7 @@ import { Hero } from "./components/Hero/Hero";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Projects } from "./components/Projects/Projects";
 import SignIn from "./components/sign-in/SignIn"
+import SignUp from "./components/sign-up-client/SignUp"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/SignUp" element={<SignUp />} />
         </Routes>
         <Contact/>
       </div>
