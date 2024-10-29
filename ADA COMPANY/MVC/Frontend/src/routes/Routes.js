@@ -10,10 +10,11 @@ function AppRoutes() {
   return (
     <Router>
       <Route path="/" element={<Hero/>} />
+      <Route path="/" element={<Hero />} />
           <Route path="/about" element={<About />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/signupclient" element={<SignUpClient />} />
 
     </Router>
