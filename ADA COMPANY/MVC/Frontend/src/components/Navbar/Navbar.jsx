@@ -34,7 +34,10 @@ export const Navbar = () => {
             <a href="#experience">Orçamento</a>
           </li>
           <li>
-            <a href="#contact">Contatos</a>
+            <a href="SignUp">Contatos</a>
+          </li>
+          <li>
+            <a href="/SignUpClient">Cadastro</a>
           </li>
           <li>
             <Link to="/SignIn">Login</Link>
