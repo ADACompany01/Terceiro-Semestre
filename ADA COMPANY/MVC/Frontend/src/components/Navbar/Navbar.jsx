@@ -37,7 +37,7 @@ export const Navbar = () => {
             <a href="SignUp">Contatos</a>
           </li>
           <li>
-            <a href="/SignUpClient">Cadastro</a>
+          <Link to="/SignUpClient">Login</Link>
           </li>
           <li>
             <Link to="/SignIn">Login</Link>
