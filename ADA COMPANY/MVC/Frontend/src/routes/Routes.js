@@ -8,14 +8,12 @@ import SignUpClient from "./components/sign-up-client/SignUpClient"
 function AppRoutes() {
   return (
     <Router>
-      <Routes>
       <Route path="/" element={<Hero/>} />
           <Route path="/about" element={<About />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/signupclient" element={<SignUpClient />} />
-      </Routes>
     </Router>
   );
 }
