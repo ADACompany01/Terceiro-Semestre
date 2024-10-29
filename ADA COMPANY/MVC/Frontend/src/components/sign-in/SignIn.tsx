@@ -227,12 +227,12 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
             <Typography sx={{ textAlign: 'center' }}>
               Don&apos;t have an account?{' '}
               <span>
-                <Link
-                  href="/material-ui/getting-started/templates/sign-in/"
+              <Link
+                  href="/signupclient"
                   variant="body2"
                   sx={{ alignSelf: 'center' }}
                 >
-                  Sign up
+                  Cadastrar
                 </Link>
               </span>
             </Typography>
