@@ -8,6 +8,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Projects } from "./components/Projects/Projects";
 import SignIn from "./components/sign-in/SignIn";
 import SignUpClient from "./components/sign-up-client/SignUpClient";
+import ListClient from "./components/list-client/ListClient";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signupclient" element={<SignUpClient />} />
+          <Route path="/listclient" element={<ListClient />} />
         </Routes>
         <Contact />
       </div>
