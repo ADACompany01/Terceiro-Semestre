@@ -226,7 +226,7 @@ export default function SignIn(props) {
               Não&apos;tem uma conta?{' '}
               <span>
                 <Link
-                  href="/signup"
+                  href="/signupclient"
                   variant="body2"
                   sx={{ alignSelf: 'center' }}
                 >
