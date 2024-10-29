@@ -40,10 +40,11 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignUpClient(props) {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+
+    const formData = {
       _id: data.get('_id'),
       nomeCliente: data.get('nomeCliente'),
       telefone: data.get('telefone'),
@@ -61,10 +62,29 @@ export default function SignUpClient(props) {
       senha: data.get('senha'),
       tipoUsuario: data.get('tipoUsuario'),
       telefoneUsuario: data.get('telefoneUsuario'),
-      nomeCompleto: data.get('nomeCompleto')
-    });
-  };
+    };
 
+    try {
+      const response = await fetch('https://api-ada-company.vercel.app/api/auth/registerCliente', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao registrar cliente');
+      }
+
+      const result = await response.json();
+      console.log(result); // Exibir o resultado da API
+
+      // Aqui você pode adicionar um feedback para o usuário, redirecionar, etc.
+    } catch (error) {
+      console.error('Erro:', error);
+    }
+  };
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
@@ -143,10 +163,6 @@ export default function SignUpClient(props) {
             <FormControl>
               <FormLabel htmlFor="telefoneUsuario">Telefone do Usuário</FormLabel>
               <TextField name="telefoneUsuario" required fullWidth id="telefoneUsuario" placeholder="(11) 12345-6789" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="nomeCompleto">Nome Completo</FormLabel>
-              <TextField name="nomeCompleto" required fullWidth id="nomeCompleto" placeholder="Nome Completo" />
             </FormControl>
             <Button type="submit" fullWidth variant="contained">
               Cadastrar
