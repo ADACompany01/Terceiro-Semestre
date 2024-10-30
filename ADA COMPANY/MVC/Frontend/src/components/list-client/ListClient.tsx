@@ -60,6 +60,11 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function ListClient(props: { disableCustomTheme?: boolean }) {
+  const [userData, setUserData] = React.useState({
+    name: '',
+    email: '',
+    password: ''
+  });
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
@@ -67,14 +72,26 @@ export default function ListClient(props: { disableCustomTheme?: boolean }) {
   const [nameError, setNameError] = React.useState(false);
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
 
-  const validateInputs = () => {
-    const email = document.getElementById('email') as HTMLInputElement;
-    const password = document.getElementById('password') as HTMLInputElement;
-    const name = document.getElementById('name') as HTMLInputElement;
+  // Fetch JSON data and populate TextFields
+  React.useEffect(() => {
+    // Simulação de chamada à API
+    const fetchUserData = async () => {
+      const response = await fetch('/path/to/your/json'); // Substitua pelo caminho real da sua API
+      const data = await response.json();
+      setUserData({
+        name: data.name,
+        email: data.email,
+        password: data.password
+      });
+    };
 
+    fetchUserData();
+  }, []);
+
+  const validateInputs = () => {
     let isValid = true;
 
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+    if (!userData.email || !/\S+@\S+\.\S+/.test(userData.email)) {
       setEmailError(true);
       setEmailErrorMessage('Please enter a valid email address.');
       isValid = false;
@@ -83,7 +100,7 @@ export default function ListClient(props: { disableCustomTheme?: boolean }) {
       setEmailErrorMessage('');
     }
 
-    if (!password.value || password.value.length < 6) {
+    if (!userData.password || userData.password.length < 6) {
       setPasswordError(true);
       setPasswordErrorMessage('Password must be at least 6 characters long.');
       isValid = false;
@@ -92,7 +109,7 @@ export default function ListClient(props: { disableCustomTheme?: boolean }) {
       setPasswordErrorMessage('');
     }
 
-    if (!name.value || name.value.length < 1) {
+    if (!userData.name || userData.name.length < 1) {
       setNameError(true);
       setNameErrorMessage('Name is required.');
       isValid = false;
@@ -105,17 +122,10 @@ export default function ListClient(props: { disableCustomTheme?: boolean }) {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    if (nameError || emailError || passwordError) {
-      event.preventDefault();
-      return;
+    event.preventDefault();
+    if (validateInputs()) {
+      console.log(userData);
     }
-    const data = new FormData(event.currentTarget);
-    console.log({
-      name: data.get('name'),
-      lastName: data.get('lastName'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
   };
 
   return (
@@ -146,6 +156,8 @@ export default function ListClient(props: { disableCustomTheme?: boolean }) {
                 fullWidth
                 id="name"
                 placeholder="Jon Snow"
+                value={userData.name}
+                onChange={(e) => setUserData({ ...userData, name: e.target.value })}
                 error={nameError}
                 helperText={nameErrorMessage}
                 color={nameError ? 'error' : 'primary'}
@@ -161,9 +173,11 @@ export default function ListClient(props: { disableCustomTheme?: boolean }) {
                 name="email"
                 autoComplete="email"
                 variant="outlined"
+                value={userData.email}
+                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
                 error={emailError}
                 helperText={emailErrorMessage}
-                color={passwordError ? 'error' : 'primary'}
+                color={emailError ? 'error' : 'primary'}
               />
             </FormControl>
             <FormControl>
@@ -177,6 +191,8 @@ export default function ListClient(props: { disableCustomTheme?: boolean }) {
                 id="password"
                 autoComplete="new-password"
                 variant="outlined"
+                value={userData.password}
+                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
                 error={passwordError}
                 helperText={passwordErrorMessage}
                 color={passwordError ? 'error' : 'primary'}
@@ -190,7 +206,6 @@ export default function ListClient(props: { disableCustomTheme?: boolean }) {
               type="submit"
               fullWidth
               variant="contained"
-              onClick={validateInputs}
             >
               Sign up
             </Button>
