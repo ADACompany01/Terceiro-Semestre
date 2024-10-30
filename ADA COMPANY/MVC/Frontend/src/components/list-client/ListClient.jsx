@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
-import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -28,186 +30,90 @@ const Card = styled(MuiCard)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
     width: '450px',
   },
+  ...theme.applyStyles('dark', {
+    boxShadow:
+      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
+  }),
 }));
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
-  height: '100%',
+  height: 'calc((1 - var(--template-frame-height, 0)) * 100dvh)',
   minHeight: '100%',
   padding: theme.spacing(2),
   [theme.breakpoints.up('sm')]: {
     padding: theme.spacing(4),
   },
+  '&::before': {
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    zIndex: -1,
+    inset: 0,
+    backgroundImage:
+      'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
+    backgroundRepeat: 'no-repeat',
+    ...theme.applyStyles('dark', {
+      backgroundImage:
+        'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+    }),
+  },
 }));
 
 export default function ListClient(props) {
-  const [clientId, setClientId] = React.useState("");
-  const [clienteData, setClienteData] = React.useState({
-    _id: '',
-    nomeCliente: '',
-    telefone: '',
-    cnpj: '',
-    coordinates: '',
-    cep: '',
-    logradouro: '',
-    complemento: '',
-    bairro: '',
-    localidade: '',
-    uf: '',
-    estado: '',
-    ddd: '',
+  const [userData, setUserData] = React.useState({
+    name: '',
     email: '',
-    senha: '',
-    tipoUsuario: '',
-    telefoneUsuario: '',
+    password: ''
   });
+  const [emailError, setEmailError] = React.useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
+  const [passwordError, setPasswordError] = React.useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+  const [nameError, setNameError] = React.useState(false);
+  const [nameErrorMessage, setNameErrorMessage] = React.useState('');
 
-  const handleConsultaCliente = async () => {
-    try {
-      const response = await fetch(`https://api-ada-company.vercel.app/cliente/${clientId}`);
-      if (!response.ok) {
-        throw new Error('Cliente não encontrado');
-      }
+  // Fetch JSON data and populate TextFields
+  React.useEffect(() => {
+    // Simulação de chamada à API
+    const fetchUserData = async () => {
+      const response = await fetch('https://api-ada-company.vercel.app/cliente'); // Substitua pelo caminho real da sua API
       const data = await response.json();
-      setClienteData(data);
-    } catch (error) {
-      console.error('Erro ao buscar cliente:', error);
-      setClienteData({
-        _id: '',
-        nomeCliente: '',
-        telefone: '',
-        cnpj: '',
-        coordinates: '',
-        cep: '',
-        logradouro: '',
-        complemento: '',
-        bairro: '',
-        localidade: '',
-        uf: '',
-        estado: '',
-        ddd: '',
-        email: '',
-        senha: '',
-        tipoUsuario: '',
-        telefoneUsuario: '',
+      setUserData({
+        name: data.name,
+        email: data.email,
+        password: data.password
       });
-    }
-  };
-  
+    };
+
+    fetchUserData();
+  }, []);
+
+
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
-          <SitemarkIcon />
-          <Typography
-            component="h1"
-            variant="h4"
-            sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
-          >
-            Sign up
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
-          >
-            <FormControl>
-              <FormLabel htmlFor="name">Full name</FormLabel>
-              <TextField
-                autoComplete="name"
-                name="name"
-                required
-                fullWidth
-                id="name"
-                placeholder="Jon Snow"
-                value={userData.name}
-                onChange={(e) => setUserData({ ...userData, name: e.target.value })}
-                error={nameError}
-                helperText={nameErrorMessage}
-                color={nameError ? 'error' : 'primary'}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
-              <TextField
-                required
-                fullWidth
-                id="email"
-                placeholder="your@email.com"
-                name="email"
-                autoComplete="email"
-                variant="outlined"
-                value={userData.email}
-                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
-                error={emailError}
-                helperText={emailErrorMessage}
-                color={emailError ? 'error' : 'primary'}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
-              <TextField
-                required
-                fullWidth
-                name="password"
-                placeholder="••••••"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-                variant="outlined"
-                value={userData.password}
-                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
-                error={passwordError}
-                helperText={passwordErrorMessage}
-                color={passwordError ? 'error' : 'primary'}
-              />
-            </FormControl>
-            <FormControlLabel
-              control={<Checkbox value="allowExtraEmails" color="primary" />}
-              label="I want to receive updates via email."
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-            >
-              Sign up
-            </Button>
-            <Typography sx={{ textAlign: 'center' }}>
-              Already have an account?{' '}
-              <span>
-                <Link
-                  href="/material-ui/getting-started/templates/sign-in/"
-                  variant="body2"
-                  sx={{ alignSelf: 'center' }}
-                >
-                  Sign in
-                </Link>
-              </span>
-            </Typography>
-          </Box>
-          <Divider>
-            <Typography sx={{ color: 'text.secondary' }}>or</Typography>
-          </Divider>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={() => alert('Sign up with Google')}
-              startIcon={<GoogleIcon />}
-            >
-              Sign up with Google
-            </Button>
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={() => alert('Sign up with Facebook')}
-              startIcon={<FacebookIcon />}
-            >
-              Sign up with Facebook
-            </Button>
-          </Box>
+        <div>
+      {userData && (
+        <>
+          {/* Dados do endereço */}
+          <TextField label="CEP" value={userData.endereco.cep} />
+          <TextField label="Logradouro" value={userData.endereco.logradouro} />
+          {/* ... outros campos do endereço ... */}
+
+          {/* Dados do usuário */}
+          <TextField label="Nome Completo" value={userData.usuario.nomeCompleto} />
+          <TextField label="Email" value={userData.usuario.email} />
+          {/* ... outros campos do usuário ... */}
+
+          {/* Outros dados */}
+          <TextField label="Nome do Cliente" value={userData.nomeCliente} />
+          <TextField label="CNPJ" value={userData.cnpj} />
+        </>
+      )}
+    </div>
         </Card>
       </SignUpContainer>
     </AppTheme>
