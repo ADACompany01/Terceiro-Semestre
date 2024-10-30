@@ -31,7 +31,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
-  height: '2000px',
+  height: '100%',
   minHeight: '100%',
   padding: theme.spacing(2),
   [theme.breakpoints.up('sm')]: {
@@ -40,8 +40,26 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function ListClient(props) {
-  const [clienteData, setClienteData] = React.useState(null);
   const [clientId, setClientId] = React.useState("");
+  const [clienteData, setClienteData] = React.useState({
+    _id: '',
+    nomeCliente: '',
+    telefone: '',
+    cnpj: '',
+    coordinates: '',
+    cep: '',
+    logradouro: '',
+    complemento: '',
+    bairro: '',
+    localidade: '',
+    uf: '',
+    estado: '',
+    ddd: '',
+    email: '',
+    senha: '',
+    tipoUsuario: '',
+    telefoneUsuario: '',
+  });
 
   const handleConsultaCliente = async () => {
     try {
@@ -51,31 +69,29 @@ export default function ListClient(props) {
       }
       const data = await response.json();
       setClienteData(data);
-      setClientFields({
-        _id: data._id || '',
-        nomeCliente: data.nomeCliente || '',
-        telefone: data.telefone || '',
-        cnpj: data.cnpj || '',
-        coordinates: data.coordinates || '',
-        cep: data.cep || '',
-        logradouro: data.logradouro || '',
-        complemento: data.complemento || '',
-        bairro: data.bairro || '',
-        localidade: data.localidade || '',
-        uf: data.uf || '',
-        estado: data.estado || '',
-        ddd: data.ddd || '',
-        email: data.email || '',
-        senha: data.senha || '',
-        tipoUsuario: data.tipoUsuario || '',
-        telefoneUsuario: data.telefoneUsuario || '',
-      });
     } catch (error) {
       console.error('Erro ao buscar cliente:', error);
-      setClienteData(null);
+      setClienteData({
+        _id: '',
+        nomeCliente: '',
+        telefone: '',
+        cnpj: '',
+        coordinates: '',
+        cep: '',
+        logradouro: '',
+        complemento: '',
+        bairro: '',
+        localidade: '',
+        uf: '',
+        estado: '',
+        ddd: '',
+        email: '',
+        senha: '',
+        tipoUsuario: '',
+        telefoneUsuario: '',
+      });
     }
   };
-
   
   return (
     <AppTheme {...props}>
@@ -108,74 +124,6 @@ export default function ListClient(props) {
         <Divider>
           <Typography sx={{ color: 'text.secondary' }}>ou</Typography>
         </Divider>
-        <FormControl>
-              <FormLabel htmlFor="_id">ID</FormLabel>
-              <TextField name="_id" required fullWidth id="_id" placeholder="ID" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="nomeCliente">Nome do Cliente</FormLabel>
-              <TextField name="nomeCliente" required fullWidth id="nomeCliente" placeholder="Nome do Cliente" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="telefone">Telefone</FormLabel>
-              <TextField name="telefone" required fullWidth id="telefone" placeholder="(11) 12345-6789" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="cnpj">CNPJ</FormLabel>
-              <TextField name="cnpj" required fullWidth id="cnpj" placeholder="12.345.678/0001-99" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="coordinates">Coordenadas (Localização)</FormLabel>
-              <TextField name="coordinates" required fullWidth id="coordinates" placeholder="-23.5505, -46.6333" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="cep">CEP</FormLabel>
-              <TextField name="cep" required fullWidth id="cep" placeholder="12345-678" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="logradouro">Logradouro</FormLabel>
-              <TextField name="logradouro" required fullWidth id="logradouro" placeholder="Rua das Flores" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="complemento">Complemento</FormLabel>
-              <TextField name="complemento" fullWidth id="complemento" placeholder="Apto 101" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="bairro">Bairro</FormLabel>
-              <TextField name="bairro" required fullWidth id="bairro" placeholder="Centro" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="localidade">Localidade</FormLabel>
-              <TextField name="localidade" required fullWidth id="localidade" placeholder="Cidade" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="uf">UF</FormLabel>
-              <TextField name="uf" required fullWidth id="uf" placeholder="SP" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="estado">Estado</FormLabel>
-              <TextField name="estado" required fullWidth id="estado" placeholder="São Paulo" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="ddd">DDD</FormLabel>
-              <TextField name="ddd" required fullWidth id="ddd" placeholder="11" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
-              <TextField name="email" required fullWidth id="email" placeholder="your@email.com" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="senha">Senha</FormLabel>
-              <TextField name="senha" required fullWidth type="password" id="senha" placeholder="••••••" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="tipoUsuario">Tipo de Usuário</FormLabel>
-              <TextField name="tipoUsuario" required fullWidth id="tipoUsuario" placeholder="Cliente" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="telefoneUsuario">Telefone do Usuário</FormLabel>
-              <TextField name="telefoneUsuario" required fullWidth id="telefoneUsuario" placeholder="(11) 12345-6789" />
-            </FormControl>
       </SignUpContainer>
     </AppTheme>
   );
