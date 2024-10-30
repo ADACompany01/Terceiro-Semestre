@@ -76,7 +76,7 @@ export default function ListClient(props: { disableCustomTheme?: boolean }) {
   React.useEffect(() => {
     // Simulação de chamada à API
     const fetchUserData = async () => {
-      const response = await fetch('/path/to/your/json'); // Substitua pelo caminho real da sua API
+      const response = await fetch('/https://api-ada-company.vercel.app/cliente'); // Substitua pelo caminho real da sua API
       const data = await response.json();
       setUserData({
         name: data.name,
