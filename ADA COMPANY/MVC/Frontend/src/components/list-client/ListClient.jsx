@@ -93,7 +93,7 @@ export default function ListClient(props) {
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="nomeCliente">Nome do Cliente</FormLabel>
-              <TextField value={clienteData.name} name="nomeCliente" required fullWidth id="nomeCliente" placeholder="Nome do Cliente" />
+              <TextField name="nomeCliente" required fullWidth id="nomeCliente" placeholder="Nome do Cliente" />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="telefone">Telefone</FormLabel>
