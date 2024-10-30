@@ -3,17 +3,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
-
-// Middleware para habilitar CORS para todas as origens específicas
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://adacompany.vercel.app');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    if (req.method === 'OPTIONS') {
-        return res.sendStatus(200);  // Responde rápido para preflight requests
-    }
-    next();
-});
+const cors = require('cors');
+app.use(cors({
+    origin: 'https://adacompany.vercel.app', // Habilita CORS para esta origem
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // Importando rotas
 const clienteRoute = require('./src/routes/clienteRoute');

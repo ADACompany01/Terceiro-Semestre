@@ -42,9 +42,12 @@ export const Navbar = () => {
           <li>
             <Link to="/SignIn">Login</Link>
           </li>
+          <li>
+            <Link to="/ListClient">Listar Clientes</Link>
+          </li>
 
         </ul>
       </div>
     </nav>
   );
-};
+};1
