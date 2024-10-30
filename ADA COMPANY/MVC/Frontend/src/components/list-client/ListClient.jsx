@@ -51,11 +51,32 @@ export default function ListClient(props) {
       }
       const data = await response.json();
       setClienteData(data);
+      setClientFields({
+        _id: data._id || '',
+        nomeCliente: data.nomeCliente || '',
+        telefone: data.telefone || '',
+        cnpj: data.cnpj || '',
+        coordinates: data.coordinates || '',
+        cep: data.cep || '',
+        logradouro: data.logradouro || '',
+        complemento: data.complemento || '',
+        bairro: data.bairro || '',
+        localidade: data.localidade || '',
+        uf: data.uf || '',
+        estado: data.estado || '',
+        ddd: data.ddd || '',
+        email: data.email || '',
+        senha: data.senha || '',
+        tipoUsuario: data.tipoUsuario || '',
+        telefoneUsuario: data.telefoneUsuario || '',
+      });
     } catch (error) {
       console.error('Erro ao buscar cliente:', error);
       setClienteData(null);
     }
   };
+
+  
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
