@@ -49,19 +49,27 @@ export default function SignUpClient(props) {
       nomeCliente: data.get('nomeCliente'),
       telefone: data.get('telefone'),
       cnpj: data.get('cnpj'),
-      coordinates: data.get('coordinates'),
-      cep: data.get('cep'),
-      logradouro: data.get('logradouro'),
-      complemento: data.get('complemento'),
-      bairro: data.get('bairro'),
-      localidade: data.get('localidade'),
-      uf: data.get('uf'),
-      estado: data.get('estado'),
-      ddd: data.get('ddd'),
-      email: data.get('email'),
-      senha: data.get('senha'),
-      tipoUsuario: data.get('tipoUsuario'),
-      telefoneUsuario: data.get('telefoneUsuario'),
+      endereco: {
+        cep: data.get('cep'),
+        logradouro: data.get('logradouro'),
+        complemento: data.get('complemento'),
+        bairro: data.get('bairro'),
+        localidade: data.get('localidade'),
+        uf: data.get('uf'),
+        estado: data.get('estado'),
+        ddd: data.get('ddd'),
+      },
+      localizacao: {
+        type: 'Point',
+        coordinates: data.get('coordinates').split(',').map(coord => parseFloat(coord.trim())),
+      },
+      usuario: {
+        email: data.get('email'),
+        senha: data.get('senha'),
+        tipoUsuario: data.get('tipoUsuario'),
+        telefone: data.get('telefoneUsuario'),
+        nomeCompleto: data.get('nomeCompleto'),
+      },
     };
 
     try {
@@ -85,6 +93,7 @@ export default function SignUpClient(props) {
       console.error('Erro:', error);
     }
   };
+  
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
@@ -116,6 +125,7 @@ export default function SignUpClient(props) {
               <FormLabel htmlFor="coordinates">Coordenadas (Localização)</FormLabel>
               <TextField name="coordinates" required fullWidth id="coordinates" placeholder="-23.5505, -46.6333" />
             </FormControl>
+            {/* Endereço */}
             <FormControl>
               <FormLabel htmlFor="cep">CEP</FormLabel>
               <TextField name="cep" required fullWidth id="cep" placeholder="12345-678" />
@@ -148,6 +158,7 @@ export default function SignUpClient(props) {
               <FormLabel htmlFor="ddd">DDD</FormLabel>
               <TextField name="ddd" required fullWidth id="ddd" placeholder="11" />
             </FormControl>
+            {/* Usuário */}
             <FormControl>
               <FormLabel htmlFor="email">Email</FormLabel>
               <TextField name="email" required fullWidth id="email" placeholder="your@email.com" />
@@ -163,6 +174,10 @@ export default function SignUpClient(props) {
             <FormControl>
               <FormLabel htmlFor="telefoneUsuario">Telefone do Usuário</FormLabel>
               <TextField name="telefoneUsuario" required fullWidth id="telefoneUsuario" placeholder="(11) 12345-6789" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="nomeCompleto">Nome Completo do Usuário</FormLabel>
+              <TextField name="nomeCompleto" required fullWidth id="nomeCompleto" placeholder="Nome Completo" />
             </FormControl>
             <Button type="submit" fullWidth variant="contained">
               Cadastrar
