@@ -100,30 +100,115 @@ export default function ListClient(props) {
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
           <SitemarkIcon />
-          <Typography component="h1" variant="h4">
-            Consultar Cliente
+          <Typography
+            component="h1"
+            variant="h4"
+            sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
+          >
+            Sign up
           </Typography>
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <TextField
-              label="ID do Cliente"
-              fullWidth
-              value={clientId}
-              onChange={(e) => setClientId(e.target.value)}
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+          >
+            <FormControl>
+              <FormLabel htmlFor="name">Full name</FormLabel>
+              <TextField
+                autoComplete="name"
+                name="name"
+                required
+                fullWidth
+                id="name"
+                placeholder="Jon Snow"
+                value={userData.name}
+                onChange={(e) => setUserData({ ...userData, name: e.target.value })}
+                error={nameError}
+                helperText={nameErrorMessage}
+                color={nameError ? 'error' : 'primary'}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="email">Email</FormLabel>
+              <TextField
+                required
+                fullWidth
+                id="email"
+                placeholder="your@email.com"
+                name="email"
+                autoComplete="email"
+                variant="outlined"
+                value={userData.email}
+                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+                error={emailError}
+                helperText={emailErrorMessage}
+                color={emailError ? 'error' : 'primary'}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="password">Password</FormLabel>
+              <TextField
+                required
+                fullWidth
+                name="password"
+                placeholder="••••••"
+                type="password"
+                id="password"
+                autoComplete="new-password"
+                variant="outlined"
+                value={userData.password}
+                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
+                error={passwordError}
+                helperText={passwordErrorMessage}
+                color={passwordError ? 'error' : 'primary'}
+              />
+            </FormControl>
+            <FormControlLabel
+              control={<Checkbox value="allowExtraEmails" color="primary" />}
+              label="I want to receive updates via email."
             />
-            <Button variant="contained" onClick={handleConsultaCliente}>
-              Consultar
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+            >
+              Sign up
+            </Button>
+            <Typography sx={{ textAlign: 'center' }}>
+              Already have an account?{' '}
+              <span>
+                <Link
+                  href="/material-ui/getting-started/templates/sign-in/"
+                  variant="body2"
+                  sx={{ alignSelf: 'center' }}
+                >
+                  Sign in
+                </Link>
+              </span>
+            </Typography>
+          </Box>
+          <Divider>
+            <Typography sx={{ color: 'text.secondary' }}>or</Typography>
+          </Divider>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <Button
+              fullWidth
+              variant="outlined"
+              onClick={() => alert('Sign up with Google')}
+              startIcon={<GoogleIcon />}
+            >
+              Sign up with Google
+            </Button>
+            <Button
+              fullWidth
+              variant="outlined"
+              onClick={() => alert('Sign up with Facebook')}
+              startIcon={<FacebookIcon />}
+            >
+              Sign up with Facebook
             </Button>
           </Box>
-          {clienteData && (
-            <Box sx={{ mt: 2 }}>
-              <Typography variant="h6">Dados do Cliente:</Typography>
-              <pre>{JSON.stringify(clienteData, null, 2)}</pre>
-            </Box>
-          )}
         </Card>
-        <Divider>
-          <Typography sx={{ color: 'text.secondary' }}>ou</Typography>
-        </Divider>
       </SignUpContainer>
     </AppTheme>
   );
