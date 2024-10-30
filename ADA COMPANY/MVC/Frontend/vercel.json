@@ -1,10 +1,5 @@
 {
   "rewrites": [
-    { "source": "/about", "destination": "/" },
-    { "source": "/experience", "destination": "/" },
-    { "source": "/projects", "destination": "/" },
-    { "source": "/signin", "destination": "/" },
-    { "source": "/signupclient", "destination": "/" }
-  ],
-  "cleanUrls": true
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }

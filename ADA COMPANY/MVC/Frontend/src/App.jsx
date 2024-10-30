@@ -16,7 +16,7 @@ function App() {
       <div className={styles.App}>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Hero />} />
+          <Route path="/"  element={<Hero />} />
           <Route path="/about" element={<About />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
