@@ -1,12 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -30,91 +28,133 @@ const Card = styled(MuiCard)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
     width: '450px',
   },
-  ...theme.applyStyles('dark', {
-    boxShadow:
-      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
-  }),
 }));
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
-  height: 'calc((1 - var(--template-frame-height, 0)) * 100dvh)',
+  height: '100%',
   minHeight: '100%',
   padding: theme.spacing(2),
   [theme.breakpoints.up('sm')]: {
     padding: theme.spacing(4),
   },
-  '&::before': {
-    content: '""',
-    display: 'block',
-    position: 'absolute',
-    zIndex: -1,
-    inset: 0,
-    backgroundImage:
-      'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
-    backgroundRepeat: 'no-repeat',
-    ...theme.applyStyles('dark', {
-      backgroundImage:
-        'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
-    }),
-  },
 }));
 
 export default function ListClient(props) {
-  const [userData, setUserData] = React.useState({
-    name: '',
-    email: '',
-    password: ''
-  });
-  const [emailError, setEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-  const [nameError, setNameError] = React.useState(false);
-  const [nameErrorMessage, setNameErrorMessage] = React.useState('');
+  const [clienteData, setClienteData] = React.useState(null);
+  const [clientId, setClientId] = React.useState("");
 
-  // Fetch JSON data and populate TextFields
-  React.useEffect(() => {
-    // Simulação de chamada à API
-    const fetchUserData = async () => {
-      const response = await fetch('https://api-ada-company.vercel.app/cliente'); // Substitua pelo caminho real da sua API
+  const handleConsultaCliente = async () => {
+    try {
+      const response = await fetch(`https://api-ada-company.vercel.app/cliente/${clientId}`);
+      if (!response.ok) {
+        throw new Error('Cliente não encontrado');
+      }
       const data = await response.json();
-      setUserData({
-        name: data.name,
-        email: data.email,
-        password: data.password
-      });
-    };
-
-    fetchUserData();
-  }, []);
-
-
+      setClienteData(data);
+    } catch (error) {
+      console.error('Erro ao buscar cliente:', error);
+      setClienteData(null);
+    }
+  };
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
-        <div>
-      {userData && (
-        <>
-          {/* Dados do endereço */}
-          <TextField label="CEP" value={userData.endereco.cep} />
-          <TextField label="Logradouro" value={userData.endereco.logradouro} />
-          {/* ... outros campos do endereço ... */}
-
-          {/* Dados do usuário */}
-          <TextField label="Nome Completo" value={userData.usuario.nomeCompleto} />
-          <TextField label="Email" value={userData.usuario.email} />
-          {/* ... outros campos do usuário ... */}
-
-          {/* Outros dados */}
-          <TextField label="Nome do Cliente" value={userData.nomeCliente} />
-          <TextField label="CNPJ" value={userData.cnpj} />
-        </>
-      )}
-    </div>
+          <SitemarkIcon />
+          <Typography component="h1" variant="h4">
+            Consultar Cliente
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <TextField
+              label="ID do Cliente"
+              fullWidth
+              value={clientId}
+              onChange={(e) => setClientId(e.target.value)}
+            />
+            <Button variant="contained" onClick={handleConsultaCliente}>
+              Consultar
+            </Button>
+          </Box>
+          {clienteData && (
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="h6">Dados do Cliente:</Typography>
+              <pre>{JSON.stringify(clienteData, null, 2)}</pre>
+            </Box>
+          )}
         </Card>
+        <Divider>
+          <Typography sx={{ color: 'text.secondary' }}>ou</Typography>
+        </Divider>
+        <FormControl>
+              <FormLabel htmlFor="_id">ID</FormLabel>
+              <TextField name="_id" required fullWidth id="_id" placeholder="ID" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="nomeCliente">Nome do Cliente</FormLabel>
+              <TextField value={clienteData.name} name="nomeCliente" required fullWidth id="nomeCliente" placeholder="Nome do Cliente" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="telefone">Telefone</FormLabel>
+              <TextField name="telefone" required fullWidth id="telefone" placeholder="(11) 12345-6789" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="cnpj">CNPJ</FormLabel>
+              <TextField name="cnpj" required fullWidth id="cnpj" placeholder="12.345.678/0001-99" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="coordinates">Coordenadas (Localização)</FormLabel>
+              <TextField name="coordinates" required fullWidth id="coordinates" placeholder="-23.5505, -46.6333" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="cep">CEP</FormLabel>
+              <TextField name="cep" required fullWidth id="cep" placeholder="12345-678" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="logradouro">Logradouro</FormLabel>
+              <TextField name="logradouro" required fullWidth id="logradouro" placeholder="Rua das Flores" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="complemento">Complemento</FormLabel>
+              <TextField name="complemento" fullWidth id="complemento" placeholder="Apto 101" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="bairro">Bairro</FormLabel>
+              <TextField name="bairro" required fullWidth id="bairro" placeholder="Centro" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="localidade">Localidade</FormLabel>
+              <TextField name="localidade" required fullWidth id="localidade" placeholder="Cidade" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="uf">UF</FormLabel>
+              <TextField name="uf" required fullWidth id="uf" placeholder="SP" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="estado">Estado</FormLabel>
+              <TextField name="estado" required fullWidth id="estado" placeholder="São Paulo" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="ddd">DDD</FormLabel>
+              <TextField name="ddd" required fullWidth id="ddd" placeholder="11" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="email">Email</FormLabel>
+              <TextField name="email" required fullWidth id="email" placeholder="your@email.com" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="senha">Senha</FormLabel>
+              <TextField name="senha" required fullWidth type="password" id="senha" placeholder="••••••" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="tipoUsuario">Tipo de Usuário</FormLabel>
+              <TextField name="tipoUsuario" required fullWidth id="tipoUsuario" placeholder="Cliente" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="telefoneUsuario">Telefone do Usuário</FormLabel>
+              <TextField name="telefoneUsuario" required fullWidth id="telefoneUsuario" placeholder="(11) 12345-6789" />
+            </FormControl>
       </SignUpContainer>
     </AppTheme>
   );
