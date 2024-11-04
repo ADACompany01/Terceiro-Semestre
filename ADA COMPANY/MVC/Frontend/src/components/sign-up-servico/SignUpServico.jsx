@@ -46,7 +46,7 @@ export default function SignUpServico(props) {
 
     const servicoData = {
       _id: data.get('_id'),
-      nomeCliente: data.get('nome'),
+      nome: data.get('nome'),
       valor: data.get('valor'),
       tipoServico: data.get('tipoServico'),
     };
