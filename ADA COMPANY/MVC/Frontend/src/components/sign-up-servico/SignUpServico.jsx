@@ -59,17 +59,21 @@ export default function SignUpServico(props) {
         },
         body: JSON.stringify(servicoData),
       });
-
+    
       if (response.ok) {
         const result = await response.json();
         console.log('Serviço cadastrado com sucesso:', result);
+        alert('Serviço cadastrado com sucesso!'); // Popup de sucesso
       } else {
         console.error('Erro ao cadastrar serviço:', response.statusText);
+        alert('Erro ao cadastrar serviço.');
       }
     } catch (error) {
       console.error('Erro na requisição:', error);
+      alert('Erro ao cadastrar serviço.');
     }
-  };
+    
+  }; 
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
