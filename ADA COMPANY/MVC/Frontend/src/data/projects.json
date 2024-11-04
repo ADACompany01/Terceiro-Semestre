@@ -1,17 +1,10 @@
 [
   {
-    "title": "Site Infantil",
+    "title": "Site Desenvolvido para o público Infantil",
     "imageSrc": "cards/site-infantil.jpg",
     "description": "Um site colorido e interativo voltado para crianças, com jogos educativos e conteúdo visualmente atraente.",
     "skills": ["Design lúdico", "Navegação interativa", "Conteúdo educativo"],
     "demo": "https://img.freepik.com/psd-gratuitas/modelo-de-pagina-de-destino-divertida-e-colorida-para-o-dia-das-criancas_23-2149108645.jpg?t=st=1729793739~exp=1729797339~hmac=69ad96c741d4c815298a55e03b5cc55916aa3c0231b823caaa7898a25974b29e&w=740"
-  },
-  {
-    "title": "Site para Idosos",
-    "imageSrc": "cards/site-idosos.jpg",
-    "description": "Site desenvolvido para facilitar a navegação de pessoas idosas, com fontes grandes e uma interface simples e clara.",
-    "skills": ["Tipografia ampliada", "Navegação simples", "Design intuitivo"],
-    "demo": "https://img.freepik.com/psd-gratuitas/modelo-de-pagina-de-destino-para-assistencia-e-cuidados-a-idosos_23-2148645813.jpg?t=st=1729793784~exp=1729797384~hmac=3548bb537126e719440bd2d8bea24fd59424c63646c32c5d7fddead1efe33145&w=740"
   },
   {
     "title": "Site para Deficiência Visual e Daltonismo",
@@ -19,5 +12,12 @@
     "description": "Site acessível para pessoas com deficiência visual e daltonismo, oferecendo alto contraste e compatibilidade com leitores de tela.",
     "skills": ["Alto contraste", "Compatível com leitores de tela", "Ajuste de cores para daltônicos"],
     "demo": "https://img.freepik.com/vetores-gratis/ilustracao-do-conceito-de-acessibilidade-eletronica_114360-20590.jpg?t=st=1729793837~exp=1729797437~hmac=ed18086ba5a8b66f8d81a94c01177e5748259f9fd5236c8eac36a6ebf557db80&w=740"
+  },
+  {
+    "title": "Site desenvolvido para atender Idosos",
+    "imageSrc": "cards/site-idosos.jpg",
+    "description": "Site desenvolvido para facilitar a navegação de pessoas idosas, com fontes grandes e uma interface simples e clara.",
+    "skills": ["Tipografia ampliada", "Navegação simples", "Design intuitivo"],
+    "demo": "https://img.freepik.com/psd-gratuitas/modelo-de-pagina-de-destino-para-assistencia-e-cuidados-a-idosos_23-2148645813.jpg?t=st=1729793784~exp=1729797384~hmac=3548bb537126e719440bd2d8bea24fd59424c63646c32c5d7fddead1efe33145&w=740"
   }
 ]
