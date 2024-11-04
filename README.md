@@ -6,7 +6,7 @@
     <a href="#prototipo">Protótipo & Documentação</a>  | 
     <a href="#link">Links Uteis</a>  |
     <a href="#tecnologias">Tecnologias</a>  |  
-    <a href="#equipe">Equipe</a>  |    
+    <a href="#equipe">Equipe</a>  |
 </p>
 
 <span id="sobre">
@@ -19,13 +19,14 @@ público negligenciado hoje na internet. O projeto desenvolve websites responsiv
 para reduzir a desigualdade, garantindo que todos, independentemente de 
 habilidades ou dispositivos, possam navegar e interagir facilmente.
 
-> _Projeto baseado na metodologia ágil SCRUM, procurando desenvolver a consultoria de sistemas visando acessibilidade_
+>_Projeto baseado na metodologia ágil SCRUM, procurando desenvolver a consultoria de sistemas visando acessibilidade._
 
-Baseado em necessidades de determinados usuários, foram implementadas técnicas e ferramentas para desenvolver, implementar e manter sistemas dos clientes com as defasagens identificadas.
+Baseado em necessidades de determinados usuários, foram implementadas técnicas e ferramentas para desenvolver, implementar e manter sistemas
+dos clientes com as defasagens identificadas.
 
 A partir desta ideia, o aplicativo utiliza APIs e microsserviços desenvolvidos para adequar os projetos.
 
-:pushpin: Status do Projeto: **✔️ Concluído**
+:pushpin: Status do Projeto: **✔️ Concluído** 
 
 ### 🏁 Entregas de Sprints
 | Sprint | Previsão | Status | Histórico |
@@ -54,37 +55,47 @@ Confira a seguir uma demonstração das funcionalidades para cada tipo de usuár
 → [Voltar ao topo](#topo)
 
 <span id="backlogs">
-
+    
 ## 👷 Backlogs & User Stories
 
-Nesta seção, listamos os requisitos do sistema, traduzidos em user stories para orientar o desenvolvimento focado nas necessidades de acessibilidade e usabilidade. Cada user story segue o formato: 
+### User Stories
+- **US01**: Como um usuário que quer comprar online, eu quero que o sistema me mostre todas as informações sobre os produtos do meu pedido, para que eu saiba exatamente o que estou comprando.  
+   **Tarefa Relacionada**: Utilizar o operador $lookup em pelo menos 2 consultas para realizar junções entre coleções e obter informações relacionadas.
 
-> "Como [tipo de usuário], eu quero [objetivo] para que [benefício]".
+- **US02**: Como alguém que vai usar o site, eu quero que a equipe descubra quem sou eu e como eu uso o site, para que ele fique mais fácil e útil para mim.  
+   **Tarefa Relacionada**: Técnica para identificação dos usuários (questionário, brainstorm etc), Definição das personas e Definição dos cenários.
 
-### Backlog do Projeto
+- **US03**: Como um comprador, eu quero que o site me ajude a encontrar produtos com preços que posso pagar e que eu consiga ver todos os meus pedidos, para que eu não perca nada importante.  
+   **Tarefa Relacionada**: Realizar pelo menos 5 consultas utilizando os operadores do checklist.
 
-| ID   | User Story                                                                                                           | Prioridade |
-|------|----------------------------------------------------------------------------------------------------------------------|------------|
-| US01 | Como usuário idoso ou com pouca experiência digital, eu quero uma navegação simples e intuitiva para acessar o sistema facilmente. | Alta       |
-| US02 | Como pessoa com deficiência visual, eu quero que o sistema seja compatível com leitores de tela para facilitar o acesso ao conteúdo. | Alta       |
-| US03 | Como usuário iniciante, eu quero um botão de ajuda em todas as páginas para que eu possa obter suporte sem complicação. | Média      |
-| US04 | Como cliente corporativo, eu quero visualizar as informações sobre serviços de acessibilidade para avaliar a adequação às minhas necessidades. | Média      |
-| US05 | Como usuário que acessa de diferentes dispositivos, eu quero que o design seja responsivo para uma boa experiência de navegação. | Alta       |
-| US06 | Como novo usuário, eu quero um processo de cadastro fácil e rápido para começar a utilizar os serviços sem dificuldades. | Alta       |
-| US07 | Como usuário cadastrado, eu quero acessar uma área onde posso ver meus dados e histórico de uso do sistema para maior controle. | Média      |
+- **US04**: Como um usuário que gosta de descobrir coisas novas, eu quero que o site saiba onde estou e me mostre lojas ou serviços perto de mim, para que eu consiga acessar o que preciso mais rápido.  
+   **Tarefa Relacionada**: Armazenamento de dados geográficos utilizando GeoJSON e realizar consultas geospaciais.
+
+- **US05**: Como um usuário que interage com o site, eu quero que a API me permita fazer coisas como adicionar, ver, mudar e excluir informações, para que eu possa gerenciar meus dados de maneira fácil.  
+   **Tarefa Relacionada**: Desenvolvimento de uma API RESTful completa que permita a realização das operações básicas: GET, POST, PUT e DELETE.
+
+- **US06**: Como alguém que quer usar o site, eu quero que a equipe coloque tudo no GitHub e explique como funciona, para que eu consiga entender o que está acontecendo por trás do site e como posso usar.  
+   **Tarefa Relacionada**: A aplicação deverá ser hospedada no GitHub e ter sua documentação descrita no arquivo README.
+
+- **US07**: Como um usuário que navega no site, eu quero que tudo esteja bem organizado e fácil de achar, para que eu consiga encontrar o que preciso sem ficar perdido.  
+   **Tarefa Relacionada**: Estrutura da informação (card sorting), Menus e navegação, Protótipo de baixa fidelidade, Definição dos símbolos, Definição das cores, Definição dos Padrões.
+
+- **US08**: Como um usuário que gosta de navegar, eu quero que o site funcione de maneira rápida e fácil, sem precisar recarregar a página toda hora, para que minha experiência seja melhor.  
+   **Tarefa Relacionada**: Desenvolvimento da interface do usuário utilizando o conceito de SPA (Single Page Application).
 
 → [Voltar ao topo](#topo)
 
 ## Protótipo e Documentação
 ### 🏠 Protótipo 
 <span id="prototipo">
-Com base nos dados coletados em pesquisas, foi possível montar um protótipo de alta fidelidade com o uso da ferramenta Figma. Esta ferramenta possibilitou uma visualização prévia do front-end do projeto, o suficiente para obter o alinhamento entre a equipe de desenvolvimento e o cliente. Desta forma, o projeto prototipado possui algumas funções básicas de acesso a telas e respostas a cliques em botões, posteriormente sendo funcionalidades aplicadas na própria aplicação.
-O acesso ao protótipo pode ser feito <a href="https://www.figma.com/proto/aoRbpLGfGNXeTD0hLtrsDr/Projeto-Integrador?node-id=0-1&t=P5UiG1z4EAXU1bLR-1">aqui</a>.
+    Com base nos dados coletados em pesquisas, foi possível montar um protótipo de alta fidelidade com o uso da ferramenta Figma. Esta ferramenta possibilitou uma visualização prévia do front-end do projeto, o suficiente para obter o alinhamento entre a equipe de desenvolvimento e o cliente. Desta forma, o projeto prototipado possui algumas funções básicas de acesso a telas e respostas a cliques em botões, posteriormente sendo funcionalidades aplicadas na própria aplicação.
+    O acesso ao protótipo pode ser feito <a href="https://www.figma.com/proto/aoRbpLGfGNXeTD0hLtrsDr/Projeto-Integrador?node-id=0-1&t=P5UiG1z4EAXU1bLR-1">aqui</a>
+
 
 ### 📄 Documentação 
 As documentações deste projeto possuem mais detalhes do planejamento e da arquitetura do software. 
 Elas podem ser acessadas pelos links: [Documentação do projeto]([documentacao_compras_pi.pdf](https://github.com/ADACompany01/Terceiro-Semestre/tree/main/Documentacao))
-e [Documentação ihc](https://github.com/ADACompany01/Terceiro-Semestre/tree/main/Documentacao). <br>
+E [Documentação ihc](https://github.com/ADACompany01/Terceiro-Semestre/tree/main/Documentacao). <br>
 
 <span id="link">
     
@@ -92,18 +103,22 @@ e [Documentação ihc](https://github.com/ADACompany01/Terceiro-Semestre/tree/ma
 > - Link do sistema funcional: [clique aqui para acessar](https://adacompany.vercel.app)
 > - Repositório do projeto: [clique aqui para acessar](https://github.com/ADACompany01/Terceiro-Semestre/tree/main)
 
+
 ## 🛠️ Tecnologias Utilizadas 
 <span id="tecnologias">
-<p align="center">
-  <a href="https://skillicons.dev">
+    <p align="center">
+      <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=html,css,js,tailwind,nodejs,mongodb,vercel,vscode,figma" />
   </a>
 </p>
 </span>
 
+
 ## :busts_in_silhouette: Equipe
 
+
 <span id="equipe">
+    
 
 |    Função     |                  Nome                 |                          GitHub                              | 
 | :-----------: | :-----------------------------------: | :----------------------------------------------------------: |
@@ -111,7 +126,9 @@ e [Documentação ihc](https://github.com/ADACompany01/Terceiro-Semestre/tree/ma
 | Scrum Master  | Matheus Prusch                        |[![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/MatheusPrusch77)|
 | Dev Team      | Samuel Porcer Pregnolato              |[![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/SamuelPorcer)|
 
+
 → [Voltar ao topo](#topo)
+
 
 ## 🪪 Licença
 
