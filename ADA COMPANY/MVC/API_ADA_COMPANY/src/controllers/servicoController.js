@@ -12,11 +12,18 @@ exports.getServico = async function (req, res) {
 
 // Método para criar um serviço
 exports.create = function (req, res) {
+    // Valida se todos os campos obrigatórios estão presentes
+    const { _id, nome, valor, tipoServico } = req.body;
+
+    if (!_id || !nome || valor === undefined || !tipoServico) {
+        return res.status(400).send({ message: "Dados insuficientes para cadastrar o serviço." });
+    }
+
     let servico = new Servico({
-        _id: req.body._id,
-        nome: req.body.nome,
-        valor: req.body.valor,
-        tipoServico: req.body.tipoServico
+        _id,
+        nome,
+        valor,
+        tipoServico
     });
 
     servico.save()
@@ -24,9 +31,20 @@ exports.create = function (req, res) {
             res.status(201).send(servico.toJSON());  // Envia a resposta após salvar o serviço
         })
         .catch((err) => {
-            res.status(500).send({ message: `${err.message} - falha ao cadastrar serviço.` });
+            console.error("Erro ao salvar o serviço:", err);  // Log do erro no console
+            if (err.name === 'ValidationError') {
+                // Erro de validação
+                res.status(400).send({ message: "Erro de validação: " + err.message });
+            } else if (err.name === 'MongoNetworkError') {
+                // Erro de rede com o MongoDB
+                res.status(503).send({ message: "Erro de conexão com o banco de dados." });
+            } else {
+                // Outros erros
+                res.status(500).send({ message: `${err.message} - falha ao cadastrar serviço.` });
+            }
         });
 };
+
 
 // Método para atualizar um serviço
 exports.updateServico = async function (req, res) {

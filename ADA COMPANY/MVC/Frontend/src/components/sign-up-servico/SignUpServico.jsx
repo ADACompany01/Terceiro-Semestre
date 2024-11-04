@@ -90,12 +90,12 @@ export default function SignUpServico(props) {
               <TextField name="nome" required fullWidth id="nome" placeholder="Nome" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="valor">Telefone</FormLabel>
+              <FormLabel htmlFor="valor">Valor</FormLabel>
               <TextField name="valor" required fullWidth id="valor" placeholder="R$" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="tipoServico">CNPJ</FormLabel>
-              <TextField name="tipoServico" required fullWidth id="tipoServico" placeholder="tipo do serviço" />
+              <FormLabel htmlFor="tipoServico">Tipo</FormLabel>
+              <TextField name="tipoServico" required fullWidth id="tipoServico" placeholder="Venda ou Serviço" />
             </FormControl>
             <Button type="submit" fullWidth variant="contained">
               Cadastrar
