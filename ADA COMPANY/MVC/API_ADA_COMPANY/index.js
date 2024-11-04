@@ -1,4 +1,4 @@
-//require('dotenv').config(); será necessário aguardar a implementação do login para funcionar o jwt token
+require('dotenv').config(); //será necessário aguardar a implementação do login para funcionar o jwt token
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');

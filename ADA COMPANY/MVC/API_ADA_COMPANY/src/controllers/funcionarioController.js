@@ -10,32 +10,6 @@ exports.getFuncionarios = async function (req, res) {
     }
 };
 
-// Método para criar um funcionário
-exports.createFuncionario = function (req, res) {
-    let funcionario = new Funcionario({
-        _id: req.body._id,
-        nomeFuncionario: req.body.nomeFuncionario,
-        cep: req.body.cep,
-        logradouro: req.body.logradouro,
-        complemento: req.body.complemento,
-        bairro: req.body.bairro,
-        localidade: req.body.localidade,
-        uf: req.body.uf,
-        estado: req.body.estado,
-        ddd: req.body.ddd,
-        cargo: req.body.cargo,
-        idUsuario: req.body.idUsuario,
-        chatBot: req.body.chatBot
-    });
-
-    funcionario.save()
-        .then(() => {
-            res.status(201).send(funcionario.toJSON());
-        })
-        .catch((err) => {
-            res.status(500).send({ message: `${err.message} - Falha ao cadastrar funcionário.` });
-        });
-};
 
 // Método para atualizar um funcionário
 exports.updateFuncionario = async function (req, res) {

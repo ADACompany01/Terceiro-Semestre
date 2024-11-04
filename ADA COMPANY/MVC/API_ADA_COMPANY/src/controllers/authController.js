@@ -2,12 +2,18 @@ const Cliente = require('../models/clienteModel');
 const Funcionario = require('../models/funcionarioModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv')
+const config = require('../config')
+
+// Carrega as variáveis de ambiente
+dotenv.config();
 
 // Registrar Cliente
 exports.registerCliente = async (req, res) => {
     const {
-        _id, nomeCliente, telefone, endereco, cnpj, cep, logradouro, complemento, bairro, localidade,
-        uf, estado, ddd, localizacao, usuario
+        _id, nomeCliente, telefone, localizacao, cnpj,
+        endereco: { cep, logradouro, complemento, bairro, localidade, uf, estado, ddd },
+        usuario: { email, senha, tipoUsuario, telefone: telefoneUsuario, nomeCompleto }
     } = req.body;
 
     try {
@@ -15,10 +21,9 @@ exports.registerCliente = async (req, res) => {
             _id,
             nomeCliente,
             telefone,
-            cnpj,
             localizacao,
-            usuario,
-            endereco: {  // Agrupe os campos de endereço dentro do objeto "endereco"
+            cnpj,
+            endereco: {
                 cep,
                 logradouro,
                 complemento,
@@ -28,9 +33,15 @@ exports.registerCliente = async (req, res) => {
                 estado,
                 ddd
             },
-            localizacao,  // Inclui { type: 'Point', coordinates: [...] }
-            usuario
+            usuario: {
+                email,
+                senha,
+                tipoUsuario,
+                telefone: telefoneUsuario,
+                nomeCompleto
+            }
         });
+
         await cliente.save();
         res.status(201).json({ message: 'Cliente registrado com sucesso!' });
     } catch (err) {
@@ -41,34 +52,44 @@ exports.registerCliente = async (req, res) => {
 // Registrar Funcionário
 exports.registerFuncionario = async (req, res) => {
     const {
-        _id, nomeFuncionario, cep, logradouro, complemento, bairro, localidade,
-        uf, estado, ddd, cargo, idUsuario, chatBot
+        _id, nomeFuncionario,
+        endereco: { cep, logradouro, complemento, bairro, localidade, uf, estado, ddd },
+        cargo,
+        usuario: { email, senha, tipoUsuario, telefone: telefoneUsuario, nomeCompleto },
+        chatBot
     } = req.body;
 
     try {
         const funcionario = new Funcionario({
             _id,
             nomeFuncionario,
-            cep,
-            logradouro,
-            complemento,
-            bairro,
-            localidade,
-            uf,
-            estado,
-            ddd,
+            endereco: {
+                cep,
+                logradouro,
+                complemento,
+                bairro,
+                localidade,
+                uf,
+                estado,
+                ddd
+            },
             cargo,
-            idUsuario,
+            usuario: {
+                email,
+                senha,
+                tipoUsuario,
+                telefone: telefoneUsuario,
+                nomeCompleto
+            },
             chatBot
         });
+
         await funcionario.save();
-        res.status(201).json({ message: 'Funcionario registrado com sucesso!' });
+        res.status(201).json({ message: 'Funcionário registrado com sucesso!' });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 };
-
-// Login de usuário (Cliente ou Funcionário)
 // Login de usuário (Cliente ou Funcionário)
 exports.loginUser = async (req, res) => {
     const { email, senha } = req.body;
@@ -77,15 +98,9 @@ exports.loginUser = async (req, res) => {
         let user = await Cliente.findOne({ 'usuario.email': email });
         let tipoUsuario = 'cliente';
 
-        // Log para verificar se o cliente foi encontrado
-        console.log("Cliente encontrado:", user);
-
         if (!user) {
-            user = await Funcionario.findOne({ idUsuario: email });
+            user = await Funcionario.findOne({ 'usuario.email': email });
             tipoUsuario = 'funcionario';
-
-            // Log para verificar se o funcionário foi encontrado
-            console.log("Funcionário encontrado:", user);
         }
 
         if (!user) {
@@ -93,18 +108,23 @@ exports.loginUser = async (req, res) => {
         }
 
         // Verifica a senha do cliente ou funcionário
-        const isMatch = await bcrypt.compare(senha, user.usuario ? user.usuario.senha : '');
+        const isMatch = await bcrypt.compare(senha, user.usuario.senha);
 
         if (!isMatch) {
             return res.status(400).json({ message: 'Senha incorreta' });
         }
 
+        //  log para verificar o valor da chave secreta
+        console.log('Chave secreta:', config.JWT_SECRET);
         // Gera o token JWT
-        const token = jwt.sign({ id: user._id, role: tipoUsuario }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user._id }, config.JWT_SECRET, { expiresIn: '1h' });
         res.json({ token });
+
     } catch (err) {
-        console.error("Erro no login:", err); // Log do erro detalhado
+        console.error("Erro no login:", err);
         res.status(500).json({ error: err.message });
+    } finally {
+        // Código que sempre deve ser executado, se necessário
+        // Exemplo: liberar recursos ou encerrar conexões
     }
 };
-

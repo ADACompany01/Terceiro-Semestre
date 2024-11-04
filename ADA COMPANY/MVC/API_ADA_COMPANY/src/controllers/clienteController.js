@@ -5,44 +5,7 @@ exports.getClientes = async function (req, res) {
         const result = await Cliente.find();
         res.status(200).json(result);
     } catch (err) {
-        res.status(500).json(err);
-    }
-};
-
-exports.create = async function (req, res) {
-    try {
-        let cliente = new Cliente({
-            _id: req.body._id,
-            nomeCliente: req.body.nomeCliente,
-            telefone: req.body.telefone,
-            localizacao: {
-                type: 'Point',
-                coordinates: req.body.localizacao.coordinates
-            },
-            cnpj: req.body.cnpj,
-            endereco: {
-                cep: req.body.endereco.cep,
-                logradouro: req.body.endereco.logradouro,
-                complemento: req.body.endereco.complemento,
-                bairro: req.body.endereco.bairro,
-                localidade: req.body.endereco.localidade,
-                uf: req.body.endereco.uf,
-                estado: req.body.endereco.estado,
-                ddd: req.body.endereco.ddd
-            },
-            usuario: {
-                email: req.body.usuario.email,
-                senha: req.body.usuario.senha,
-                tipoUsuario: req.body.usuario.tipoUsuario,
-                telefone: req.body.usuario.telefone,
-                nomeCompleto: req.body.usuario.nomeCompleto
-            }
-        });
-
-        const savedCliente = await cliente.save();
-        return res.status(201).json(savedCliente);
-    } catch (err) {
-        return res.status(500).send({ message: `${err.message} - Falha ao cadastrar cliente.` });
+        res.status(500).json({ message: `${err.message} - Falha ao buscar clientes.` });
     }
 };
 
@@ -81,8 +44,11 @@ exports.deleteCliente = async function (req, res) {
 exports.details = async function (req, res) {
     try {
         const result = await Cliente.findById(req.params.id);
+        if (!result) {
+            return res.status(404).send({ message: 'Cliente não encontrado.' });
+        }
         res.status(200).json(result);
     } catch (err) {
-        res.status(500).json(err);
+        res.status(500).json({ message: `${err.message} - Falha ao buscar detalhes do cliente.` });
     }
 };
