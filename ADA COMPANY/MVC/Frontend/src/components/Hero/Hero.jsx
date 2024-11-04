@@ -1,5 +1,7 @@
 import React from "react";
 
+import {About} from '../Servicos/About'; 
+
 import styles from "./Hero.module.css";
 import { getImageUrl } from "../../utils";
 
@@ -9,10 +11,9 @@ export const Hero = () => {
       <div className={styles.content}>
         <h1 className={styles.title}>Olá, eu sou Ada</h1>
         <p className={styles.description}>
-              Sou sua assistente adaptativa. Minha missão é tornar seu sistema 
-              acessível para todos!
+          Sou sua assistente adaptativa. Minha missão é tornar seu sistema acessível para todos!
         </p>
-        <a href="mailto:myemail@email.com" className={styles.contactBtn}>
+        <a href="mailto:ada2024fatec.mrs@outlook.com" className={styles.contactBtn}>
           Entre em contato
         </a>
       </div>

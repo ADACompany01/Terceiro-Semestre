@@ -28,24 +28,14 @@ export const Navbar = () => {
           onClick={() => setMenuOpen(false)}
         >
           <li>
-            <a href="#about">Serviços</a>
-          </li>
-          <li>
-            <a href="#experience">Orçamento</a>
-          </li>
-          <li>
-            <a href="SignUp">Contatos</a>
-          </li>
-          <li>
-          <Link to="/SignUpClient">Cadastro</Link>
-          </li>
-          <li>
-            <Link to="/SignIn">Login</Link>
+          <Link to="/SignUpClient">Cadastro clientes</Link>
           </li>
           <li>
             <Link to="/ListClient">Listar Clientes</Link>
           </li>
-
+          <li>
+            <Link to="/SignIn">Login</Link>
+          </li>
         </ul>
       </div>
     </nav>

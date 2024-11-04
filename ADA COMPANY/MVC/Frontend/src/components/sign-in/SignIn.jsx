@@ -150,7 +150,7 @@ export default function SignIn(props) {
             variant="h4"
             sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
           >
-            Sign in
+            Login
           </Typography>
           <Box
             component="form"
@@ -211,7 +211,7 @@ export default function SignIn(props) {
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Lembrar de mim"
             />
             <ForgotPassword open={open} handleClose={handleClose} />
             <Button
@@ -220,13 +220,13 @@ export default function SignIn(props) {
               variant="contained"
               onClick={validateInputs}
             >
-              Sign in
+              Login
             </Button>
             <Typography sx={{ textAlign: 'center' }}>
-              Não&apos;tem uma conta?{' '}
+              Não tem uma conta?{' '}
               <span>
                 <Link
-                  href="/signupclient"
+                  href="/#SignUpClient"
                   variant="body2"
                   sx={{ alignSelf: 'center' }}
                 >
