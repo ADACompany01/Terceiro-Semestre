@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const funcionarioController = require('../controllers/funcionarioController');
+const { verifyToken, verifyFuncionarioRole } = require('../middleware/authMiddleware');
 
-
-router.get('/funcionario',  funcionarioController.getFuncionarios); 
-router.put('/funcionario/:id', funcionarioController.updateFuncionario);
-router.delete('/funcionario/:id', funcionarioController.deleteFuncionario);
-router.get('/funcionario/:id', funcionarioController.getFuncionarioById);
+// Rotas protegidas por token e papel de funcionário
+router.get('/funcionario', verifyToken, verifyFuncionarioRole, funcionarioController.getFuncionarios);
+router.put('/funcionario/:id', verifyToken, verifyFuncionarioRole, funcionarioController.updateFuncionario);
+router.delete('/funcionario/:id', verifyToken, verifyFuncionarioRole, funcionarioController.deleteFuncionario);
+router.get('/funcionario/:id', verifyToken, verifyFuncionarioRole, funcionarioController.getFuncionarioById);
 
 module.exports = router;

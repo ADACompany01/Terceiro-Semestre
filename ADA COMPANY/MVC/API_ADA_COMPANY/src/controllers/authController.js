@@ -114,17 +114,12 @@ exports.loginUser = async (req, res) => {
             return res.status(400).json({ message: 'Senha incorreta' });
         }
 
-        //  log para verificar o valor da chave secreta
-        console.log('Chave secreta:', config.JWT_SECRET);
-        // Gera o token JWT
-        const token = jwt.sign({ id: user._id }, config.JWT_SECRET, { expiresIn: '1h' });
+        // Gera o token JWT com o papel do usuário
+        const token = jwt.sign({ id: user._id, role: tipoUsuario }, config.JWT_SECRET, { expiresIn: '1h' });
         res.json({ token });
 
     } catch (err) {
         console.error("Erro no login:", err);
         res.status(500).json({ error: err.message });
-    } finally {
-        // Código que sempre deve ser executado, se necessário
-        // Exemplo: liberar recursos ou encerrar conexões
     }
 };
