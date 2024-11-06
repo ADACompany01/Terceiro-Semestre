@@ -38,20 +38,44 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignUpOrcamento(props) {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Coleta os dados do formulário
     const data = new FormData(event.currentTarget);
-    console.log({
+    const formData = {
       _id: data.get('_id'),
       clienteId: data.get('clienteId'),
       validadeOrcamento: data.get('validadeOrcamento'),
       dataCriacao: data.get('dataCriacao'),
       valorTotal: data.get('valorTotal'),
-      tipoServico: data.get('tipoServico').split(','), // Conversão para array
+      tipoServico: data.get('tipoServico').split(','), 
       statusOrcamento: data.get('statusOrcamento'),
       descricao: data.get('descricao'),
       emailVendedor: data.get('emailVendedor'),
-    });
+    };
+
+    try {
+      const response = await fetch('https://api-ada-company.vercel.app/orcamento', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData), 
+      });
+
+   
+      if (!response.ok) {
+        throw new Error('Erro ao cadastrar orçamento');
+      }
+
+      const result = await response.json();
+      console.log('Orçamento cadastrado com sucesso:', result);
+      alert('Orçamento cadastrado com sucesso:')
+    } catch (error) {
+      console.error('Erro ao enviar dados para a API:', error);
+      alert('Ocorreu um erro ao cadastrar o orçamento. Tente novamente.');
+    }
   };
 
   return (

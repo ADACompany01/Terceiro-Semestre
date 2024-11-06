@@ -34,7 +34,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
   height: 'calc((1 - var(--template-frame-height, 0)) * 100dvh)',
-  minHeight: '100%',
+  minHeight: '1000px',
   padding: theme.spacing(2),
   [theme.breakpoints.up('sm')]: {
     padding: theme.spacing(4),
@@ -65,7 +65,7 @@ export default function SignUpServico(props) {
       if (response.ok) {
         const result = await response.json();
         console.log('Serviço cadastrado com sucesso:', result);
-        alert('Serviço cadastrado com sucesso!'); // Popup de sucesso
+        alert('Serviço cadastrado com sucesso!');
       } else {
         console.error('Erro ao cadastrar serviço:', response.statusText);
         alert('Erro ao cadastrar serviço.');
@@ -84,7 +84,7 @@ export default function SignUpServico(props) {
         <Card variant="outlined">
           <SitemarkIcon />
           <Typography component="h1" variant="h4">
-            Cadastrar
+            Cadastrar Serviço
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <FormControl>
