@@ -41,7 +41,7 @@ app.use(orcamentoRoute);
 // Swagger (Documentação)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-let url = "mongodb+srv://ada2024fatecmrs:SMhe9Vu2RPkDIrlO@adacompanybd.14kbs.mongodb.net/";
+
 let mongoDB = process.env.MONGODB_URI || url;
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoDB);

@@ -11,8 +11,9 @@ dotenv.config();
 // Registrar Cliente
 exports.registerCliente = async (req, res) => {
     const {
-        _id, nomeCliente, telefone, localizacao, cnpj,
-        endereco: { cep, logradouro, complemento, bairro, localidade, uf, estado, ddd },
+        _id, nomeCliente, telefone,
+        endereco: { cep, logradouro, complemento, bairro, localidade, uf, estado, ddd },localizacao,
+        cnpj,
         usuario: { email, senha, tipoUsuario, telefone: telefoneUsuario, nomeCompleto }
     } = req.body;
 
@@ -21,8 +22,6 @@ exports.registerCliente = async (req, res) => {
             _id,
             nomeCliente,
             telefone,
-            localizacao,
-            cnpj,
             endereco: {
                 cep,
                 logradouro,
@@ -31,8 +30,10 @@ exports.registerCliente = async (req, res) => {
                 localidade,
                 uf,
                 estado,
-                ddd
+                ddd,
             },
+            localizacao,
+            cnpj,
             usuario: {
                 email,
                 senha,
@@ -107,9 +108,14 @@ exports.loginUser = async (req, res) => {
             return res.status(404).json({ message: 'Usuário não encontrado' });
         }
 
+        // Verifica se o campo de senha existe e é uma string
+        if (!user.usuario || !user.usuario.senha) {
+            return res.status(500).json({ message: 'Senha não encontrada para este usuário' });
+        }
+
         // Verifica a senha do cliente ou funcionário
         const isMatch = await bcrypt.compare(senha, user.usuario.senha);
-
+        
         if (!isMatch) {
             return res.status(400).json({ message: 'Senha incorreta' });
         }

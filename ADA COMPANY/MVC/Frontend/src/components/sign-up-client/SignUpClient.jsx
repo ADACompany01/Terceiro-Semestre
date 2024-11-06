@@ -48,7 +48,6 @@ export default function SignUpClient(props) {
       _id: data.get('_id'),
       nomeCliente: data.get('nomeCliente'),
       telefone: data.get('telefone'),
-      cnpj: data.get('cnpj'),
       endereco: {
         cep: data.get('cep'),
         logradouro: data.get('logradouro'),
@@ -63,6 +62,7 @@ export default function SignUpClient(props) {
         type: 'Point',
         coordinates: data.get('coordinates').split(',').map(coord => parseFloat(coord.trim())),
       },
+      cnpj: data.get('cnpj'),
       usuario: {
         email: data.get('email'),
         senha: data.get('senha'),
@@ -93,7 +93,7 @@ export default function SignUpClient(props) {
       console.error('Erro:', error);
     }
   };
-  
+
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
@@ -116,14 +116,6 @@ export default function SignUpClient(props) {
             <FormControl>
               <FormLabel htmlFor="telefone">Telefone</FormLabel>
               <TextField name="telefone" required fullWidth id="telefone" placeholder="(11) 12345-6789" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="cnpj">CNPJ</FormLabel>
-              <TextField name="cnpj" required fullWidth id="cnpj" placeholder="12.345.678/0001-99" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="coordinates">Coordenadas (Localização)</FormLabel>
-              <TextField name="coordinates" required fullWidth id="coordinates" placeholder="-23.5505, -46.6333" />
             </FormControl>
             {/* Endereço */}
             <FormControl>
@@ -157,6 +149,14 @@ export default function SignUpClient(props) {
             <FormControl>
               <FormLabel htmlFor="ddd">DDD</FormLabel>
               <TextField name="ddd" required fullWidth id="ddd" placeholder="11" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="coordinates">Coordenadas (Localização)</FormLabel>
+              <TextField name="coordinates" required fullWidth id="coordinates" placeholder="-23.5505, -46.6333" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="cnpj">CNPJ</FormLabel>
+              <TextField name="cnpj" required fullWidth id="cnpj" placeholder="12.345.678/0001-99" />
             </FormControl>
             {/* Usuário */}
             <FormControl>

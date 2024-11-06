@@ -6,7 +6,16 @@ const clienteSchema = new Schema({
     _id: {type: Number, required: true},
     nomeCliente: { type: String, required: true, max: 100 },
     telefone: { type: String, required: true },
-    endereco: { type: String, required: true },
+    endereco: {
+        cep: { type: String, required: true },
+        logradouro: { type: String, required: true },
+        complemento: { type: String },
+        bairro: { type: String, required: true },
+        localidade: { type: String, required: true },
+        uf: { type: String, required: true },
+        estado: { type: String, required: true },
+        ddd: { type: String, required: true }
+    },
     localizacao: {
         type: {
             type: String,
@@ -19,16 +28,6 @@ const clienteSchema = new Schema({
         }
     },
     cnpj: { type: String, required: true },
-    endereco: {
-        cep: { type: String, required: true },
-        logradouro: { type: String, required: true },
-        complemento: { type: String },
-        bairro: { type: String, required: true },
-        localidade: { type: String, required: true },
-        uf: { type: String, required: true },
-        estado: { type: String, required: true },
-        ddd: { type: String, required: true }
-    },
     usuario: {
         email: { type: String, required: true, unique: true },
         senha: { type: String, required: true, minlength: 6 }, // Adicionado minlength
