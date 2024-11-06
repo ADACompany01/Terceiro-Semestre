@@ -4,7 +4,7 @@ const config = require('../config');
 
 // Middleware para verificar se o token é válido
 const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization'];
+    const token = req.headers['authorization']?.split(' ')[1];
 
     if (!token) {
         return res.status(403).json({ message: 'Token não fornecido.' });
@@ -14,6 +14,8 @@ const verifyToken = (req, res, next) => {
         const decoded = jwt.verify(token, config.JWT_SECRET);
         req.user = decoded;
         next();
+        console.log('Token recebido:', token);
+        console.log('Token decodificado:', decoded);
     } catch (err) {
         res.status(401).json({ message: 'Token inválido.' });
     }
@@ -26,5 +28,7 @@ const verifyFuncionarioRole = (req, res, next) => {
     }
     next();
 };
+
+
 
 module.exports = { verifyToken, verifyFuncionarioRole };
