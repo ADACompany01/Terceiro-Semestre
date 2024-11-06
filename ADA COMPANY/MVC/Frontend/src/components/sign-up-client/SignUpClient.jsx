@@ -10,6 +10,8 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
@@ -167,10 +169,17 @@ export default function SignUpClient(props) {
               <FormLabel htmlFor="senha">Senha</FormLabel>
               <TextField name="senha" required fullWidth type="password" id="senha" placeholder="••••••" />
             </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="tipoUsuario">Tipo de Usuário</FormLabel>
-              <TextField name="tipoUsuario" required fullWidth id="tipoUsuario" placeholder="Cliente" />
-            </FormControl>
+            <FormLabel htmlFor="tipoUsuario">Tipo de Usuário</FormLabel>
+              <Select
+                name="tipoUsuario"
+                required
+                fullWidth
+                id="tipoUsuario"
+                defaultValue=""
+              >
+                <MenuItem value="cliente">Cliente</MenuItem>
+                <MenuItem value="admin">Admin</MenuItem>
+              </Select>
             <FormControl>
               <FormLabel htmlFor="telefoneUsuario">Telefone do Usuário</FormLabel>
               <TextField name="telefoneUsuario" required fullWidth id="telefoneUsuario" placeholder="(11) 12345-6789" />

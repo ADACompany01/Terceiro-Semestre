@@ -63,7 +63,7 @@ export default function SignUpServico(props) {
       if (response.ok) {
         const result = await response.json();
         console.log('Serviço cadastrado com sucesso:', result);
-        alert('Serviço cadastrado com sucesso!'); // Popup de sucesso
+        alert('Serviço cadastrado com sucesso!'); 
       } else {
         console.error('Erro ao cadastrar serviço:', response.statusText);
         alert('Erro ao cadastrar serviço.');
