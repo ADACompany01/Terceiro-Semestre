@@ -73,7 +73,7 @@ export default function SignUpClient(props) {
     };
 
     try {
-      const response = await fetch('https://api-ada-company.vercel.app/api/auth/register', {
+      const response = await fetch('https://api-ada-company.vercel.app/api/auth/registerCliente', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
