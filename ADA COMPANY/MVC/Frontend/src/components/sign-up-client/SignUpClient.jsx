@@ -86,8 +86,8 @@ export default function SignUpClient(props) {
       }
 
       const result = await response.json();
-      console.log(result); // Exibir o resultado da API
-      alert(result);
+      console.log(result);
+      alert('Cliente cadastrado com sucesso!');
     } catch (error) {
       console.error('Erro:', error);
       alert('Erro ao cadastrar cliente.');
