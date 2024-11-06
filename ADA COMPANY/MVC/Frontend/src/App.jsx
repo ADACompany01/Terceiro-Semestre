@@ -8,8 +8,10 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Projects } from "./components/Projects/Projects";
 import SignIn from "./components/sign-in/SignIn";
 import SignUpClient from "./components/sign-up-client/SignUpClient";
+import SignUpFuncionario from "./components/sign-up-funcionario/SignUpServico";
 import ListClient from "./components/list-client/ListClient";
 import SignUpServico from "./components/sign-up-servico/SignUpServico"
+import SignUpOrcamento from "./components/sign-up-orcamento/SignUpOrcamento"
 
 function Home() {
   return (
@@ -34,8 +36,10 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signupclient" element={<SignUpClient />} />
+          <Route path="/signupfuncionario" element={<SignUpFuncionario />} />
           <Route path="/listclient" element={<ListClient />} />
           <Route path="/signupservico" element={<SignUpServico />} />
+          <Route path="/signuporcamento" element={<SignUpOrcamento />} />
         </Routes>
         <Contact />
       </div>

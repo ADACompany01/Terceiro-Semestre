@@ -14,6 +14,8 @@ import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -97,10 +99,17 @@ export default function SignUpServico(props) {
               <FormLabel htmlFor="valor">Valor</FormLabel>
               <TextField name="valor" required fullWidth id="valor" placeholder="R$" />
             </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="tipoServico">Tipo</FormLabel>
-              <TextField name="tipoServico" required fullWidth id="tipoServico" placeholder="Venda ou Serviço" />
-            </FormControl>
+            <FormLabel htmlFor="tipoServico">Tipo de Serviço</FormLabel>
+              <Select
+                name="tipoServico"
+                required
+                fullWidth
+                id="tipoServico"
+                defaultValue=""
+              >
+                <MenuItem value="Venda">Venda</MenuItem>
+                <MenuItem value="Servico">Serviço</MenuItem>
+              </Select>
             <Button type="submit" fullWidth variant="contained">
               Cadastrar
             </Button>
