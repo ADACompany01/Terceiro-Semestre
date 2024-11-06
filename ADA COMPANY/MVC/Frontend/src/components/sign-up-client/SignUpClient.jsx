@@ -86,19 +86,11 @@ export default function SignUpClient(props) {
       }
 
       const result = await response.json();
-      console.log(result);
-
-
-      setSnackbarMessage('Cliente registrado com sucesso!');
-      setSnackbarSeverity('success');
-      setOpenSnackbar(true);
+      console.log(result); // Exibir o resultado da API
+      alert(result);
     } catch (error) {
       console.error('Erro:', error);
-
-
-      setSnackbarMessage('Erro ao registrar cliente');
-      setSnackbarSeverity('error');
-      setOpenSnackbar(true);
+      alert('Erro ao cadastrar cliente.');
     }
   };
 
@@ -204,15 +196,6 @@ export default function SignUpClient(props) {
           </Box>
         </Card>
       </SignUpContainer>
-      <Snackbar
-        open={openSnackbar}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-      >
-        <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
     </AppTheme>
   );
 }
