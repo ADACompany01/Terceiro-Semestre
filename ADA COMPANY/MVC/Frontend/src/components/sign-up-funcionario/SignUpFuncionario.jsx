@@ -39,23 +39,60 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignUpFuncionario(props) {
+  // Estado para armazenar as informações de endereço
+  const [endereco, setEndereco] = React.useState({
+    logradouro: '',
+    bairro: '',
+    localidade: '',
+    uf: '',
+    estado: '',
+    ddd: ''
+  });
+
+  // Função para buscar o endereço via API ViaCEP
+  const buscarEndereco = async (cep) => {
+    if (!cep) return;
+
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = await response.json();
+
+      if (data.erro) {
+        alert('CEP não encontrado');
+        return;
+      }
+
+      // Atualiza o estado com os dados do endereço
+      setEndereco({
+        logradouro: data.logradouro || '',
+        bairro: data.bairro || '',
+        localidade: data.localidade || '',
+        uf: data.uf || '',
+        estado: data.estado || '', // Pode ser vazio dependendo da resposta do ViaCEP
+        ddd: data.ddd || ''
+      });
+    } catch (error) {
+      console.error('Erro ao buscar o endereço:', error);
+      alert('Erro ao buscar o endereço.');
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    // Dados de funcionário, incluindo endereço e informações de usuário
     const funcionarioData = {
       _id: Number(data.get('_id')),
       nomeFuncionario: data.get('nomeFuncionario'),
       endereco: {
         cep: data.get('cep'),
-        logradouro: data.get('logradouro'),
+        logradouro: endereco.logradouro,
         complemento: data.get('complemento'),
-        bairro: data.get('bairro'),
-        localidade: data.get('localidade'),
-        uf: data.get('uf'),
-        estado: data.get('estado'),
-        ddd: data.get('ddd')
+        bairro: endereco.bairro,
+        localidade: endereco.localidade,
+        uf: endereco.uf,
+        estado: endereco.estado,
+        ddd: endereco.ddd
       },
       cargo: data.get('cargo'),
       usuario: {
@@ -118,11 +155,28 @@ export default function SignUpFuncionario(props) {
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="cep">CEP</FormLabel>
-              <TextField name="cep" required fullWidth id="cep" placeholder="CEP" />
+              <TextField
+                name="cep"
+                required
+                fullWidth
+                id="cep"
+                placeholder="CEP"
+                onBlur={(e) => buscarEndereco(e.target.value)} // Ao sair do campo, chama a função para preencher o endereço
+              />
             </FormControl>
+
+            {/* Campos de Endereço preenchidos automaticamente */}
             <FormControl>
               <FormLabel htmlFor="logradouro">Logradouro</FormLabel>
-              <TextField name="logradouro" required fullWidth id="logradouro" placeholder="Logradouro" />
+              <TextField
+                name="logradouro"
+                required
+                fullWidth
+                id="logradouro"
+                placeholder="Logradouro"
+                value={endereco.logradouro}
+                onChange={(e) => setEndereco({ ...endereco, logradouro: e.target.value })}
+              />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="complemento">Complemento</FormLabel>
@@ -130,24 +184,64 @@ export default function SignUpFuncionario(props) {
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="bairro">Bairro</FormLabel>
-              <TextField name="bairro" required fullWidth id="bairro" placeholder="Bairro" />
+              <TextField
+                name="bairro"
+                required
+                fullWidth
+                id="bairro"
+                placeholder="Bairro"
+                value={endereco.bairro}
+                onChange={(e) => setEndereco({ ...endereco, bairro: e.target.value })}
+              />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="localidade">Localidade</FormLabel>
-              <TextField name="localidade" required fullWidth id="localidade" placeholder="Localidade" />
+              <TextField
+                name="localidade"
+                required
+                fullWidth
+                id="localidade"
+                placeholder="Localidade"
+                value={endereco.localidade}
+                onChange={(e) => setEndereco({ ...endereco, localidade: e.target.value })}
+              />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="uf">UF</FormLabel>
-              <TextField name="uf" required fullWidth id="uf" placeholder="UF" />
+              <TextField
+                name="uf"
+                required
+                fullWidth
+                id="uf"
+                placeholder="UF"
+                value={endereco.uf}
+                onChange={(e) => setEndereco({ ...endereco, uf: e.target.value })}
+              />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="estado">Estado</FormLabel>
-              <TextField name="estado" required fullWidth id="estado" placeholder="Estado" />
+              <TextField
+                name="estado"
+                required
+                fullWidth
+                id="estado"
+                placeholder="Estado"
+                value={endereco.estado}
+                onChange={(e) => setEndereco({ ...endereco, estado: e.target.value })}
+              />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="ddd">DDD</FormLabel>
-              <TextField name="ddd" required fullWidth id="ddd" placeholder="DDD" />
+              <TextField
+                name="ddd"
+                required
+                fullWidth
+                id="ddd"
+                placeholder="DDD"
+                value={endereco.ddd}
+              />
             </FormControl>
+
             <FormControl>
               <FormLabel htmlFor="cargo">Cargo</FormLabel>
               <TextField name="cargo" required fullWidth id="cargo" placeholder="Cargo" />
