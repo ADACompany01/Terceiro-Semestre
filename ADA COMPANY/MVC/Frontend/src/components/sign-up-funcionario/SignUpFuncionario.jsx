@@ -75,7 +75,7 @@ export default function SignUpFuncionario(props) {
     };
 
     try {
-      const response = await fetch('https://api-ada-company.vercel.app/funcionario', {
+      const response = await fetch('https://api-ada-company.vercel.app/api/auth/registerFuncionario', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
