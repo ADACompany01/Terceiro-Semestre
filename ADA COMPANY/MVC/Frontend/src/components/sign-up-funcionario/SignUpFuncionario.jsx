@@ -39,7 +39,7 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignUpFuncionario(props) {
-  // Estado para armazenar as informações de endereço
+
   const [endereco, setEndereco] = React.useState({
     logradouro: '',
     bairro: '',
@@ -49,7 +49,7 @@ export default function SignUpFuncionario(props) {
     ddd: ''
   });
 
-  // Função para buscar o endereço via API ViaCEP
+
   const buscarEndereco = async (cep) => {
     if (!cep) return;
 
@@ -62,13 +62,13 @@ export default function SignUpFuncionario(props) {
         return;
       }
 
-      // Atualiza o estado com os dados do endereço
+
       setEndereco({
         logradouro: data.logradouro || '',
         bairro: data.bairro || '',
         localidade: data.localidade || '',
         uf: data.uf || '',
-        estado: data.estado || '', // Pode ser vazio dependendo da resposta do ViaCEP
+        estado: data.estado || '', 
         ddd: data.ddd || ''
       });
     } catch (error) {

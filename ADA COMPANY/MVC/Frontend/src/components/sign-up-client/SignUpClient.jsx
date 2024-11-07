@@ -138,7 +138,7 @@ export default function SignUpClient(props) {
         <Card variant="outlined">
           <SitemarkIcon />
           <Typography component="h1" variant="h4">
-            Cadastrar
+            Cadastrar Cliente
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {/* ID e Nome */}
