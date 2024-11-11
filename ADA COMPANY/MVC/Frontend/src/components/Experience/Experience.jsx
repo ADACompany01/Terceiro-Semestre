@@ -25,7 +25,6 @@ export const Experience = () => {
     <ul className={styles.history}>
       {/* Informações sobre idosos */}
       <li className={styles.historyItem}>
-        <img src="path_to_idosos_image" alt="Idosos" />
         <div className={styles.historyItemDetails}>
           <h3>Idosos</h3>
           <p>Focamos em criar interfaces acessíveis para pessoas idosas, levando em consideração limitações comuns como visão reduzida, dificuldade motora e uso simplificado.</p>

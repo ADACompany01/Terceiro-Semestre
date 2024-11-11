@@ -12,7 +12,7 @@ dotenv.config();
 exports.registerCliente = async (req, res) => {
     const {
         _id, nomeCliente, telefone,
-        endereco: { cep, logradouro, complemento, bairro, localidade, uf, estado, ddd },localizacao,
+        endereco: { cep, logradouro, complemento, bairro, localidade, uf, estado, ddd }, localizacao,
         cnpj,
         usuario: { email, senha, tipoUsuario, telefone: telefoneUsuario, nomeCompleto }
     } = req.body;
@@ -115,7 +115,7 @@ exports.loginUser = async (req, res) => {
 
         // Verifica a senha do cliente ou funcionário
         const isMatch = await bcrypt.compare(senha, user.usuario.senha);
-        
+
         if (!isMatch) {
             return res.status(400).json({ message: 'Senha incorreta' });
         }
@@ -125,7 +125,13 @@ exports.loginUser = async (req, res) => {
         res.json({ token });
 
     } catch (err) {
-        console.error("Erro no login:", err);
-        res.status(500).json({ error: err.message });
+        console.error("Erro ao autenticar usuário:", err);
+        if (err.name === 'ValidationError') {
+            return res.status(400).json({ error: 'Dados de login inválidos' });
+        } else if (err.name === 'CastError') {
+            return res.status(400).json({ error: 'ID de usuário inválido' });
+        } else {
+            return res.status(500).json({ error: 'Ocorreu um erro inesperado ao autenticar o usuário.' });
+        }
     }
 };
