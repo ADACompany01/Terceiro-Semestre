@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
 app.use(cors({
-    origin: ['https://adacompany.vercel.app', 'localhost:3000'], // Habilita CORS para esta origem
+    origin: ['https://adacompany.vercel.app', 'http://localhost:5173'], // Habilita CORS para esta origem
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));

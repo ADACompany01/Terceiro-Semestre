@@ -36,7 +36,8 @@ const Card = styled(MuiCard)(({ theme }) => ({
       'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
   }),
 }));
-
+//const apiUrl = 'https://api-ada-company.vercel.app'
+const apiUrl = 'http://localhost:3000'
 const SignInContainer = styled(Stack)(({ theme }) => ({
   height: 'calc((1 - var(--template-frame-height, 0)) * 100dvh)',
   minHeight: '100%',
@@ -88,7 +89,7 @@ export default function SignIn(props) {
     const password = data.get('password');
 
     try {
-      const response = await fetch('https://api-ada-company.vercel.app/api/auth/login', {
+      const response = await fetch(`${apiUrl}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -204,7 +205,7 @@ export default function SignIn(props) {
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
-                name="senha"
+                name="password"
                 placeholder="••••••"
                 type="password"
                 id="password"
