@@ -1,7 +1,4 @@
 import React from "react";
-
-import {About} from '../Servicos/About'; 
-
 import styles from "./Hero.module.css";
 import { getImageUrl } from "../../utils";
 

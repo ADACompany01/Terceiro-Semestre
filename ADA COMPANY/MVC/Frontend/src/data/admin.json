@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Clientes",
+    "imageSrc": "skills/user.png"
+  },
+  {
+    "title": "Funcionário",
+    "imageSrc": "skills/func.png"
+  },
+  {
+    "title": "Orçamento",
+    "imageSrc": "skills/orcamento.png"
+  },
+  {
+    "title": "Serviço",
+    "imageSrc": "skills/servico.png"
+  },
+  {
+    "title": "GraphQL",
+    "imageSrc": "skills/graphql.png"
+  },
+  {
+    "title": "MongoDB",
+    "imageSrc": "skills/mongodb.png"
+  },
+  {
+    "title": "Figma",
+    "imageSrc": "skills/figma.png"
+  }
+]

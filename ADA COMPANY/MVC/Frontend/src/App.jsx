@@ -12,6 +12,8 @@ import SignUpFuncionario from "./components/sign-up-funcionario/SignUpFuncionari
 import ListClient from "./components/list-client/ListClient";
 import SignUpServico from "./components/sign-up-servico/SignUpServico"
 import SignUpOrcamento from "./components/sign-up-orcamento/SignUpOrcamento"
+import { AcessoCliente } from "./components/client-access/client-access";
+import { AcessoAdmin } from "./components/admin-access/admin-access";
 
 function Home() {
   return (
@@ -40,6 +42,8 @@ function App() {
           <Route path="/listclient" element={<ListClient />} />
           <Route path="/signupservico" element={<SignUpServico />} />
           <Route path="/signuporcamento" element={<SignUpOrcamento />} />
+          <Route path="/client" element={<AcessoCliente />} />   
+          <Route path="/admin" element={<AcessoAdmin />} />          
         </Routes>
         <Contact />
       </div>
