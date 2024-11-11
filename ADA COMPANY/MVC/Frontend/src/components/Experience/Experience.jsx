@@ -39,7 +39,6 @@ export const Experience = () => {
 
       {/* Informações sobre crianças */}
       <li className={styles.historyItem}>
-        <img src="path_to_criancas_image" alt="Crianças" />
         <div className={styles.historyItemDetails}>
           <h3>Crianças</h3>
           <p>Desenvolvemos interfaces amigáveis para crianças, com foco em interatividade, cores chamativas e controles intuitivos.</p>
@@ -53,7 +52,6 @@ export const Experience = () => {
 
       {/* Informações sobre deficiência visual */}
       <li className={styles.historyItem}>
-        <img src="path_to_deficiencia_visual_image" alt="Deficiência Visual" />
         <div className={styles.historyItemDetails}>
           <h3>Deficiência Visual</h3>
           <p>Adaptações para usuários com deficiência visual incluem alto contraste, suporte para leitores de tela e navegação por teclado.</p>
@@ -67,7 +65,6 @@ export const Experience = () => {
 
       {/* Informações sobre daltonismo */}
       <li className={styles.historyItem}>
-        <img src="path_to_daltonismo_image" alt="Daltonismo" />
         <div className={styles.historyItemDetails}>
           <h3>Daltonismo</h3>
           <p>Design adaptado para usuários daltônicos, usando combinações de cores seguras e ícones que não dependem apenas da cor.</p>
