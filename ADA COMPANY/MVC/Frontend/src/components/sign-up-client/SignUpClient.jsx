@@ -5,7 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
@@ -42,6 +41,42 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignUpClient(props) {
+  const [endereco, setEndereco] = React.useState({
+    logradouro: '',
+    bairro: '',
+    localidade: '',
+    uf: '',
+    estado: '',
+    ddd: '',
+  });
+
+  // Função para buscar o endereço pelo CEP
+  const buscarEndereco = async (cep) => {
+    if (!cep) return;
+
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = await response.json();
+
+      if (data.erro) {
+        alert('CEP não encontrado');
+        return;
+      }
+
+      setEndereco({
+        logradouro: data.logradouro || '',
+        bairro: data.bairro || '',
+        localidade: data.localidade || '',
+        uf: data.uf || '',
+        estado: data.estado || '', // Pode ser vazio dependendo da resposta do ViaCEP
+        ddd: data.ddd || '',
+      });
+    } catch (error) {
+      console.error('Erro ao buscar o endereço:', error);
+      alert('Erro ao buscar o endereço.');
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -52,13 +87,13 @@ export default function SignUpClient(props) {
       telefone: data.get('telefone'),
       endereco: {
         cep: data.get('cep'),
-        logradouro: data.get('logradouro'),
+        logradouro: endereco.logradouro,
         complemento: data.get('complemento'),
-        bairro: data.get('bairro'),
-        localidade: data.get('localidade'),
-        uf: data.get('uf'),
-        estado: data.get('estado'),
-        ddd: data.get('ddd'),
+        bairro: endereco.bairro,
+        localidade: endereco.localidade,
+        uf: endereco.uf,
+        estado: endereco.estado,
+        ddd: endereco.ddd,
       },
       localizacao: {
         type: 'Point',
@@ -95,7 +130,6 @@ export default function SignUpClient(props) {
       alert('Erro ao cadastrar cliente.');
     }
   };
-
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
@@ -104,9 +138,10 @@ export default function SignUpClient(props) {
         <Card variant="outlined">
           <SitemarkIcon />
           <Typography component="h1" variant="h4">
-            Cadastrar
+            Cadastrar Cliente
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            {/* ID e Nome */}
             <FormControl>
               <FormLabel htmlFor="_id">ID</FormLabel>
               <TextField name="_id" required fullWidth id="_id" placeholder="ID" />
@@ -119,14 +154,29 @@ export default function SignUpClient(props) {
               <FormLabel htmlFor="telefone">Telefone</FormLabel>
               <TextField name="telefone" required fullWidth id="telefone" placeholder="(11) 12345-6789" />
             </FormControl>
-            {/* Endereço */}
+
+            {/* CEP */}
             <FormControl>
               <FormLabel htmlFor="cep">CEP</FormLabel>
-              <TextField name="cep" required fullWidth id="cep" placeholder="12345-678" />
+              <TextField
+                name="cep"
+                required
+                fullWidth
+                id="cep"
+                placeholder="12345-678"
+                onBlur={(e) => buscarEndereco(e.target.value)} // Aciona a busca ao perder o foco
+              />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="logradouro">Logradouro</FormLabel>
-              <TextField name="logradouro" required fullWidth id="logradouro" placeholder="Rua das Flores" />
+              <TextField
+                name="logradouro"
+                required
+                fullWidth
+                id="logradouro"
+                value={endereco.logradouro}
+                onChange={(e) => setEndereco({ ...endereco, logradouro: e.target.value })}
+              />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="complemento">Complemento</FormLabel>
@@ -134,23 +184,51 @@ export default function SignUpClient(props) {
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="bairro">Bairro</FormLabel>
-              <TextField name="bairro" required fullWidth id="bairro" placeholder="Centro" />
+              <TextField
+                name="bairro"
+                required
+                fullWidth
+                id="bairro"
+                value={endereco.bairro}
+                onChange={(e) => setEndereco({ ...endereco, bairro: e.target.value })}
+              />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="localidade">Localidade</FormLabel>
-              <TextField name="localidade" required fullWidth id="localidade" placeholder="Cidade" />
+              <TextField
+                name="localidade"
+                required
+                fullWidth
+                id="localidade"
+                value={endereco.localidade}
+                onChange={(e) => setEndereco({ ...endereco, localidade: e.target.value })}
+              />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="uf">UF</FormLabel>
-              <TextField name="uf" required fullWidth id="uf" placeholder="SP" />
+              <TextField
+                name="uf"
+                required
+                fullWidth
+                id="uf"
+                value={endereco.uf}
+                onChange={(e) => setEndereco({ ...endereco, uf: e.target.value })}
+              />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="estado">Estado</FormLabel>
-              <TextField name="estado" required fullWidth id="estado" placeholder="São Paulo" />
+              <TextField
+                name="estado"
+                required
+                fullWidth
+                id="estado"
+                value={endereco.estado}
+                onChange={(e) => setEndereco({ ...endereco, estado: e.target.value })}
+              />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="ddd">DDD</FormLabel>
-              <TextField name="ddd" required fullWidth id="ddd" placeholder="11" />
+              <TextField name="ddd" required fullWidth id="ddd" placeholder="11" value={endereco.ddd} />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="coordinates">Coordenadas (Localização)</FormLabel>

@@ -8,7 +8,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Projects } from "./components/Projects/Projects";
 import SignIn from "./components/sign-in/SignIn";
 import SignUpClient from "./components/sign-up-client/SignUpClient";
-import SignUpFuncionario from "./components/sign-up-funcionario/SignUpServico";
+import SignUpFuncionario from "./components/sign-up-funcionario/SignUpFuncionario";
 import ListClient from "./components/list-client/ListClient";
 import SignUpServico from "./components/sign-up-servico/SignUpServico"
 import SignUpOrcamento from "./components/sign-up-orcamento/SignUpOrcamento"
@@ -46,7 +46,5 @@ function App() {
     </Router>
   );
 }
-
-
 
 export default App;
