@@ -95,21 +95,28 @@ export default function SignIn(props) {
         },
         body: JSON.stringify({ email, password }),
       });
-
+    
       if (response.ok) {
         const result = await response.json();
-        // Salva o token de autenticação, por exemplo no localStorage
-        localStorage.setItem('token', result.token);
-        console.log('Login bem-sucedido');
-        navigate('/');
-        // Redirecionar ou atualizar a UI após login
+    
+        // Verifica se o token foi retornado antes de salvá-lo
+        if (result.token) {
+          localStorage.setItem('token', result.token);
+          console.log('Login bem-sucedido');
+          
+          // Redireciona o usuário após o login
+          navigate('/');
+        } else {
+          console.error('Token de autenticação não encontrado na resposta');
+        }
       } else {
         const error = await response.json();
-        console.error('Erro:', error.message);
+        console.error('Erro:', error.message || 'Erro ao realizar login');
       }
     } catch (error) {
-      console.error('Erro de rede:', error);
+      console.error('Erro de rede:', error.message || error);
     }
+    
   };
   const validateInputs = () => {
     const email = document.getElementById('email');

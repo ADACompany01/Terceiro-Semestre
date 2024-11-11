@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
 app.use(cors({
-    origin: 'https://adacompany.vercel.app', // Habilita CORS para esta origem
+    origin: ['https://adacompany.vercel.app', 'localhost:3000'], // Habilita CORS para esta origem
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -42,9 +42,11 @@ app.use(orcamentoRoute);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
-let mongoDB = process.env.MONGODB_URI || url;
+let mongoDB = process.env.MONGODB_URI;
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoDB);
+
+
 
 
 // Verificação de conexão com o banco de dados
