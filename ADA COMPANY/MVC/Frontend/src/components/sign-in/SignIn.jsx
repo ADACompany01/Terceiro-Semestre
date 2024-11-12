@@ -17,6 +17,8 @@ import ForgotPassword from './ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import AppTheme from '../shared-theme/AppTheme';
 import ColorModeSelect from '../shared-theme/ColorModeSelect'; 
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";  
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -62,6 +64,7 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignIn(props) {
+  const navigate = useNavigate();
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
@@ -103,12 +106,22 @@ export default function SignIn(props) {
     
         // Verifica se o token foi retornado antes de salvá-lo
         if (result.token) {
+          const token = result.token;
+          localStorage.setItem('token', token);
           localStorage.setItem('token', result.token);
+          const decodedToken = jwtDecode(token);
+          const userRole = decodedToken.role;
+          localStorage.setItem('userRole', userRole);
+          console.log('Role do usuário:', userRole);
           console.log('Login com sucesso');
           alert('Login com sucesso!');
-          
-          // Redireciona o usuário após o login
-          navigate('/');
+          if (userRole === 'cliente') {
+            navigate('/client');
+          } else if (userRole === 'admin') {
+            navigate('/admin');
+          } else {
+            navigate('/');
+          }
         } else {
           console.error('Token de autenticação não encontrado na resposta');
         }
