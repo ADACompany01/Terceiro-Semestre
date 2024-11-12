@@ -4,12 +4,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
-/*app.use(cors({
+app.use(cors({
     origin: ['https://adacompany.vercel.app', 'http://localhost:5173'], // Habilita CORS para esta origem
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
-}));*/
-app.use(cors())
+}));
 
 // Importando rotas
 const clienteRoute = require('./src/routes/clienteRoute');
