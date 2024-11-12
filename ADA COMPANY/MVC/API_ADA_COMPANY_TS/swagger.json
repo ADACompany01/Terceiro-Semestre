@@ -1,0 +1,634 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API para gerenciar usuários e serviços.",
+    "version": "1.0.0",
+    "title": "API de Usuários e Projetos"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Operações relacionadas a usuários"
+    },
+    {
+      "name": "Serviços",
+      "description": "Operações relacionadas a serviços"
+    },
+    {
+      "name": "Funcionários",
+      "description": "Operações relacionadas a funcionários"
+    },
+    {
+      "name": "Orçamentos",
+      "description": "Operações relacionadas a orçamentos"
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/user": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Listar todos os usuários",
+        "responses": {
+          "200": {
+            "description": "Usuários listados com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao listar usuários"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Users"],
+        "summary": "Criar um novo usuário",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "500": {
+            "description": "Erro ao criar usuário"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Obter detalhes de um usuário",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário encontrado",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "500": {
+            "description": "Erro ao obter usuário"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": "Atualizar um usuário existente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário atualizado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Campos obrigatórios não fornecidos"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "500": {
+            "description": "Erro ao atualizar usuário"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Deletar um usuário",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário deletado com sucesso"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "500": {
+            "description": "Erro ao deletar usuário"
+          }
+        }
+      }
+    },
+    "/servico": {
+      "get": {
+        "tags": ["Serviços"],
+        "summary": "Listar todos os serviços",
+        "responses": {
+          "200": {
+            "description": "Serviços listados com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Servico"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao listar serviços"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Serviços"],
+        "summary": "Criar um novo serviço",
+        "parameters": [
+          {
+            "name": "serviço",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Servico"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Serviço criado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Servico"
+            }
+          },
+          "500": {
+            "description": "Erro ao criar serviço"
+          }
+        }
+      }
+    },
+    "/servico/{id}": {
+      "get": {
+        "tags": ["Serviços"],
+        "summary": "Obter detalhes de um serviço",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Serviço encontrado",
+            "schema": {
+              "$ref": "#/definitions/Servico"
+            }
+          },
+          "404": {
+            "description": "Serviço não encontrado"
+          },
+          "500": {
+            "description": "Erro ao obter serviço"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Serviços"],
+        "summary": "Atualizar um serviço existente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "servico",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Servico"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Serviço atualizado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Servico"
+            }
+          },
+          "400": {
+            "description": "Campos obrigatórios não fornecidos"
+          },
+          "404": {
+            "description": "Serviço não encontrado"
+          },
+          "500": {
+            "description": "Erro ao atualizar serviço"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Serviços"],
+        "summary": "Deletar um serviço",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Serviço deletado com sucesso"
+          },
+          "404": {
+            "description": "Serviço não encontrado"
+          },
+          "500": {
+            "description": "Erro ao deletar serviço"
+          }
+        }
+      }
+    },
+    "/funcionario": {
+      "get": {
+        "tags": ["Funcionários"],
+        "summary": "Listar todos os funcionários",
+        "responses": {
+          "200": {
+            "description": "Funcionários listados com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Funcionario"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao listar funcionários"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Funcionários"],
+        "summary": "Criar um novo funcionário",
+        "parameters": [
+          {
+            "name": "funcionario",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Funcionario"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Funcionário criado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Funcionario"
+            }
+          },
+          "500": {
+            "description": "Erro ao criar funcionário"
+          }
+        }
+      }
+    },
+    "/funcionario/{id}": {
+      "get": {
+        "tags": ["Funcionários"],
+        "summary": "Obter detalhes de um funcionário",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Funcionário encontrado",
+            "schema": {
+              "$ref": "#/definitions/Funcionario"
+            }
+          },
+          "404": {
+            "description": "Funcionário não encontrado"
+          },
+          "500": {
+            "description": "Erro ao obter funcionário"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Funcionários"],
+        "summary": "Atualizar um funcionário existente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "funcionario",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Funcionario"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Funcionário atualizado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Funcionario"
+            }
+          },
+          "400": {
+            "description": "Campos obrigatórios não fornecidos"
+          },
+          "404": {
+            "description": "Funcionário não encontrado"
+          },
+          "500": {
+            "description": "Erro ao atualizar funcionário"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Funcionários"],
+        "summary": "Deletar um funcionário",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Funcionário deletado com sucesso"
+          },
+          "404": {
+            "description": "Funcionário não encontrado"
+          },
+          "500": {
+            "description": "Erro ao deletar funcionário"
+          }
+        }
+      }
+    },
+    "/orcamento": {
+      "get": {
+        "tags": ["Orçamentos"],
+        "summary": "Listar todos os orçamentos",
+        "responses": {
+          "200": {
+            "description": "Orçamentos listados com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Orcamento"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao listar orçamentos"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Orçamentos"],
+        "summary": "Criar um novo orçamento",
+        "parameters": [
+          {
+            "name": "orcamento",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Orcamento"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Orçamento criado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Orcamento"
+            }
+          },
+          "500": {
+            "description": "Erro ao criar orçamento"
+          }
+        }
+      }
+    },
+    "/orcamento/{id}": {
+      "get": {
+        "tags": ["Orçamentos"],
+        "summary": "Obter detalhes de um orçamento",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Orçamento encontrado",
+            "schema": {
+              "$ref": "#/definitions/Orcamento"
+            }
+          },
+          "404": {
+            "description": "Orçamento não encontrado"
+          },
+          "500": {
+            "description": "Erro ao obter orçamento"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Orçamentos"],
+        "summary": "Atualizar um orçamento existente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "orcamento",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Orcamento"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Orçamento atualizado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Orcamento"
+            }
+          },
+          "400": {
+            "description": "Campos obrigatórios não fornecidos"
+          },
+          "404": {
+            "description": "Orçamento não encontrado"
+          },
+          "500": {
+            "description": "Erro ao atualizar orçamento"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Orçamentos"],
+        "summary": "Deletar um orçamento",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Orçamento deletado com sucesso"
+          },
+          "404": {
+            "description": "Orçamento não encontrado"
+          },
+          "500": {
+            "description": "Erro ao deletar orçamento"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "João Silva"
+        },
+        "age": {
+          "type": "integer",
+          "example": 30
+        }
+      },
+      "required": ["name", "age"]
+    },
+    "Servico": {
+      "type": "object",
+      "properties": {
+        "titulo": {
+          "type": "string",
+          "example": "Novo Serviço"
+        },
+        "descricao": {
+          "type": "string",
+          "example": "Descrição do serviço."
+        },
+        "assignedTo": {
+          "type": "string",
+          "example": "60d0fe4e9f1b2c001c4b3c60" 
+        }
+      },
+      "required": ["titulo", "descricao", "assignedTo"]
+    },
+    "Funcionario": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "example": "Maria Oliveira"
+        },
+        "cargo": {
+          "type": "string",
+          "example": "Desenvolvedor"
+        },
+        "cep": {
+          "type": "string",
+          "example": "12345-678"
+        }
+      },
+      "required": ["nome", "cargo", "cep"]
+    },
+    "Orcamento": {
+      "type": "object",
+      "properties": {
+        "descricao": {
+          "type": "string",
+          "example": "Orçamento para o novo projeto"
+        },
+        "valor": {
+          "type": "number",
+          "example": 1500.00
+        },
+        "data": {
+          "type": "string",
+          "format": "date",
+          "example": "2024-10-10"
+        }
+      },
+      "required": ["descricao", "valor", "data"]
+    }
+  }
+}
