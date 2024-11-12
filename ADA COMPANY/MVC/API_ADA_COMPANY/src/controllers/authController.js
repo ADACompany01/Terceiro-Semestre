@@ -101,7 +101,7 @@ exports.loginUser = async (req, res) => {
 
         if (!user) {
             user = await Funcionario.findOne({ 'usuario.email': email });
-            tipoUsuario = 'funcionario';
+            tipoUsuario = 'admin';
         }
 
         if (!user) {
