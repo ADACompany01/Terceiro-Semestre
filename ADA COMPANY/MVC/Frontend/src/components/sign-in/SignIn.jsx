@@ -104,7 +104,8 @@ export default function SignIn(props) {
         // Verifica se o token foi retornado antes de salvá-lo
         if (result.token) {
           localStorage.setItem('token', result.token);
-          console.log('Login bem-sucedido');
+          console.log('Login com sucesso');
+          alert('Login com sucesso!');
           
           // Redireciona o usuário após o login
           navigate('/');
@@ -114,6 +115,7 @@ export default function SignIn(props) {
       } else {
         const error = await response.json();
         console.error('Erro:', error.message || 'Erro ao realizar login');
+        alert('Login falhou!');
       }
     } catch (error) {
       console.error('Erro de rede:', error.message || error);
