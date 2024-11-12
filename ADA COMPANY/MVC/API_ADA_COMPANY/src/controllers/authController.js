@@ -108,9 +108,9 @@ exports.loginUser = async (req, res) => {
             return res.status(404).json({ message: 'Usuário não encontrado' });
         }
 
-        // Verifica se o campo de senha existe e é uma string
-        if (!user.usuario || !user.usuario.senha) {
-            return res.status(500).json({ message: 'Senha não encontrada para este usuário' });
+        // Verifica se o campo de senha existe e é uma string válida
+        if (!user.usuario || typeof user.usuario.senha !== 'string') {
+            return res.status(500).json({ message: 'Senha não encontrada ou inválida para este usuário' });
         }
 
         // Verifica a senha do cliente ou funcionário

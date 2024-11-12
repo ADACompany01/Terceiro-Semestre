@@ -96,7 +96,7 @@ export default function SignIn(props) {
         },
         body: JSON.stringify({ email, password }),
       });
-    
+    console.log(response)
       if (response.ok) {
         const result = await response.json();
     
@@ -191,7 +191,7 @@ export default function SignIn(props) {
             </FormControl>
             <FormControl>
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <FormLabel htmlFor="password">Senha</FormLabel>
+                <FormLabel htmlFor="senha">Senha</FormLabel>
                 <Link
                   component="button"
                   type="button"
@@ -205,10 +205,10 @@ export default function SignIn(props) {
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
-                name="password"
+                name="senha"
                 placeholder="••••••"
                 type="password"
-                id="password"
+                id="senha"
                 autoComplete="current-password"
                 autoFocus
                 required

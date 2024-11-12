@@ -1,0 +1,10 @@
+# Teste API Usuario
+@urlBase = http://localhost:3000
+
+POST {{urlBase}}/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "funcionario@exemplo.com",
+    "senha": "senha123"
+}
