@@ -59,29 +59,26 @@ Confira a seguir uma demonstração das funcionalidades para cada tipo de usuár
 ## 👷 Backlogs & User Stories
 
 ### User Stories
-- **US01**: Como um usuário que quer comprar online, eu quero que o sistema me mostre todas as informações sobre os produtos do meu pedido, para que eu saiba exatamente o que estou comprando.  
+- **US01**: Como um usuário que quer comprar um serviço em uma plataforma online, eu quero que o sistema me mostre todas as informações sobre os produtos do meu pedido, para que eu saiba exatamente o que estou comprando.  
    **Tarefa Relacionada**: Utilizar o operador $lookup em pelo menos 2 consultas para realizar junções entre coleções e obter informações relacionadas.
 
 - **US02**: Como alguém que vai usar o site, eu quero que a equipe descubra quem sou eu e como eu uso o site, para que ele fique mais fácil e útil para mim.  
    **Tarefa Relacionada**: Técnica para identificação dos usuários (questionário, brainstorm etc), Definição das personas e Definição dos cenários.
 
-- **US03**: Como um comprador, eu quero que o site me ajude a encontrar produtos com preços que posso pagar e que eu consiga ver todos os meus pedidos, para que eu não perca nada importante.  
-   **Tarefa Relacionada**: Realizar pelo menos 5 consultas utilizando os operadores do checklist.
-
-- **US04**: Como um usuário que gosta de descobrir coisas novas, eu quero que o site saiba onde estou e me mostre lojas ou serviços perto de mim, para que eu consiga acessar o que preciso mais rápido.  
+- **US03**: Como um usuário, eu quero que o site me mostre as empresas perto de mim que possuem os serviços que estão sendo vendidos.  
    **Tarefa Relacionada**: Armazenamento de dados geográficos utilizando GeoJSON e realizar consultas geospaciais.
 
-- **US05**: Como um usuário que interage com o site, eu quero que a API me permita fazer coisas como adicionar, ver, mudar e excluir informações, para que eu possa gerenciar meus dados de maneira fácil.  
-   **Tarefa Relacionada**: Desenvolvimento de uma API RESTful completa que permita a realização das operações básicas: GET, POST, PUT e DELETE.
-
-- **US06**: Como alguém que quer usar o site, eu quero que a equipe coloque tudo no GitHub e explique como funciona, para que eu consiga entender o que está acontecendo por trás do site e como posso usar.  
-   **Tarefa Relacionada**: A aplicação deverá ser hospedada no GitHub e ter sua documentação descrita no arquivo README.
-
-- **US07**: Como um usuário que navega no site, eu quero que tudo esteja bem organizado e fácil de achar, para que eu consiga encontrar o que preciso sem ficar perdido.  
+- **US04**: Como um usuário que navega no site, eu quero que tudo esteja bem organizado e fácil de achar, para que eu consiga encontrar o que preciso sem ficar perdido.  
    **Tarefa Relacionada**: Estrutura da informação (card sorting), Menus e navegação, Protótipo de baixa fidelidade, Definição dos símbolos, Definição das cores, Definição dos Padrões.
 
-- **US08**: Como um usuário que gosta de navegar, eu quero que o site funcione de maneira rápida e fácil, sem precisar recarregar a página toda hora, para que minha experiência seja melhor.  
+- **US05**: Como um usuário que gosta de navegar, eu quero que o site funcione de maneira rápida e fácil, sem precisar recarregar a página toda hora, para que minha experiência seja melhor.  
    **Tarefa Relacionada**: Desenvolvimento da interface do usuário utilizando o conceito de SPA (Single Page Application).
+
+- **US06**: Como um usuário com dificuldades de visão, eu quero que o site tenha uma boa escolha de cores e tamanhos de texto, para que eu consiga ler tudo sem problemas e não me canse rápido.  
+   **Tarefa Relacionada**: Definição das cores e dos padrões de acessibilidade.
+
+- **US07**: Como uma pessoa que tem pouca experiência com tecnologia, eu quero que o site seja fácil de navegar e entender, com menus e informações bem organizadas, para que eu não me sinta perdido e consiga usar tudo sozinho.  
+   **Tarefa Relacionada**: Estrutura da informação (card sorting) e organização dos menus e navegação para melhorar a acessibilidade.
 
 → [Voltar ao topo](#topo)
 
