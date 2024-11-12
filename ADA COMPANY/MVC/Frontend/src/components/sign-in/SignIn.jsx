@@ -86,7 +86,8 @@ export default function SignIn(props) {
 
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
-    const password = data.get('password');
+    const senha = data.get('password');
+
 
     try {
       const response = await fetch(`${apiUrl}/api/auth/login`, {
@@ -94,9 +95,9 @@ export default function SignIn(props) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, senha }),
       });
-    console.log(response)
+
       if (response.ok) {
         const result = await response.json();
     
@@ -205,7 +206,7 @@ export default function SignIn(props) {
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
-                name="senha"
+                name="password"
                 placeholder="••••••"
                 type="password"
                 id="senha"
