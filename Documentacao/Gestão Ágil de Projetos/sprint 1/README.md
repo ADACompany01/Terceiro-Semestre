@@ -16,7 +16,8 @@ Os requisitos abrangidos por esse sprint são:
 - **03:** Atualizar o MER (Modelo Entidade-Relacionamento)  
 - **04:** Desenvolver API RESTful CRUD  
 - **05:** Hospedar uma API no Vercel e Subir no GitHub  
-- **06:** Junções  
+- **06:** Junções
+- **07:** Tarefas do discovery
 
 <span id="entregas"></span>
 
