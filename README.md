@@ -42,7 +42,7 @@ Confira a seguir uma demonstração das funcionalidades para cada tipo de usuár
 <details>
    <summary>Usuário</summary>
     <div align="center">
-        <img src=".Documentacao/Gestão Ágil de Projetos/imagens-apresentacao/usuário.PNG">
+        <img src="Documentacao/Gestão Ágil de Projetos/imagens-apresentacao/usuário.PNG">
     </div>
 </details>
 <details>
