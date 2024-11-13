@@ -87,7 +87,7 @@ Confira a seguir uma demonstração das funcionalidades para cada tipo de usuár
 ### 🏠 Protótipo 
 <span id="prototipo">
     Com base nos dados coletados em pesquisas, foi possível montar um protótipo de alta fidelidade com o uso da ferramenta Figma. Esta ferramenta possibilitou uma visualização prévia do front-end do projeto, o suficiente para obter o alinhamento entre a equipe de desenvolvimento e o cliente. Desta forma, o projeto prototipado possui algumas funções básicas de acesso a telas e respostas a cliques em botões, posteriormente sendo funcionalidades aplicadas na própria aplicação.
-    O acesso ao protótipo pode ser feito <a href="https://www.figma.com/proto/aoRbpLGfGNXeTD0hLtrsDr/Projeto-Integrador?node-id=0-1&t=P5UiG1z4EAXU1bLR-1">aqui</a>
+    O acesso ao protótipo pode ser feito <a href="[https://www.figma.com/proto/aoRbpLGfGNXeTD0hLtrsDr/Projeto-Integrador?node-id=0-1&t=P5UiG1z4EAXU1bLR-1](https://www.figma.com/proto/cbgCZT0div1CDRti3LZKff/Prot%C3%B3tipo-ADA-Corporation?node-id=0-1&t=ZKA0FgGVfjmY0lXX-1)">aqui</a>
 
 
 ### 📄 Documentação 
