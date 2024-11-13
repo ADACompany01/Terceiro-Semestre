@@ -44,9 +44,14 @@ Este protótipo é válido para a entrega dos requisitos confirmados para o spri
 - A documentação deve ser feita utilizando ferramentas como **Postman** ou **Swagger** e disponibilizada no **README**.  
 - A aplicação deve ser hospedada no **GitHub** e na **Vercel**. Não esqueça de incluir os nomes dos membros do grupo.
 
-### 06: Junções  
+### 06 e 07: Junções e tarefas do discovery
 - Utilizar o operador `$lookup` em pelo menos 2 consultas para realizar junções entre coleções.  
   **Exemplo:** Encontrar os detalhes dos produtos de um pedido específico.
+
+- Técnica para identificação dos usuários (questionário, braimstorm etc)
+- Definição das personas
+- Definição dos cenários
+- Definição dos card sorting
 
 → [Voltar ao topo](#topo)
 
