@@ -40,15 +40,16 @@ A partir desta ideia, o aplicativo utiliza APIs e microsserviços desenvolvidos 
 ### :clapper: Apresentação Final
 Confira a seguir uma demonstração das funcionalidades para cada tipo de usuário do sistema:
 <details>
-   <summary>Diretor de Serviços Administrativos</summary>
+   <summary>Usuário</summary>
     <div align="center">
-        <img src="./interface_admin.gif">
+        <img src=".Documentacao/Gestão Ágil de Projetos/imagens-apresentacao/usuário.PNG">
     </div>
 </details>
 <details>
-   <summary>Funcionários</summary>
+   <summary>Administrador</summary>
     <div align="center">
-          <img src="./interface_usuario.gif">
+        <img src="Documentacao/Gestão Ágil de Projetos/imagens-apresentacao/admin1.PNG">
+        <img src="Documentacao/Gestão Ágil de Projetos/imagens-apresentacao/admin2.PNG">      
     </div>
 </details>
     
