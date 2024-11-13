@@ -13,7 +13,8 @@ import ListClient from "./components/list-client/ListClient";
 import SignUpServico from "./components/sign-up-servico/SignUpServico"
 import SignUpOrcamento from "./components/sign-up-orcamento/SignUpOrcamento"
 import { AcessoCliente } from "./components/client-access/client-access";
-import { AcessoAdmin } from "./components/admin-access/admin-access";
+import { AcessoAdmin } from "./components/admin-access-consulta/admin-access";
+import { AcessoAdmin2 } from "./components/admin-access-cadastro/admin-access";
 
 function Home() {
   return (
@@ -22,6 +23,15 @@ function Home() {
       <About />
       <Projects/>
       <Experience/>
+    </div>
+  );
+}
+
+function Admin() {
+  return (
+    <div>
+      <AcessoAdmin />
+      <AcessoAdmin2 />
     </div>
   );
 }
@@ -43,7 +53,7 @@ function App() {
           <Route path="/signupservico" element={<SignUpServico />} />
           <Route path="/signuporcamento" element={<SignUpOrcamento />} />
           <Route path="/client" element={<AcessoCliente />} />   
-          <Route path="/admin" element={<AcessoAdmin />} />          
+          <Route path="/admin" element={<Admin />} />          
         </Routes>
         <Contact />
       </div>
