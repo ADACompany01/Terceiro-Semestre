@@ -40,9 +40,11 @@ app.use(orcamentoRoute);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Conexão com o banco de dados
-const mongoDB: string = process.env.MONGODB_URI || 'mongodb://localhost:27017/suabase';
+const mongoDB = process.env.MONGODB_URI;
 mongoose.Promise = global.Promise;
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB!)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error('Error connecting to MongoDB:', err));
 
 // Verificação de conexão com o banco de dados
 const db = mongoose.connection;

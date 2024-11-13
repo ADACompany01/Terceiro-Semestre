@@ -14,7 +14,6 @@ import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
-import { Navigate } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -40,25 +39,15 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-export default function ListClient(props) {
+export default function ListBudget(props) {
   const [clienteData, setClienteData] = React.useState(null);
   const [clientId, setClientId] = React.useState("");
-  const token = localStorage.getItem('token');
-
-  if (!token) {
-    return <Navigate to="/signin" />;
-  }
 
   const handleConsultaCliente = async () => {
     try {
-      const response = await fetch(`https://api-ada-company.vercel.app/cliente/${clientId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(`https://api-ada-company.vercel.app/cliente/${clientId}`);
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Erro ao buscar cliente');
+        throw new Error('Cliente não encontrado');
       }
       const data = await response.json();
       setClienteData(data);
@@ -75,11 +64,11 @@ export default function ListClient(props) {
         <Card variant="outlined">
           <SitemarkIcon />
           <Typography component="h1" variant="h4">
-            Consultar Cliente
+            Consultar Orçamento
           </Typography>
           <Box sx={{ display: 'flex', gap: 2 }}>
             <TextField
-              label="ID do Cliente"
+              label="ID do Orçamento"
               fullWidth
               value={clientId}
               onChange={(e) => setClientId(e.target.value)}
@@ -90,7 +79,7 @@ export default function ListClient(props) {
           </Box>
           {clienteData && (
             <Box sx={{ mt: 2 }}>
-              <Typography variant="h6">Dados do Cliente:</Typography>
+              <Typography variant="h6">Dados do Funcionário:</Typography>
               <pre>{JSON.stringify(clienteData, null, 2)}</pre>
             </Box>
           )}
