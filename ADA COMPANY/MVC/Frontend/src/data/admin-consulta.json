@@ -7,16 +7,16 @@
   {
     "title": "Funcionário",
     "imageSrc": "skills/func.png",
-    "link": "../funcionarios"
+    "link": "../listfunc"
   },
   {
     "title": "Orçamento",
     "imageSrc": "skills/orcamento.png",
-    "link": "../orcamento"
+    "link": "../listbudget"
   },
   {
     "title": "Serviço",
     "imageSrc": "skills/servico.png",
-    "link": "../servico"
+    "link": "../listservice"
   }
 ]

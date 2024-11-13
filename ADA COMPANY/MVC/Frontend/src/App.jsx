@@ -15,6 +15,9 @@ import SignUpOrcamento from "./components/sign-up-orcamento/SignUpOrcamento"
 import { AcessoCliente } from "./components/client-access/client-access";
 import { AcessoAdmin } from "./components/admin-access-consulta/admin-access";
 import { AcessoAdmin2 } from "./components/admin-access-cadastro/admin-access";
+import ListFunc from "./components/list-func/ListFunc";
+import ListService from "./components/list-services/ListService";
+import ListBudget from "./components/list-budget/ListBudget";
 
 function Home() {
   return (
@@ -50,10 +53,13 @@ function App() {
           <Route path="/signupclient" element={<SignUpClient />} />
           <Route path="/signupfuncionario" element={<SignUpFuncionario />} />
           <Route path="/listclient" element={<ListClient />} />
+          <Route path="/listfunc" element={<ListFunc />} />
           <Route path="/signupservico" element={<SignUpServico />} />
           <Route path="/signuporcamento" element={<SignUpOrcamento />} />
           <Route path="/client" element={<AcessoCliente />} />   
-          <Route path="/admin" element={<Admin />} />          
+          <Route path="/admin" element={<Admin />} />   
+          <Route path="/listservice" element={<ListService />} />
+          <Route path="/listbudget" element={<ListBudget />} />      
         </Routes>
         <Contact />
       </div>
