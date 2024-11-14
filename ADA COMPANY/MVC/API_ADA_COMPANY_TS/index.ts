@@ -4,7 +4,8 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from './swagger.json';
+import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerOptions from './src/config/swaggerConfig';
 
 // Importando rotas
 import clienteRoute from './src/routes/clienteRoute';
@@ -37,7 +38,8 @@ app.use(funcionarioRoute);
 app.use(orcamentoRoute);
 
 // Swagger (Documentação)
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Conexão com o banco de dados
 const mongoDB = process.env.MONGODB_URI;
