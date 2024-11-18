@@ -92,10 +92,10 @@ describe('Auth Endpoints', () => {
     });
   });
 
-  describe('POST /auth/login', () => {
+  describe('POST /api/auth/login', () => {
     it('Deve fazer login de um cliente com sucesso', async () => {
       const response = await request(app)
-        .post('/auth/login')
+        .post('/api/auth/login')
         .send({
           email: 'cliente@teste.com',
           senha: 'senha123',
@@ -107,7 +107,7 @@ describe('Auth Endpoints', () => {
 
     it('Deve fazer login de um funcionário com sucesso', async () => {
       const response = await request(app)
-        .post('/auth/login')
+        .post('/api/auth/login')
         .send({
           email: 'funcionario@teste.com',
           senha: 'senha123',

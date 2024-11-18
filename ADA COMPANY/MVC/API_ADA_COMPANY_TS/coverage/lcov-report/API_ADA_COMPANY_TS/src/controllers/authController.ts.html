@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.28% </span>
+                <span class="strong">71.69% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/53</span>
+                <span class='fraction'>38/53</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>3/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40.42% </span>
+                <span class="strong">68.08% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/47</span>
+                <span class='fraction'>32/47</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -319,32 +319,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -463,33 +463,33 @@ export const registerFuncionario = async (req: Request, res: Response): Promise&
 };
 &nbsp;
 // Login de usuário (Cliente ou Funcionário)
-export const loginUser = <span class="fstat-no" title="function not covered" >async (r</span>eq: Request): Promise&lt;AuthResponse&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-  const { email, senha } = <span class="cstat-no" title="statement not covered" >req.body;</span>
+export const loginUser = async (req: Request): Promise&lt;AuthResponse&gt; =&gt; {
+  const { email, senha } = req.body;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    let user = <span class="cstat-no" title="statement not covered" >await Cliente.findOne({ 'usuario.email': email });</span>
-    let tipoUsuario: 'cliente' | 'funcionario' = <span class="cstat-no" title="statement not covered" >'cliente';</span>
+  try {
+    let user = await Cliente.findOne({ 'usuario.email': email });
+    let tipoUsuario: 'cliente' | 'funcionario' = 'cliente';
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!user) {</span>
-<span class="cstat-no" title="statement not covered" >      user = await Funcionario.findOne({ 'usuario.email': email });</span>
-<span class="cstat-no" title="statement not covered" >      tipoUsuario = 'funcionario';</span>
+    if (!user) {
+      user = await Funcionario.findOne({ 'usuario.email': email });
+      tipoUsuario = 'funcionario';
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!user) {</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!user) {
 <span class="cstat-no" title="statement not covered" >      return { status: 404, message: 'Usuário não encontrado' };</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!user.usuario || !user.usuario.senha) {</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!user.usuario || !user.usuario.senha) {
 <span class="cstat-no" title="statement not covered" >      return { status: 500, message: 'Senha não encontrada para este usuário' };</span>
     }
 &nbsp;
-    const isMatch = <span class="cstat-no" title="statement not covered" >await bcrypt.compare(senha, user.usuario.senha);</span>
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!isMatch) {</span>
+    const isMatch = await bcrypt.compare(senha, user.usuario.senha);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!isMatch) {
 <span class="cstat-no" title="statement not covered" >      return { status: 400, message: 'Senha incorreta' };</span>
     }
 &nbsp;
-    const token = <span class="cstat-no" title="statement not covered" >jwt.sign({ id: user._id, role: tipoUsuario }, config.JWT_SECRET, { expiresIn: '1h' });</span>
-<span class="cstat-no" title="statement not covered" >    return { status: 200, message: token };</span>
+    const token = jwt.sign({ id: user._id, role: tipoUsuario }, config.JWT_SECRET, { expiresIn: '1h' });
+    return { status: 200, message: token };
   } catch (err: unknown) {
 <span class="cstat-no" title="statement not covered" >    console.error("Erro no login:", err);</span>
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (err instanceof Error) {</span>
@@ -505,7 +505,7 @@ export const loginUser = <span class="fstat-no" title="function not covered" >as
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-18T22:45:42.053Z
+                at 2024-11-18T23:02:14.364Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
