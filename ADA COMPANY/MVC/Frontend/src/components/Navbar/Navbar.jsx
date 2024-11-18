@@ -1,11 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./Navbar.module.css";
 import { getImageUrl } from "../../utils";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/signin');
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -28,16 +35,24 @@ export const Navbar = () => {
           onClick={() => setMenuOpen(false)}
         >
           <li>
-          <Link to="/about">Serviços</Link>
+            <Link to="/about">Serviços</Link>
           </li>
           <li>
             <Link to="/projects">Exemplos</Link>
-          </li>        
-          <li>
-            <Link to="/SignIn">Login</Link>
           </li>
+          {token ? (
+            <>
+              <li>
+                <a onClick={handleLogout} href="#">Logout</a>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link to="/signin">Login</Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
   );
-};1
+};
