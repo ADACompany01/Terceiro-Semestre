@@ -40,20 +40,20 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function ListFunc(props) {
-  const [clienteData, setClienteData] = React.useState(null);
-  const [clientId, setClientId] = React.useState("");
+  const [funcionarioData, setfuncionarioData] = React.useState(null);
+  const [funcionarioId, setFuncionarioData] = React.useState("");
 
   const handleConsultaCliente = async () => {
     try {
-      const response = await fetch(`https://api-ada-company.vercel.app/cliente/${clientId}`);
+      const response = await fetch(`https://api-ada-company.vercel.app/cliente/${funcionarioId}`);
       if (!response.ok) {
-        throw new Error('Cliente não encontrado');
+        throw new Error('Funcionário não encontrado');
       }
       const data = await response.json();
-      setClienteData(data);
+      setfuncionarioData(data);
     } catch (error) {
-      console.error('Erro ao buscar cliente:', error);
-      setClienteData(null);
+      console.error('Erro ao buscar funcionário:', error);
+      setfuncionarioData(null);
     }
   };
   return (
@@ -70,17 +70,17 @@ export default function ListFunc(props) {
             <TextField
               label="ID do Funcionário"
               fullWidth
-              value={clientId}
-              onChange={(e) => setClientId(e.target.value)}
+              value={funcionarioId}
+              onChange={(e) => setFuncionarioData(e.target.value)}
             />
             <Button variant="contained" onClick={handleConsultaCliente}>
               Consultar
             </Button>
           </Box>
-          {clienteData && (
+          {funcionarioData && (
             <Box sx={{ mt: 2 }}>
               <Typography variant="h6">Dados do Funcionário:</Typography>
-              <pre>{JSON.stringify(clienteData, null, 2)}</pre>
+              <pre>{JSON.stringify(funcionarioData, null, 2)}</pre>
             </Box>
           )}
         </Card>

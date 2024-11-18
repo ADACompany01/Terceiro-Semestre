@@ -40,20 +40,20 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function ListBudget(props) {
-  const [clienteData, setClienteData] = React.useState(null);
-  const [clientId, setClientId] = React.useState("");
+  const [orcamentoData, setOrcamentoData] = React.useState(null);
+  const [orcamentoId, setOrcamentoId] = React.useState("");
 
   const handleConsultaCliente = async () => {
     try {
-      const response = await fetch(`https://api-ada-company.vercel.app/cliente/${clientId}`);
+      const response = await fetch(`https://api-ada-company.vercel.app/orcamento/${orcamentoId}`);
       if (!response.ok) {
-        throw new Error('Cliente não encontrado');
+        throw new Error('Orçamento não encontrado');
       }
       const data = await response.json();
-      setClienteData(data);
+      setOrcamentoData(data);
     } catch (error) {
-      console.error('Erro ao buscar cliente:', error);
-      setClienteData(null);
+      console.error('Erro ao buscar orçamento:', error);
+      setOrcamentoData(null);
     }
   };
   return (
@@ -71,16 +71,16 @@ export default function ListBudget(props) {
               label="ID do Orçamento"
               fullWidth
               value={clientId}
-              onChange={(e) => setClientId(e.target.value)}
+              onChange={(e) => setOrcamentoId(e.target.value)}
             />
             <Button variant="contained" onClick={handleConsultaCliente}>
               Consultar
             </Button>
           </Box>
-          {clienteData && (
+          {orcamentoData && (
             <Box sx={{ mt: 2 }}>
-              <Typography variant="h6">Dados do Funcionário:</Typography>
-              <pre>{JSON.stringify(clienteData, null, 2)}</pre>
+              <Typography variant="h6">Dados do Orçamento:</Typography>
+              <pre>{JSON.stringify(orcamentoData, null, 2)}</pre>
             </Box>
           )}
         </Card>
