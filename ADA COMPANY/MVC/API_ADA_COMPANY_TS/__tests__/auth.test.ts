@@ -2,8 +2,10 @@ import request from 'supertest';
 import express, { Application } from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import authRoutes from '../src/routes/authRoutes'; // Ajuste o caminho conforme necessário
-import config from '../src/config';
+import authRoutes from '../src/routes/authRoutes';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app: Application = express();
 app.use(bodyParser.json());
@@ -11,25 +13,21 @@ app.use('/auth', authRoutes);
 
 describe('Auth Endpoints', () => {
   beforeAll(async () => {
-    // Conectar ao banco de dados de teste
-    const dbUri = 'mongodb://localhost:27017/test-db';
+    const dbUri = process.env.MONGODB_URI || '';
     await mongoose.connect(dbUri);
   });
 
   afterAll(async () => {
-    // Limpar o banco de dados após os testes
-    if (mongoose.connection && mongoose.connection.db) {
-        await mongoose.connection.db.dropDatabase();
-      }
+    await mongoose.connection.dropDatabase();
     await mongoose.disconnect();
   });
 
   describe('POST /auth/registerCliente', () => {
     it('Deve registrar um cliente com sucesso', async () => {
       const response = await request(app)
-        .post('/auth/registerCliente')
+        .post('/api/auth/registerCliente')
         .send({
-          _id: 1, // Deve ser um número, conforme o modelo
+          _id: 1001,
           nomeCliente: 'Teste Cliente',
           telefone: '123456789',
           endereco: {
@@ -60,13 +58,13 @@ describe('Auth Endpoints', () => {
       expect(response.body.message).toBe('Cliente registrado com sucesso!');
     });
   });
-
+  
   describe('POST /auth/registerFuncionario', () => {
     it('Deve registrar um funcionário com sucesso', async () => {
       const response = await request(app)
-        .post('/auth/registerFuncionario')
+        .post('/api/auth/registerFuncionario')
         .send({
-          _id: 2, // Deve ser um número, conforme o modelo
+          _id: 2001, // Deve ser um número, conforme o modelo
           nomeFuncionario: 'Teste Funcionario',
           endereco: {
             cep: '12345-678',

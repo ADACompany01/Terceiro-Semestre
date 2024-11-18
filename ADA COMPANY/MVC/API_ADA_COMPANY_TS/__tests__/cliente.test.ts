@@ -3,54 +3,68 @@ import app from '../index';
 import Cliente from '../src/models/clienteModel';
 import mongoose from 'mongoose';
 import { gerarTokenValido } from '../src/middleware/auth';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 describe('Testes do endpoint /cliente', () => {
   let token: string;
 
-  // Antes de todos os testes, conecte-se ao banco de dados
   beforeAll(async () => {
     try {
-      await mongoose.connect('mongodb://127.0.0.1:27017/testdb');
-      token = gerarTokenValido(); // Gera um token válido para autenticação
+      const dbUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/testdb';
+      await mongoose.connect(dbUri);
+      token = gerarTokenValido();
+      console.log('Conexão com o banco de dados estabelecida');
     } catch (error) {
       console.error('Erro ao conectar ao banco de dados:', error);
     }
   });
 
-  // Após todos os testes, desconecte o banco de dados
   afterAll(async () => {
     try {
+      await Cliente.deleteMany({});
       await mongoose.disconnect();
+      console.log('Conexão com o banco de dados encerrada');
     } catch (error) {
       console.error('Erro ao desconectar do banco de dados:', error);
     }
   });
 
-  // Antes de cada teste, limpe os dados e adicione registros de teste
   beforeEach(async () => {
-    await Cliente.deleteMany({}); // Limpa os clientes
-    await Cliente.create({
-      nomeCliente: 'Cliente Teste 1',
-      telefone: '123456789',
-      endereco: {
-        cep: '12345-678',
-        logradouro: 'Rua Teste',
-        complemento: 'Apto 1',
-        bairro: 'Bairro Teste',
-        localidade: 'Cidade Teste',
-        uf: 'SP',
-        estado: 'São Paulo',
-        ddd: '11',
-      },
-      cnpj: '12.345.678/0001-99',
-      usuario: {
-        email: 'cliente1@example.com',
-        senha: 'senha123',
-        tipoUsuario: 'cliente',
-        telefone: '987654321',
-        nomeCompleto: 'Cliente Teste 1',
-      },
-    });
+    try {
+      await Cliente.deleteMany({});
+      await Cliente.create({
+        _id: 900,
+        nomeCliente: 'Cliente Teste 1',
+        telefone: '123456789',
+        endereco: {
+          cep: '12345-678',
+          logradouro: 'Rua Teste',
+          complemento: 'Apto 1',
+          bairro: 'Bairro Teste',
+          localidade: 'Cidade Teste',
+          uf: 'SP',
+          estado: 'São Paulo',
+          ddd: '11',
+        },
+        localizacao: {
+          type: 'Point',
+          coordinates: [-46.633309, -23.55052],
+        },
+        cnpj: '12.345.678/0001-99',
+        usuario: {
+          email: 'cliente1@example.com',
+          senha: 'senha123',
+          tipoUsuario: 'cliente',
+          telefone: '987654321',
+          nomeCompleto: 'Cliente Teste 1',
+        },
+      });
+      console.log('Cliente de teste criado');
+    } catch (error) {
+      console.error('Erro ao criar cliente de teste:', error);
+    }
   });
 
   it('Deve retornar todos os clientes', async () => {
