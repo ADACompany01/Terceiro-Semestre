@@ -14,6 +14,7 @@ import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import { Navigate } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -49,9 +50,14 @@ export default function ListFunc(props) {
   }
   const handleConsultaCliente = async () => {
     try {
-      const response = await fetch(`https://api-ada-company.vercel.app/cliente/${funcionarioId}`);
+      const response = await fetch(`https://api-ada-company.vercel.app/funcionarios/${funcionarioId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
-        throw new Error('Funcionário não encontrado');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Erro ao buscar funcionário');
       }
       const data = await response.json();
       setfuncionarioData(data);
