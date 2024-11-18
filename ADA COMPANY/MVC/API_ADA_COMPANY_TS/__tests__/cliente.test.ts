@@ -12,14 +12,23 @@ describe('Testes do endpoint /cliente', () => {
 
   beforeAll(async () => {
     try {
-      const dbUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/testdb';
-      await mongoose.connect(dbUri);
+      // Certifique-se de que a string de conexão no arquivo .env está correta
+      const dbUri = process.env.MONGODB_URI; // Pega diretamente a string de conexão do arquivo .env
+  
+      if (!dbUri) {
+        throw new Error('A variável de ambiente MONGODB_URI não foi definida no arquivo .env');
+      }
+  
+      // Conecta ao MongoDB na nuvem
+      await mongoose.connect(dbUri); // Agora sem opções adicionais
+  
       token = gerarTokenValido();
       console.log('Conexão com o banco de dados estabelecida');
     } catch (error) {
       console.error('Erro ao conectar ao banco de dados:', error);
     }
-  });
+  });  
+  
 
   afterAll(async () => {
     try {
@@ -82,7 +91,7 @@ describe('Testes do endpoint /cliente', () => {
     const cliente = await Cliente.findOne({ nomeCliente: 'Cliente Teste 1' });
 
     if (!cliente) {
-      throw new Error('Cliente não encontrado. Certifique-se de que o cliente foi criado antes de executar este teste.');
+        throw new Error('Cliente não encontrado. Certifique-se de que o cliente foi criado antes de executar este teste.');
     }
 
     const res = await request(app)
@@ -91,8 +100,8 @@ describe('Testes do endpoint /cliente', () => {
       .send({ nomeCliente: 'Cliente Atualizado' });
 
     expect(res.status).toBe(200);
-    expect(res.body.message).toBe('Cliente atualizado com sucesso!');
-  });
+    expect(res.body.nomeCliente).toBe('Cliente Atualizado'); // Verificando a mudança do nome do cliente
+});
 
   it('Deve retornar 404 se o cliente não for encontrado', async () => {
     const res = await request(app)
