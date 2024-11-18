@@ -14,6 +14,7 @@ import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import { Navigate } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -49,14 +50,19 @@ export default function ListService(props) {
   }
   const handleConsultaServico = async () => {
     try {
-      const response = await fetch(`https://api-ada-company.vercel.app/servico/${servicoId}`);
+      const response = await fetch(`https://api-ada-company.vercel.app/servico/${servicoId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
-        throw new Error('Serviço não encontrado');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Erro ao buscar serviço');
       }
       const data = await response.json();
       setservicoData(data);
     } catch (error) {
-      console.error('Erro ao buscar Serviço:', error);
+      console.error('Erro ao buscar serviço:', error);
       setservicoData(null);
     }
   };

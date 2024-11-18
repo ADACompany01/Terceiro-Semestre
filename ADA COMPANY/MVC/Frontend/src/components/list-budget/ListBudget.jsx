@@ -14,6 +14,7 @@ import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import { Navigate } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -58,13 +59,13 @@ export default function ListBudget(props) {
       });
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Erro ao buscar funcionário');
+        throw new Error(errorData.message || 'Erro ao buscar orçamento');
       }
       const data = await response.json();
-      setfuncionarioData(data);
+      setOrcamentoData(data);
     } catch (error) {
-      console.error('Erro ao buscar funcionário:', error);
-      setfuncionarioData(null);
+      console.error('Erro ao buscar orçamento:', error);
+      setOrcamentoData(null);
     }
   };
   return (
@@ -81,7 +82,7 @@ export default function ListBudget(props) {
             <TextField
               label="ID do Orçamento"
               fullWidth
-              value={clientId}
+              value={orcamentoId}
               onChange={(e) => setOrcamentoId(e.target.value)}
             />
             <Button variant="contained" onClick={handleConsultaBudget}>
