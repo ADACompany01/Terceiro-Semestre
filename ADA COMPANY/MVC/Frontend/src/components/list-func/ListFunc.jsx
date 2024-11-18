@@ -50,7 +50,7 @@ export default function ListFunc(props) {
   }
   const handleConsultaCliente = async () => {
     try {
-      const response = await fetch(`https://api-ada-company.vercel.app/funcionarios/${funcionarioId}`, {
+      const response = await fetch(`https://api-ada-company.vercel.app/funcionario/${funcionarioId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
