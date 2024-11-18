@@ -42,6 +42,12 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 export default function ListBudget(props) {
   const [orcamentoData, setOrcamentoData] = React.useState(null);
   const [orcamentoId, setOrcamentoId] = React.useState("");
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    return <Navigate to="/signin" />;
+  }
+
 
   const handleConsultaCliente = async () => {
     try {

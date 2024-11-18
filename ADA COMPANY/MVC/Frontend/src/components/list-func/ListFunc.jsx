@@ -42,7 +42,11 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 export default function ListFunc(props) {
   const [funcionarioData, setfuncionarioData] = React.useState(null);
   const [funcionarioId, setFuncionarioData] = React.useState("");
+  const token = localStorage.getItem('token');
 
+  if (!token) {
+    return <Navigate to="/signin" />;
+  }
   const handleConsultaCliente = async () => {
     try {
       const response = await fetch(`https://api-ada-company.vercel.app/cliente/${funcionarioId}`);
