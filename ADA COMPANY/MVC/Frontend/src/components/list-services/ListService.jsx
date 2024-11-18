@@ -49,7 +49,7 @@ export default function ListService(props) {
   }
   const handleConsultaCliente = async () => {
     try {
-      const response = await fetch(`https://api-ada-company.vercel.app/cliente/${servicoId}`);
+      const response = await fetch(`https://api-ada-company.vercel.app/servico/${servicoId}`);
       if (!response.ok) {
         throw new Error('Serviço não encontrado');
       }
