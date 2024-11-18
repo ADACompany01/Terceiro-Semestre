@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">39.28% </span>
+                <span class="strong">53.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/28</span>
+                <span class='fraction'>15/28</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">52% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/25</span>
+                <span class='fraction'>13/25</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -1015,9 +1015,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1032,20 +1046,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1959,10 +1959,10 @@ import { registerCliente, registerFuncionario, loginUser } from '../controllers/
 const router: Router = express.Router();
 &nbsp;
 // Rota para registro de Clientes
-router.post('/registerCliente', <span class="fstat-no" title="function not covered" >async (r</span>eq: Request, res: Response) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const result = <span class="cstat-no" title="statement not covered" >await registerCliente(req, res);</span>  // Espera um objeto { status, message }
-<span class="cstat-no" title="statement not covered" >    res.status(result.status).json(result); </span> // Responde com status e a mensagem
+router.post('/registerCliente', async (req: Request, res: Response) =&gt; {
+  try {
+    const result = await registerCliente(req, res);  // Espera um objeto { status, message }
+    res.status(result.status).json(result);  // Responde com status e a mensagem
   } catch (err: unknown) {
 <span class="cstat-no" title="statement not covered" >    if (err instanceof Error) {</span>
 <span class="cstat-no" title="statement not covered" >      res.status(500).json({ message: err.message });</span>
@@ -1973,10 +1973,10 @@ router.post('/registerCliente', <span class="fstat-no" title="function not cover
 });
 &nbsp;
 // Rota para registro de Funcionários
-router.post('/registerFuncionario', <span class="fstat-no" title="function not covered" >async (r</span>eq: Request, res: Response) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const result = <span class="cstat-no" title="statement not covered" >await registerFuncionario(req, res);</span>  // Espera um objeto { status, message }
-<span class="cstat-no" title="statement not covered" >    res.status(result.status).json(result); </span> // Responde com status e a mensagem
+router.post('/registerFuncionario', async (req: Request, res: Response) =&gt; {
+  try {
+    const result = await registerFuncionario(req, res);  // Espera um objeto { status, message }
+    res.status(result.status).json(result);  // Responde com status e a mensagem
   } catch (err: unknown) {
 <span class="cstat-no" title="statement not covered" >    if (err instanceof Error) {</span>
 <span class="cstat-no" title="statement not covered" >      res.status(500).json({ message: err.message });</span>
@@ -1987,10 +1987,10 @@ router.post('/registerFuncionario', <span class="fstat-no" title="function not c
 });
 &nbsp;
 // Rota para login (tanto de Clientes quanto Funcionários)
-router.post('/login', async (req: Request, res: Response) =&gt; {
-  try {
-    const result = await loginUser(req);  // Agora passa apenas `req`
-    res.status(result.status).json(result);  // Responde com status e a mensagem
+router.post('/login', <span class="fstat-no" title="function not covered" >async (r</span>eq: Request, res: Response) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const result = <span class="cstat-no" title="statement not covered" >await loginUser(req);</span>  // Agora passa apenas `req`
+<span class="cstat-no" title="statement not covered" >    res.status(result.status).json(result); </span> // Responde com status e a mensagem
   } catch (err: unknown) {
 <span class="cstat-no" title="statement not covered" >    if (err instanceof Error) {</span>
 <span class="cstat-no" title="statement not covered" >      res.status(500).json({ message: err.message });</span>
@@ -2905,7 +2905,7 @@ export default router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-18T21:47:09.792Z
+                at 2024-11-18T22:45:42.053Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -116,7 +116,7 @@ describe('Testes do endpoint /cliente', () => {
       .set('Authorization', `Bearer ${token}`);
 
     expect(res.status).toBe(200);
-    expect(res.body.message).toBe('Cliente excluído com sucesso!');
+    expect(res.body.message).toBe('Cliente excluído com sucesso');
   });
 
   it('Deve retornar 404 ao tentar excluir um cliente inexistente', async () => {

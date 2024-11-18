@@ -9,7 +9,7 @@ dotenv.config();
 
 const app: Application = express();
 app.use(bodyParser.json());
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 describe('Auth Endpoints', () => {
   beforeAll(async () => {
@@ -22,7 +22,7 @@ describe('Auth Endpoints', () => {
     await mongoose.disconnect();
   });
 
-  describe('POST /auth/registerCliente', () => {
+  describe('POST /api/auth/registerCliente', () => {
     it('Deve registrar um cliente com sucesso', async () => {
       const response = await request(app)
         .post('/api/auth/registerCliente')
@@ -59,7 +59,7 @@ describe('Auth Endpoints', () => {
     });
   });
   
-  describe('POST /auth/registerFuncionario', () => {
+  describe('POST /api/auth/registerFuncionario', () => {
     it('Deve registrar um funcionário com sucesso', async () => {
       const response = await request(app)
         .post('/api/auth/registerFuncionario')
