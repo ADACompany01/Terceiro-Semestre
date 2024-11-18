@@ -48,7 +48,7 @@ export default function ListFunc(props) {
   if (!token) {
     return <Navigate to="/signin" />;
   }
-  const handleConsultaCliente = async () => {
+  const handleConsultaFuncionario = async () => {
     try {
       const response = await fetch(`https://api-ada-company.vercel.app/funcionario/${funcionarioId}`, {
         headers: {
@@ -83,7 +83,7 @@ export default function ListFunc(props) {
               value={funcionarioId}
               onChange={(e) => setFuncionarioData(e.target.value)}
             />
-            <Button variant="contained" onClick={handleConsultaCliente}>
+            <Button variant="contained" onClick={handleConsultaFuncionario}>
               Consultar
             </Button>
           </Box>

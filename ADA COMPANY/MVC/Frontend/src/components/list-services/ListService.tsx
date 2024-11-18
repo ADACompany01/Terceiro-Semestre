@@ -43,7 +43,7 @@ export default function ListService(props) {
   const [servicoData, setservicoData] = React.useState(null);
   const [servicoId, setservicoId] = React.useState("");
 
-  const handleConsultaCliente = async () => {
+  const handleConsultaServico = async () => {
     try {
       const response = await fetch(`https://api-ada-company.vercel.app/cliente/${servicoId}`);
       if (!response.ok) {
@@ -73,7 +73,7 @@ export default function ListService(props) {
               value={servicoId}
               onChange={(e) => setservicoId(e.target.value)}
             />
-            <Button variant="contained" onClick={handleConsultaCliente}>
+            <Button variant="contained" onClick={handleConsultaServico}>
               Consultar
             </Button>
           </Box>

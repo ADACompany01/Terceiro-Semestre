@@ -49,17 +49,22 @@ export default function ListBudget(props) {
   }
 
 
-  const handleConsultaCliente = async () => {
+  const handleConsultaBudget = async () => {
     try {
-      const response = await fetch(`https://api-ada-company.vercel.app/orcamento/${orcamentoId}`);
+      const response = await fetch(`https://api-ada-company.vercel.app/orcamento/${orcamentoId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
-        throw new Error('Orçamento não encontrado');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Erro ao buscar funcionário');
       }
       const data = await response.json();
-      setOrcamentoData(data);
+      setfuncionarioData(data);
     } catch (error) {
-      console.error('Erro ao buscar orçamento:', error);
-      setOrcamentoData(null);
+      console.error('Erro ao buscar funcionário:', error);
+      setfuncionarioData(null);
     }
   };
   return (
@@ -79,7 +84,7 @@ export default function ListBudget(props) {
               value={clientId}
               onChange={(e) => setOrcamentoId(e.target.value)}
             />
-            <Button variant="contained" onClick={handleConsultaCliente}>
+            <Button variant="contained" onClick={handleConsultaBudget}>
               Consultar
             </Button>
           </Box>

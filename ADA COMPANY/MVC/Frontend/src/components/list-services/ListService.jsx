@@ -47,7 +47,7 @@ export default function ListService(props) {
   if (!token) {
     return <Navigate to="/signin" />;
   }
-  const handleConsultaCliente = async () => {
+  const handleConsultaServico = async () => {
     try {
       const response = await fetch(`https://api-ada-company.vercel.app/servico/${servicoId}`);
       if (!response.ok) {
@@ -77,7 +77,7 @@ export default function ListService(props) {
               value={servicoId}
               onChange={(e) => setservicoId(e.target.value)}
             />
-            <Button variant="contained" onClick={handleConsultaCliente}>
+            <Button variant="contained" onClick={handleConsultaServico}>
               Consultar
             </Button>
           </Box>
