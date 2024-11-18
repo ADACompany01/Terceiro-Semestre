@@ -14,7 +14,7 @@ import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -44,6 +44,7 @@ export default function ListBudget(props) {
   const [orcamentoData, setOrcamentoData] = React.useState(null);
   const [orcamentoId, setOrcamentoId] = React.useState("");
   const token = localStorage.getItem('token');
+  const navigate = useNavigate();
 
   if (!token) {
     return <Navigate to="/signin" />;
@@ -72,6 +73,7 @@ export default function ListBudget(props) {
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
+      <Button onClick={() => navigate('/admin')} variant="contained">Voltar ao Menu</Button>
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
           <SitemarkIcon />
