@@ -56,3 +56,5 @@ db.on('error', console.error.bind(console, 'Erro ao conectar com o banco de dado
 app.listen(3000, () => {
   console.log('Servidor em execução na porta 3000');
 });
+
+export default app; 
