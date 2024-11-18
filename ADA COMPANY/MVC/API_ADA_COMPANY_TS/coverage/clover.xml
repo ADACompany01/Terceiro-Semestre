@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1731970934500" clover="3.2.0">
-  <project timestamp="1731970934500" name="All files">
+<coverage generated="1731971022000" clover="3.2.0">
+  <project timestamp="1731971022000" name="All files">
     <metrics statements="373" coveredstatements="205" conditionals="62" coveredconditionals="17" methods="76" coveredmethods="25" elements="511" coveredelements="247" complexity="0" loc="373" ncloc="373" packages="7" files="19" classes="19"/>
     <package name="API_ADA_COMPANY_TS">
       <metrics statements="35" coveredstatements="34" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
