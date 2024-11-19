@@ -14,6 +14,15 @@ export const Navbar = () => {
     navigate('/signin');
   };
 
+  const handleMenu = () => {
+    if (user.role = 'admin'){
+      navigate('/admin');
+    }
+    else{
+      navigate('/client');
+    }
+  }
+
   return (
     <nav className={styles.navbar}>
       <a className={styles.title} href="/">
@@ -44,6 +53,9 @@ export const Navbar = () => {
             <>
               <li>
                 <a onClick={handleLogout} href="#">Logout</a>
+              </li>
+              <li>
+              <a onClick={handleMenu} href="#">Menu</a>
               </li>
             </>
           ) : (
