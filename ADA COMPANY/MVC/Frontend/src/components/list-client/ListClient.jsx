@@ -72,6 +72,9 @@ export default function ListClient(props) {
       <CssBaseline enableColorScheme />
       <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
       <SignUpContainer direction="column" justifyContent="space-between">
+      <Button variant="contained" onClick={() => window.location.href = '/admin'}>
+          Voltar
+        </Button>
         <Card variant="outlined">
           <SitemarkIcon />
           <Typography component="h1" variant="h4">
