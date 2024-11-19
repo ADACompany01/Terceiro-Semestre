@@ -29,7 +29,7 @@ export const verifyToken = (req: AuthenticatedRequest, res: Response, next: Next
 
 // Middleware para garantir que o usuário seja um funcionário
 export const verifyFuncionarioRole = (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
-  if (req.user?.role !== 'funcionario') {
+  if (req.user?.role !== 'admin') {
     res.status(403).json({ message: 'Acesso restrito a funcionários.' });
     return;
   }
