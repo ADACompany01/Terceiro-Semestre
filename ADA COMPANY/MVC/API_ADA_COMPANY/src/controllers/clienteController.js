@@ -2,7 +2,7 @@ const Cliente = require('../models/clienteModel');
 
 exports.getClientes = async function (req, res) {
     try {
-        const result = await Cliente.find();
+        const result = await Cliente.find().limit(10);
         res.status(200).json(result);
     } catch (err) {
         res.status(500).json({ message: `${err.message} - Falha ao buscar clientes.` });

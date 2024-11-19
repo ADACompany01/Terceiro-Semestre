@@ -3,7 +3,7 @@ var Funcionario = require('../models/funcionarioModel');
 // Método para listar todos os funcionários
 exports.getFuncionarios = async function (req, res) {
     try {
-        const result = await Funcionario.find();
+        const result = await Funcionario.find().limit(10);
         res.status(200).json(result);
     } catch (err) {
         res.status(500).json(err);

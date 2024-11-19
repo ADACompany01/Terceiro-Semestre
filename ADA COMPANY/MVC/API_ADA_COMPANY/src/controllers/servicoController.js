@@ -3,7 +3,7 @@ var Servico = require('../models/servicoModel');
 // Método para listar todos os serviços
 exports.getServico = async function (req, res) {
     try {
-        const result = await Servico.find();
+        const result = await Servico.find().limit(10);
         res.status(200).json(result);
     } catch (err) {
         res.status(500).json(err);
