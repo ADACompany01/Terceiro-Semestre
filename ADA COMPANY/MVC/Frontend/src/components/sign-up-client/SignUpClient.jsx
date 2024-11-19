@@ -103,7 +103,7 @@ export default function SignUpClient(props) {
       usuario: {
         email: data.get('email'),
         senha: data.get('senha'),
-        tipoUsuario: data.get('tipoUsuario'),
+        tipoUsuario: 'cliente',
         telefone: data.get('telefoneUsuario'),
         nomeCompleto: data.get('nomeCompleto'),
       },
@@ -236,7 +236,7 @@ export default function SignUpClient(props) {
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="cnpj">CNPJ</FormLabel>
-              <TextField name="cnpj" required fullWidth id="cnpj" placeholder="12.345.678/0001-99" />
+              <TextField name="cnpj" fullWidth id="cnpj" placeholder="12.345.678/0001-99" />
             </FormControl>
             {/* Usuário */}
             <FormControl>
@@ -247,17 +247,6 @@ export default function SignUpClient(props) {
               <FormLabel htmlFor="senha">Senha</FormLabel>
               <TextField name="senha" required fullWidth type="password" id="senha" placeholder="••••••" />
             </FormControl>
-            <FormLabel htmlFor="tipoUsuario">Tipo de Usuário</FormLabel>
-              <Select
-                name="tipoUsuario"
-                required
-                fullWidth
-                id="tipoUsuario"
-                defaultValue=""
-              >
-                <MenuItem value="cliente">Cliente</MenuItem>
-                <MenuItem value="admin">Admin</MenuItem>
-              </Select>
             <FormControl>
               <FormLabel htmlFor="telefoneUsuario">Telefone do Usuário</FormLabel>
               <TextField name="telefoneUsuario" required fullWidth id="telefoneUsuario" placeholder="(11) 12345-6789" />

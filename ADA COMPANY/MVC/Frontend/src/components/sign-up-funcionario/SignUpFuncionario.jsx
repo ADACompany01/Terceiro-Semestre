@@ -98,7 +98,7 @@ export default function SignUpFuncionario(props) {
       usuario: {
         email: data.get('email'),
         senha: data.get('senha'),
-        tipoUsuario: data.get('tipoUsuario'),
+        tipoUsuario: 'admin',
         telefone: data.get('telefone'),
         nomeCompleto: data.get('nomeCompleto')
       },
@@ -253,10 +253,6 @@ export default function SignUpFuncionario(props) {
             <FormControl>
               <FormLabel htmlFor="senha">Senha</FormLabel>
               <TextField name="senha" required fullWidth id="senha" placeholder="Senha" type="password" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="tipoUsuario">Tipo de Usuário</FormLabel>
-              <TextField name="tipoUsuario" required fullWidth id="tipoUsuario" placeholder="Tipo de Usuário" />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="telefone">Telefone</FormLabel>
