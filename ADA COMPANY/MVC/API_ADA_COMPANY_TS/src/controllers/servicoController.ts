@@ -4,7 +4,7 @@ import Servico from '../models/servicoModel';  // Presumindo que você tenha um 
 // Função para obter todos os serviços
 const getServico = async (req: Request, res: Response) => {
     try {
-        const servicos = await Servico.find();  // Obtém todos os serviços
+        const servicos = await Servico.find().limit(10);  // Obtém todos os serviços
         res.status(200).json(servicos);
     } catch (err) {
         res.status(500).json({ message: 'Erro ao obter serviços', error: err });

@@ -4,7 +4,7 @@ import Funcionario from '../models/funcionarioModel';
 // Buscar todos os funcionários
 export const getFuncionarios = async (req: Request, res: Response): Promise<void> => {
     try {
-        const funcionarios = await Funcionario.find();
+        const funcionarios = await Funcionario.find().limit(10);
         res.json(funcionarios);
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar funcionários" });
