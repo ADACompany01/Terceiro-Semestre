@@ -17,10 +17,10 @@ export const Navbar = () => {
 
   const handleMenu = () => {
     if (user.role === 'admin'){
-      navigate('/admin');
+      navigate('/#/admin');
     }
     else{
-      navigate('/client');
+      navigate('/#/client');
     }
   }
 
