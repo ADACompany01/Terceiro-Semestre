@@ -8,6 +8,7 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -15,7 +16,7 @@ export const Navbar = () => {
   };
 
   const handleMenu = () => {
-    if (user.role = 'admin'){
+    if (user.role === 'admin'){
       navigate('/admin');
     }
     else{
