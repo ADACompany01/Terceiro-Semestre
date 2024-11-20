@@ -52,6 +52,20 @@ Confira a seguir uma demonstração das funcionalidades para cada tipo de usuár
         <img src="Documentacao/Gestão Ágil de Projetos/imagens-apresentacao/admin2.PNG">      
     </div>
 </details>
+<details>
+   <summary>Scrum</summary>
+    <div align="center">
+        <img src="Documentacao/Gestão Ágil de Projetos/imagens-apresentacao/admin1.PNG">
+        <img src="Documentacao/Gestão Ágil de Projetos/imagens-apresentacao/admin2.PNG">      
+    </div>
+</details>
+<details>
+   <summary>Kanban</summary>
+    <div align="center">
+        <img src="Documentacao/Gestão Ágil de Projetos/imagens-apresentacao/admin1.PNG">
+        <img src="Documentacao/Gestão Ágil de Projetos/imagens-apresentacao/admin2.PNG">      
+    </div>
+</details>
     
 → [Voltar ao topo](#topo)
 
