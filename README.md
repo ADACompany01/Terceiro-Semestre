@@ -37,6 +37,12 @@ A partir desta ideia, o aplicativo utiliza APIs e microsserviços desenvolvidos 
 | 04 | 09/11/2024 |  ✔️Concluído    |[ver relatório](https://github.com/ADACompany01/Terceiro-Semestre/blob/main/Documentacao/Gest%C3%A3o%20%C3%81gil%20de%20Projetos/sprint%204/README.md)|
 | 05 | 19/11/2024 |  ✔️Concluído    |[ver relatório](https://github.com/ADACompany01/Terceiro-Semestre/blob/main/Documentacao/Gest%C3%A3o%20%C3%81gil%20de%20Projetos/sprint%205/README.md)|
 
+### 🔗 Links Jira
+- **Scrum ADA Company**: [Acessar Scrum ADA Company](https://samuel-pregnolattoo.atlassian.net/jira/software/projects/ACS/boards/4)
+- **Kanban ADA Company**: [Acessar Kanban ADA Company](https://samuel-pregnolattoo.atlassian.net/jira/software/projects/KAC/boards/3)
+
+→ [Voltar ao topo](#topo)
+
 ### :clapper: Apresentação Final
 Confira a seguir uma demonstração das funcionalidades para cada tipo de usuário do sistema:
 <details>
