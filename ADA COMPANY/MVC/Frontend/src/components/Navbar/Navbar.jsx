@@ -18,7 +18,7 @@ export const Navbar = () => {
   };
 
   const handleMenu = () => {
-    const decodedToken = jwt_decode(token);
+    const decodedToken = jwtDecode(token);
     const userRole = decodedToken.role;
     if (userRole === 'cliente') {
       navigate('/client');
