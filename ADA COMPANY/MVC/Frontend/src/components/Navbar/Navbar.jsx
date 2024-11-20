@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";  
+
 
 import styles from "./Navbar.module.css";
 import { getImageUrl } from "../../utils";
@@ -16,12 +18,12 @@ export const Navbar = () => {
   };
 
   const handleMenu = () => {
-    const decodedToken = jwtDecode(token);
+    const decodedToken = jwt_decode(token);
     const userRole = decodedToken.role;
     if (userRole === 'cliente') {
-      navigate('/#/client');
+      navigate('/client');
     } else if (userRole === 'admin') {
-      navigate('/#/admin');
+      navigate('/admin');
   }
   }
   return (
@@ -56,7 +58,7 @@ export const Navbar = () => {
                 <a onClick={handleLogout} href="#">Logout</a>
               </li>
               <li>
-              <a onClick={handleMenu}>Menu</a>
+              <a onClick={handleMenu} href="#">Menu</a>
               </li>
             </>
           ) : (
