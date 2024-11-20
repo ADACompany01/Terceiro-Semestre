@@ -20,6 +20,8 @@ export const Navbar = () => {
   const handleMenu = () => {
     const decodedToken = jwtDecode(token);
     const userRole = decodedToken.role;
+    console.log(decodedToken)
+    console.log(userRole);
     if (userRole === 'cliente') {
       navigate('/client');
     } else if (userRole === 'admin') {
@@ -55,10 +57,10 @@ export const Navbar = () => {
           {token ? (
             <>
               <li>
-                <a onClick={handleLogout} href="#">Logout</a>
+                <a onClick={handleLogout} >Logout</a>
               </li>
               <li>
-              <a onClick={handleMenu} href="#">Menu</a>
+              <a onClick={handleMenu} >Menu</a>
               </li>
             </>
           ) : (
