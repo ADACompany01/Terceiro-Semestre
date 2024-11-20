@@ -16,14 +16,14 @@ export const Navbar = () => {
   };
 
   const handleMenu = () => {
-    if (user.role === 'admin'){
-      navigate('/#/admin');
-    }
-    else{
-      navigate('/#/client');
-    }
+    const decodedToken = jwtDecode(token);
+    const userRole = decodedToken.role;
+    if (userRole === 'cliente') {
+      navigate('/client');
+    } else if (userRole === 'admin') {
+      navigate('/admin');
   }
-
+  }
   return (
     <nav className={styles.navbar}>
       <a className={styles.title} href="/">
