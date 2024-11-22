@@ -4,7 +4,7 @@ import Cliente from '../models/clienteModel';
 // Buscar todos os clientes
 export const getClientes = async (req: Request, res: Response): Promise<void> => {
     try {
-        const clientes = await Cliente.find().limit(10);
+        const clientes = await Cliente.find().select('-usuario.senha').limit(10);
         res.json(clientes);
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar clientes" });

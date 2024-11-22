@@ -65,7 +65,7 @@ const clienteSchema: Schema<ICliente> = new Schema({
   cnpj: { type: String, required: true },
   usuario: {
     email: { type: String, required: true, unique: true },
-    senha: { type: String, required: true, minlength: 6 },
+    senha: { type: String, required: true, minlength: 6, select: false }, //Esconde a senha por padrão
     tipoUsuario: { type: String, required: true, enum: ['cliente', 'admin'] },
     telefone: { type: String, required: true },
     nomeCompleto: { type: String, required: true }
