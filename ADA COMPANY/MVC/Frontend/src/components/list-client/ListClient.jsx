@@ -91,13 +91,24 @@ export default function ListClient(props) {
           {clienteData && (
             <Box sx={{ mt: 2 }}>
               <Typography variant="h6">Dados do Cliente:</Typography>
-              <TextField label="Nome" fullWidth value={clienteData.nome} disabled />
-              <TextField label="Email" fullWidth value={clienteData.email} disabled />
+              <TextField label="_id" fullWidth value={clienteData._id} disabled />
+              <TextField label="Nome Cliente" fullWidth value={clienteData.nomeCliente} disabled />
               <TextField label="Telefone" fullWidth value={clienteData.telefone} disabled />
-              <TextField label="CPF" fullWidth value={clienteData.cpf} disabled />
-              <TextField label="Endereço" fullWidth value={clienteData.endereco} disabled />
-              <TextField label="Cidade" fullWidth value={clienteData.cidade} disabled />
-              <TextField label="Estado" fullWidth value={clienteData.estado} disabled />
+              <TextField label="CEP" fullWidth value={clienteData.endereco.cep} disabled />
+              <TextField label="Logradouro" fullWidth value={clienteData.endereco.logradouro} disabled />
+              <TextField label="Complemento" fullWidth value={clienteData.endereco.complemento} disabled />
+              <TextField label="Bairro" fullWidth value={clienteData.endereco.bairro} disabled />
+              <TextField label="Localidade" fullWidth value={clienteData.endereco.localidade} disabled />
+              <TextField label="UF" fullWidth value={clienteData.endereco.uf} disabled />
+              <TextField label="Estado" fullWidth value={clienteData.endereco.estado} disabled />
+              <TextField label="DDD" fullWidth value={clienteData.endereco.ddd} disabled />
+              <TextField label="Coordenadas" fullWidth value={clienteData.localizacao.coordinates} disabled />
+              <TextField label="CNPJ" fullWidth value={clienteData.cnpj} disabled />
+              <TextField label="Email" fullWidth value={clienteData.usuario.email} disabled />
+              <TextField label="Senha" fullWidth value={clienteData.usuario.senha} disabled />
+              <TextField label="Tipo de Usuário" fullWidth value={clienteData.usuario.tipoUsuario} disabled />
+              <TextField label="Telefone do Usuário" fullWidth value={clienteData.usuario.telefone} disabled />
+              <TextField label="Nome Completo do Usuário" fullWidth value={clienteData.usuario.nomeCompleto} disabled />
             </Box>
           )}
         </Card>
