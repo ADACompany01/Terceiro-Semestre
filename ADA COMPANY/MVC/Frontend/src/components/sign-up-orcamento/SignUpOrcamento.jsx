@@ -120,15 +120,16 @@ export default function SignUpOrcamento(props) {
               <TextField name="valorTotal" required fullWidth id="valorTotal" type="number" placeholder="1000" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="tipoServico">Tipo de Serviço</FormLabel>
-              <TextField
+            <Select
                 name="tipoServico"
                 required
                 fullWidth
                 id="tipoServico"
-                placeholder="Serviço 1, Serviço 2"
-                helperText="Insira múltiplos serviços separados por vírgula"
-              />
+                defaultValue=""
+              >
+                <MenuItem value="Venda">Venda</MenuItem>
+                <MenuItem value="Servico">Serviço</MenuItem>
+              </Select>
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="statusOrcamento">Status do Orçamento</FormLabel>
