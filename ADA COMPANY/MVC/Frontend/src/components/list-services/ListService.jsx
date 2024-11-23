@@ -10,6 +10,8 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
@@ -48,6 +50,7 @@ export default function ListService(props) {
   if (!token) {
     return <Navigate to="/signin" />;
   }
+
   const handleConsultaServico = async () => {
     try {
       const response = await fetch(`https://api-ada-company.vercel.app/servico/${servicoId}`, {
@@ -66,6 +69,7 @@ export default function ListService(props) {
       setservicoData(null);
     }
   };
+
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
@@ -87,10 +91,44 @@ export default function ListService(props) {
               Consultar
             </Button>
           </Box>
+          
           {servicoData && (
-            <Box sx={{ mt: 2 }}>
+            <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Typography variant="h6">Dados do Serviço:</Typography>
-              <pre>{JSON.stringify(servicoData, null, 2)}</pre>
+              
+              <TextField
+                label="ID"
+                value={servicoData._id || ''}
+                InputProps={{ readOnly: true }}
+                fullWidth
+              />
+              
+              <TextField
+                label="Nome"
+                value={servicoData.nome || ''}
+                InputProps={{ readOnly: true }}
+                fullWidth
+              />
+              
+              <TextField
+                label="Valor"
+                value={servicoData.valor || ''}
+                InputProps={{ readOnly: true }}
+                fullWidth
+                type="number"
+              />
+              
+              <FormControl fullWidth>
+                <FormLabel>Tipo de Serviço</FormLabel>
+                <Select
+                  value={servicoData.tipoServico || ''}
+                  disabled
+                  fullWidth
+                >
+                  <MenuItem value="Venda">Venda</MenuItem>
+                  <MenuItem value="Serviço">Serviço</MenuItem>
+                </Select>
+              </FormControl>
             </Box>
           )}
         </Card>

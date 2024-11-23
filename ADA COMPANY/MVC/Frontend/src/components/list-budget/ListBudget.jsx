@@ -87,13 +87,6 @@ export default function ListBudget(props) {
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
-      <Button 
-        onClick={() => navigate('/admin')} 
-        variant="contained"
-        sx={{ position: 'fixed', top: '1rem', left: '1rem' }}
-      >
-        Voltar ao Menu
-      </Button>
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
           <SitemarkIcon />
