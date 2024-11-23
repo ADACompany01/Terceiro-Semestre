@@ -9,6 +9,8 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
@@ -39,45 +41,41 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-export default function SignUpFuncionario(props) {
+export default function SignUpClient(props) {
   const token = localStorage.getItem('token');
 
   if (!token) {
     return <Navigate to="/signin" />;
   }
-
   const [endereco, setEndereco] = React.useState({
     logradouro: '',
     bairro: '',
     localidade: '',
     uf: '',
     estado: '',
-    ddd: ''
+    ddd: '',
   });
 
-  const apiKey = '3838733ca112475691015ecfbad45b39';
-
-
+  // Função para buscar o endereço pelo CEP
   const buscarEndereco = async (cep) => {
     if (!cep) return;
 
     try {
-      const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cep}&key=${apiKey}`);
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
       const data = await response.json();
 
-      if (data.results.length === 0) {
+      if (data.erro) {
         alert('CEP não encontrado');
         return;
       }
 
-      const result = data.results[0].components;
       setEndereco({
-        logradouro: result.road || '',
-        bairro: result.neighbourhood || '',
-        localidade: result.city || '',
-        uf: result.state_code || '',
-        estado: result.state || '',
-        ddd: '' // OpenCage doesn't provide DDD
+        logradouro: data.logradouro || '',
+        bairro: data.bairro || '',
+        localidade: data.localidade || '',
+        uf: data.uf || '',
+        estado: data.estado || '', // Pode ser vazio dependendo da resposta do ViaCEP
+        ddd: data.ddd || '',
       });
     } catch (error) {
       console.error('Erro ao buscar o endereço:', error);
@@ -89,9 +87,10 @@ export default function SignUpFuncionario(props) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const funcionarioData = {
-      _id: Number(data.get('_id')),
-      nomeFuncionario: data.get('nomeFuncionario'),
+    const formData = {
+      _id: data.get('_id'),
+      nomeCliente: data.get('nomeCliente'),
+      telefone: data.get('telefone'),
       endereco: {
         cep: data.get('cep'),
         logradouro: endereco.logradouro,
@@ -100,48 +99,43 @@ export default function SignUpFuncionario(props) {
         localidade: endereco.localidade,
         uf: endereco.uf,
         estado: endereco.estado,
-        ddd: endereco.ddd
+        ddd: endereco.ddd,
       },
-      cargo: data.get('cargo'),
+      localizacao: {
+        type: 'Point',
+        coordinates: [0,0] // Placeholder -  Latitude and Longitude will be added later.
+      },
+      cnpj: data.get('cnpj'),
       usuario: {
         email: data.get('email'),
         senha: data.get('senha'),
-        tipoUsuario: 'admin',
-        telefone: data.get('telefone'),
-        nomeCompleto: data.get('nomeCompleto')
+        tipoUsuario: 'cliente',
+        telefone: data.get('telefoneUsuario'),
+        nomeCompleto: data.get('nomeCompleto'),
       },
-      chatBot: [
-        {
-          id_chatbot: 1, // Exemplo de valor fixo
-          texto_chat: "Mensagem de teste", // Exemplo de valor fixo
-          data: new Date().toISOString() // Data atual
-        }
-      ]
     };
 
     try {
-      const response = await fetch('https://api-ada-company.vercel.app/api/auth/registerFuncionario', {
+      const response = await fetch('https://api-ada-company.vercel.app/api/auth/registerCliente', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(funcionarioData),
+        body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        const result = await response.json();
-        console.log('Funcionário cadastrado com sucesso:', result);
-        alert('Funcionário cadastrado com sucesso!');
-      } else {
-        console.error('Erro ao cadastrar funcionário:', response.statusText);
-        alert('Erro ao cadastrar funcionário.');
+      if (!response.ok) {
+        throw new Error('Erro ao registrar cliente');
       }
+
+      const result = await response.json();
+      console.log(result);
+      alert('Cliente cadastrado com sucesso!');
     } catch (error) {
-      console.error('Erro na requisição:', error);
-      alert('Erro ao cadastrar funcionário.');
+      console.error('Erro:', error);
+      alert('Erro ao cadastrar cliente.');
     }
   };
-
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
@@ -150,17 +144,24 @@ export default function SignUpFuncionario(props) {
         <Card variant="outlined">
           <SitemarkIcon />
           <Typography component="h1" variant="h4">
-            Cadastrar Funcionário
+            Cadastrar Cliente
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            {/* ID e Nome */}
             <FormControl>
               <FormLabel htmlFor="_id">ID</FormLabel>
-              <TextField name="_id" required fullWidth id="_id" placeholder="ID" type="number" />
+              <TextField name="_id" required fullWidth id="_id" placeholder="ID" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="nomeFuncionario">Nome do Funcionário</FormLabel>
-              <TextField name="nomeFuncionario" required fullWidth id="nomeFuncionario" placeholder="Nome" />
+              <FormLabel htmlFor="nomeCliente">Nome do Cliente</FormLabel>
+              <TextField name="nomeCliente" required fullWidth id="nomeCliente" placeholder="Nome do Cliente" />
             </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="telefone">Telefone</FormLabel>
+              <TextField name="telefone" required fullWidth id="telefone" placeholder="(11) 12345-6789" />
+            </FormControl>
+
+            {/* CEP */}
             <FormControl>
               <FormLabel htmlFor="cep">CEP</FormLabel>
               <TextField
@@ -168,12 +169,10 @@ export default function SignUpFuncionario(props) {
                 required
                 fullWidth
                 id="cep"
-                placeholder="CEP"
-                onBlur={(e) => buscarEndereco(e.target.value)} // Ao sair do campo, chama a função para preencher o endereço
+                placeholder="12345-678"
+                onBlur={(e) => buscarEndereco(e.target.value)} // Aciona a busca ao perder o foco
               />
             </FormControl>
-
-            {/* Campos de Endereço preenchidos automaticamente */}
             <FormControl>
               <FormLabel htmlFor="logradouro">Logradouro</FormLabel>
               <TextField
@@ -181,14 +180,13 @@ export default function SignUpFuncionario(props) {
                 required
                 fullWidth
                 id="logradouro"
-                placeholder="Logradouro"
                 value={endereco.logradouro}
                 onChange={(e) => setEndereco({ ...endereco, logradouro: e.target.value })}
               />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="complemento">Complemento</FormLabel>
-              <TextField name="complemento" fullWidth id="complemento" placeholder="Complemento" />
+              <TextField name="complemento" fullWidth id="complemento" placeholder="Apto 101" />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="bairro">Bairro</FormLabel>
@@ -197,7 +195,6 @@ export default function SignUpFuncionario(props) {
                 required
                 fullWidth
                 id="bairro"
-                placeholder="Bairro"
                 value={endereco.bairro}
                 onChange={(e) => setEndereco({ ...endereco, bairro: e.target.value })}
               />
@@ -209,7 +206,6 @@ export default function SignUpFuncionario(props) {
                 required
                 fullWidth
                 id="localidade"
-                placeholder="Localidade"
                 value={endereco.localidade}
                 onChange={(e) => setEndereco({ ...endereco, localidade: e.target.value })}
               />
@@ -221,7 +217,6 @@ export default function SignUpFuncionario(props) {
                 required
                 fullWidth
                 id="uf"
-                placeholder="UF"
                 value={endereco.uf}
                 onChange={(e) => setEndereco({ ...endereco, uf: e.target.value })}
               />
@@ -233,45 +228,37 @@ export default function SignUpFuncionario(props) {
                 required
                 fullWidth
                 id="estado"
-                placeholder="Estado"
                 value={endereco.estado}
                 onChange={(e) => setEndereco({ ...endereco, estado: e.target.value })}
               />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="ddd">DDD</FormLabel>
-              <TextField
-                name="ddd"
-                required
-                fullWidth
-                id="ddd"
-                placeholder="DDD"
-                value={endereco.ddd}
-              />
+              <TextField name="ddd" required fullWidth id="ddd" placeholder="11" value={endereco.ddd} />
             </FormControl>
-
             <FormControl>
-              <FormLabel htmlFor="cargo">Cargo</FormLabel>
-              <TextField name="cargo" required fullWidth id="cargo" placeholder="Cargo" />
+              <FormLabel htmlFor="cnpj">CNPJ</FormLabel>
+              <TextField name="cnpj" fullWidth id="cnpj" placeholder="12.345.678/0001-99" />
             </FormControl>
+            {/* Usuário */}
             <FormControl>
               <FormLabel htmlFor="email">Email</FormLabel>
-              <TextField name="email" required fullWidth id="email" placeholder="Email" type="email" />
+              <TextField name="email" required fullWidth id="email" placeholder="your@email.com" />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="senha">Senha</FormLabel>
-              <TextField name="senha" required fullWidth id="senha" placeholder="Senha" type="password" />
+              <TextField name="senha" required fullWidth type="password" id="senha" placeholder="••••••" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="telefone">Telefone</FormLabel>
-              <TextField name="telefone" required fullWidth id="telefone" placeholder="Telefone" />
+              <FormLabel htmlFor="telefoneUsuario">Telefone do Usuário</FormLabel>
+              <TextField name="telefoneUsuario" required fullWidth id="telefoneUsuario" placeholder="(11) 12345-6789" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="nomeCompleto">Nome Completo</FormLabel>
+              <FormLabel htmlFor="nomeCompleto">Nome Completo do Usuário</FormLabel>
               <TextField name="nomeCompleto" required fullWidth id="nomeCompleto" placeholder="Nome Completo" />
             </FormControl>
             <Button type="submit" fullWidth variant="contained">
-              Cadastrar Funcionário
+              Cadastrar
             </Button>
           </Box>
           <Divider>
