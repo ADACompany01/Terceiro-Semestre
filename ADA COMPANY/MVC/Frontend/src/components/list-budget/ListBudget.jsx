@@ -50,6 +50,18 @@ export default function ListBudget(props) {
     return <Navigate to="/signin" />;
   }
 
+  const formatValue = (value) => {
+    if (Array.isArray(value)) {
+      return value.join(', ');
+    }
+    if (value instanceof Date) {
+      return new Date(value).toLocaleDateString();
+    }
+    if (typeof value === 'object' && value !== null) {
+      return JSON.stringify(value);
+    }
+    return value || '';
+  };
 
   const handleConsultaBudget = async () => {
     try {
@@ -64,16 +76,24 @@ export default function ListBudget(props) {
       }
       const data = await response.json();
       setOrcamentoData(data);
+      console.log('Dados recebidos:', data); // Para debug
     } catch (error) {
       console.error('Erro ao buscar orçamento:', error);
       setOrcamentoData(null);
     }
   };
+
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
-      <Button onClick={() => navigate('/admin')} variant="contained">Voltar ao Menu</Button>
+      <Button 
+        onClick={() => navigate('/admin')} 
+        variant="contained"
+        sx={{ position: 'fixed', top: '1rem', left: '1rem' }}
+      >
+        Voltar ao Menu
+      </Button>
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
           <SitemarkIcon />
@@ -94,7 +114,69 @@ export default function ListBudget(props) {
           {orcamentoData && (
             <Box sx={{ mt: 2 }}>
               <Typography variant="h6">Dados do Orçamento:</Typography>
-              <pre>{JSON.stringify(orcamentoData, null, 2)}</pre>
+              <TextField 
+                label="ID" 
+                fullWidth 
+                value={formatValue(orcamentoData._id)} 
+                disabled 
+                sx={{ mb: 2 }}
+              />
+              <TextField 
+                label="ID do Cliente" 
+                fullWidth 
+                value={formatValue(orcamentoData.clienteId)} 
+                disabled 
+                sx={{ mb: 2 }}
+              />
+              <TextField 
+                label="Validade do Orçamento" 
+                fullWidth 
+                value={formatValue(orcamentoData.validadeOrcamento)} 
+                disabled 
+                sx={{ mb: 2 }}
+              />
+              <TextField 
+                label="Data de Criação" 
+                fullWidth 
+                value={formatValue(orcamentoData.dataCriacao)} 
+                disabled 
+                sx={{ mb: 2 }}
+              />
+              <TextField 
+                label="Valor Total" 
+                fullWidth 
+                value={formatValue(orcamentoData.valorTotal)} 
+                disabled 
+                sx={{ mb: 2 }}
+              />
+              <TextField 
+                label="Tipo de Serviço" 
+                fullWidth 
+                value={formatValue(orcamentoData.tipoServico)} 
+                disabled 
+                sx={{ mb: 2 }}
+              />
+              <TextField 
+                label="Status do Orçamento" 
+                fullWidth 
+                value={formatValue(orcamentoData.statusOrcamento)} 
+                disabled 
+                sx={{ mb: 2 }}
+              />
+              <TextField 
+                label="Descrição" 
+                fullWidth 
+                value={formatValue(orcamentoData.descricao)} 
+                disabled 
+                sx={{ mb: 2 }}
+              />
+              <TextField 
+                label="Email do Vendedor" 
+                fullWidth 
+                value={formatValue(orcamentoData.emailVendedor)} 
+                disabled 
+                sx={{ mb: 2 }}
+              />
             </Box>
           )}
         </Card>
