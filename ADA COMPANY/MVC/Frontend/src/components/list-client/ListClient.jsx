@@ -91,7 +91,13 @@ export default function ListClient(props) {
           {clienteData && (
             <Box sx={{ mt: 2 }}>
               <Typography variant="h6">Dados do Cliente:</Typography>
-              <pre>{JSON.stringify(clienteData, null, 2)}</pre>
+              <TextField label="Nome" fullWidth value={clienteData.nome} disabled />
+              <TextField label="Email" fullWidth value={clienteData.email} disabled />
+              <TextField label="Telefone" fullWidth value={clienteData.telefone} disabled />
+              <TextField label="CPF" fullWidth value={clienteData.cpf} disabled />
+              <TextField label="Endereço" fullWidth value={clienteData.endereco} disabled />
+              <TextField label="Cidade" fullWidth value={clienteData.cidade} disabled />
+              <TextField label="Estado" fullWidth value={clienteData.estado} disabled />
             </Box>
           )}
         </Card>
