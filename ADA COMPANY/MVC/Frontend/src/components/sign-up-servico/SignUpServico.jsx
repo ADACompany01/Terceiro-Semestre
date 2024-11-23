@@ -106,6 +106,7 @@ export default function SignUpServico(props) {
               <TextField name="valor" required fullWidth id="valor" placeholder="R$" />
             </FormControl>
             <FormLabel htmlFor="tipoServico">Tipo de Serviço</FormLabel>
+            <FormControl>
               <Select
                 name="tipoServico"
                 required
@@ -116,6 +117,7 @@ export default function SignUpServico(props) {
                 <MenuItem value="Venda">Venda</MenuItem>
                 <MenuItem value="Servico">Serviço</MenuItem>
               </Select>
+              </FormControl>
             <Button type="submit" fullWidth variant="contained">
               Cadastrar
             </Button>
