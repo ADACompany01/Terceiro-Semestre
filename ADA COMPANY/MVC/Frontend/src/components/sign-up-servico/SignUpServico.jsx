@@ -16,6 +16,7 @@ import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { Navigate } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -42,6 +43,11 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignUpServico(props) {
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    return <Navigate to="/signin" />;
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

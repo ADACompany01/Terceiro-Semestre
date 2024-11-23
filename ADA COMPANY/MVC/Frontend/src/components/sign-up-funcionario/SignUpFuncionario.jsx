@@ -13,6 +13,7 @@ import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import { Navigate } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -39,6 +40,11 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignUpFuncionario(props) {
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    return <Navigate to="/signin" />;
+  }
 
   const [endereco, setEndereco] = React.useState({
     logradouro: '',
