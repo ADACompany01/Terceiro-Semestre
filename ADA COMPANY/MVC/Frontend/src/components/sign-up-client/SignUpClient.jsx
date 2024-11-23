@@ -54,28 +54,36 @@ export default function SignUpClient(props) {
     uf: '',
     estado: '',
     ddd: '',
+    latitude: '',
+    longitude: ''
   });
 
   // Função para buscar o endereço pelo CEP
   const buscarEndereco = async (cep) => {
     if (!cep) return;
+    const apiKey = '3838733ca112475691015ecfbad45b39';
 
     try {
-      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cep}&key=${apiKey}`);
       const data = await response.json();
 
-      if (data.erro) {
+      if (data.results.length === 0) {
         alert('CEP não encontrado');
         return;
       }
 
+      const result = data.results[0].components;
+      const geometry = data.results[0].geometry;
       setEndereco({
-        logradouro: data.logradouro || '',
-        bairro: data.bairro || '',
-        localidade: data.localidade || '',
-        uf: data.uf || '',
-        estado: data.estado || '', // Pode ser vazio dependendo da resposta do ViaCEP
-        ddd: data.ddd || '',
+        ...endereco,
+        logradouro: result.road || '',
+        bairro: result.neighbourhood || '',
+        localidade: result.city || '',
+        uf: result.state_code || '',
+        estado: result.state || '',
+        ddd: '',
+        latitude: geometry.lat,
+        longitude: geometry.lng
       });
     } catch (error) {
       console.error('Erro ao buscar o endereço:', error);
@@ -103,7 +111,7 @@ export default function SignUpClient(props) {
       },
       localizacao: {
         type: 'Point',
-        coordinates: data.get('coordinates').split(',').map(coord => parseFloat(coord.trim())),
+        coordinates: [parseFloat(endereco.longitude), parseFloat(endereco.latitude)],
       },
       cnpj: data.get('cnpj'),
       usuario: {
@@ -237,8 +245,12 @@ export default function SignUpClient(props) {
               <TextField name="ddd" required fullWidth id="ddd" placeholder="11" value={endereco.ddd} />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="coordinates">Coordenadas (Localização)</FormLabel>
-              <TextField name="coordinates" required fullWidth id="coordinates" placeholder="-23.5505, -46.6333" />
+              <FormLabel htmlFor="latitude">Latitude</FormLabel>
+              <TextField name="latitude" required fullWidth id="latitude" value={endereco.latitude} />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="longitude">Longitude</FormLabel>
+              <TextField name="longitude" required fullWidth id="longitude" value={endereco.longitude} />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="cnpj">CNPJ</FormLabel>
