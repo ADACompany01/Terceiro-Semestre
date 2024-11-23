@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./client.module.css";
-import skills from "../../data/skills.json";
+import skills from "../../data/admin-consulta.json";
 import { getImageUrl } from "../../utils";
 import { Navigate } from 'react-router-dom';
 
