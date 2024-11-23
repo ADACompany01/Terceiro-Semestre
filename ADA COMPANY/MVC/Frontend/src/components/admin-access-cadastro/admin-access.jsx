@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import styles from "./admin.module.css";
 import admin from "../../data/admin-cadastro.json";
 import { getImageUrl } from "../../utils";
+import { Navigate } from 'react-router-dom';
 
 export const AcessoAdmin2 = () => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return <Navigate to="/signin" />;
+  }
   return (
     <section className={styles.container} id="experience">
       <h2 className={styles.title}>Cadastro</h2>
