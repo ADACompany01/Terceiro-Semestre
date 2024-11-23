@@ -49,6 +49,18 @@ export default function ListClient(props) {
     return <Navigate to="/signin" />;
   }
 
+  const ClientDataFields = ({ clienteData }) => {
+    const formatValue = (value) => {
+      if (Array.isArray(value)) {
+        return value.join(', ');
+      }
+      if (typeof value === 'object' && value !== null) {
+        return JSON.stringify(value);
+      }
+      return value || '';
+    };
+
+    
   const handleConsultaCliente = async () => {
     try {
       const response = await fetch(`https://api-ada-company.vercel.app/cliente/${clientId}`, {
@@ -89,27 +101,117 @@ export default function ListClient(props) {
             </Button>
           </Box>
           {clienteData && (
-            <Box sx={{ mt: 2 }}>
-              <Typography variant="h6">Dados do Cliente:</Typography>
-              <TextField label="_id" fullWidth value={clienteData._id} disabled />
-              <TextField label="Nome Cliente" fullWidth value={clienteData.nomeCliente} disabled />
-              <TextField label="Telefone" fullWidth value={clienteData.telefone} disabled />
-              <TextField label="CEP" fullWidth value={clienteData.endereco.cep} disabled />
-              <TextField label="Logradouro" fullWidth value={clienteData.endereco.logradouro} disabled />
-              <TextField label="Complemento" fullWidth value={clienteData.endereco.complemento} disabled />
-              <TextField label="Bairro" fullWidth value={clienteData.endereco.bairro} disabled />
-              <TextField label="Localidade" fullWidth value={clienteData.endereco.localidade} disabled />
-              <TextField label="UF" fullWidth value={clienteData.endereco.uf} disabled />
-              <TextField label="Estado" fullWidth value={clienteData.endereco.estado} disabled />
-              <TextField label="DDD" fullWidth value={clienteData.endereco.ddd} disabled />
-              <TextField label="Coordenadas" fullWidth value={clienteData.localizacao.coordinates} disabled />
-              <TextField label="CNPJ" fullWidth value={clienteData.cnpj} disabled />
-              <TextField label="Email" fullWidth value={clienteData.usuario.email} disabled />
-              <TextField label="Senha" fullWidth value={clienteData.usuario.senha} disabled />
-              <TextField label="Tipo de Usuário" fullWidth value={clienteData.usuario.tipoUsuario} disabled />
-              <TextField label="Telefone do Usuário" fullWidth value={clienteData.usuario.telefone} disabled />
-              <TextField label="Nome Completo do Usuário" fullWidth value={clienteData.usuario.nomeCompleto} disabled />
-            </Box>
+           <Box sx={{ mt: 2 }}>
+           <Typography variant="h6">Dados do Cliente:</Typography>
+           <TextField 
+             label="_id" 
+             fullWidth 
+             value={formatValue(clienteData._id)} 
+             disabled 
+           />
+           <TextField 
+             label="Nome Cliente" 
+             fullWidth 
+             value={formatValue(clienteData.nomeCliente)} 
+             disabled 
+           />
+           <TextField 
+             label="Telefone" 
+             fullWidth 
+             value={formatValue(clienteData.telefone)} 
+             disabled 
+           />
+           <TextField 
+             label="CEP" 
+             fullWidth 
+             value={formatValue(clienteData.endereco?.cep)} 
+             disabled 
+           />
+           <TextField 
+             label="Logradouro" 
+             fullWidth 
+             value={formatValue(clienteData.endereco?.logradouro)} 
+             disabled 
+           />
+           <TextField 
+             label="Complemento" 
+             fullWidth 
+             value={formatValue(clienteData.endereco?.complemento)} 
+             disabled 
+           />
+           <TextField 
+             label="Bairro" 
+             fullWidth 
+             value={formatValue(clienteData.endereco?.bairro)} 
+             disabled 
+           />
+           <TextField 
+             label="Localidade" 
+             fullWidth 
+             value={formatValue(clienteData.endereco?.localidade)} 
+             disabled 
+           />
+           <TextField 
+             label="UF" 
+             fullWidth 
+             value={formatValue(clienteData.endereco?.uf)} 
+             disabled 
+           />
+           <TextField 
+             label="Estado" 
+             fullWidth 
+             value={formatValue(clienteData.endereco?.estado)} 
+             disabled 
+           />
+           <TextField 
+             label="DDD" 
+             fullWidth 
+             value={formatValue(clienteData.endereco?.ddd)} 
+             disabled 
+           />
+           <TextField 
+             label="Coordenadas" 
+             fullWidth 
+             value={formatValue(clienteData.localizacao?.coordinates)} 
+             disabled 
+           />
+           <TextField 
+             label="CNPJ" 
+             fullWidth 
+             value={formatValue(clienteData.cnpj)} 
+             disabled 
+           />
+           <TextField 
+             label="Email" 
+             fullWidth 
+             value={formatValue(clienteData.usuario?.email)} 
+             disabled 
+           />
+           <TextField 
+             label="Senha" 
+             fullWidth 
+             value={formatValue(clienteData.usuario?.senha)} 
+             disabled 
+           />
+           <TextField 
+             label="Tipo de Usuário" 
+             fullWidth 
+             value={formatValue(clienteData.usuario?.tipoUsuario)} 
+             disabled 
+           />
+           <TextField 
+             label="Telefone do Usuário" 
+             fullWidth 
+             value={formatValue(clienteData.usuario?.telefone)} 
+             disabled 
+           />
+           <TextField 
+             label="Nome Completo do Usuário" 
+             fullWidth 
+             value={formatValue(clienteData.usuario?.nomeCompleto)} 
+             disabled 
+           />
+         </Box>
           )}
         </Card>
         <Divider>
@@ -118,4 +220,5 @@ export default function ListClient(props) {
       </SignUpContainer>
     </AppTheme>
   );
+}
 }
