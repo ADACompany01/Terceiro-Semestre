@@ -18,7 +18,6 @@ describe('Auth Endpoints', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.dropDatabase();
     await mongoose.disconnect();
   });
 
