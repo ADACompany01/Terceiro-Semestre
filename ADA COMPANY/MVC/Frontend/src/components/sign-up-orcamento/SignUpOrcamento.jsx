@@ -62,7 +62,7 @@ export default function SignUpOrcamento(props) {
     };
 
     try {
-      const response = await fetch('https://api-ada-company.vercel.app/orcamento', {
+      const response = await fetch('https://api-ada-company.vercel.app/api/auth/registerOrcamento', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -91,6 +91,48 @@ exports.registerFuncionario = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+// Registrar Orçamento
+exports.registerOrcamento = async (req, res) => {
+    const { _id, clienteId, validadeOrcamento, dataCriacao, valorTotal, TipoServico, statusOrcamento, descricao, emailVendedor } = req.body;
+    try {
+        // Assuming you have an Orcamento model
+        const orcamento = new Orcamento({
+            _id,
+            clienteId,
+            validadeOrcamento,
+            dataCriacao,
+            valorTotal,
+            TipoServico,
+            statusOrcamento,
+            descricao,
+            emailVendedor
+        });
+        await orcamento.save();
+        res.status(201).json({ message: 'Orçamento registrado com sucesso!' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+// Registrar Serviço
+exports.registerServico = async (req, res) => {
+    const { _id, nome, valor, tipoServico } = req.body;
+    try {
+        // Assuming you have a Servico model
+        const servico = new Servico({
+            _id,
+            nome,
+            valor,
+            tipoServico
+        });
+        await servico.save();
+        res.status(201).json({ message: 'Serviço registrado com sucesso!' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 // Login de usuário (Cliente ou Funcionário)
 exports.loginUser = async (req, res) => {
     const { email, senha } = req.body;
