@@ -55,13 +55,12 @@ export default function SignUpServico(props) {
     ddd: ''
   });
 
-  const apiKey = '3838733ca112475691015ecfbad45b39';
 
   const buscarEndereco = async (cep) => {
     if (!cep) return;
 
     try {
-      const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cep}&key=${apiKey}`);
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
       const data = await response.json();
 
       if (data.results.length === 0) {
@@ -76,7 +75,7 @@ export default function SignUpServico(props) {
         localidade: result.city || '',
         uf: result.state_code || '',
         estado: result.state || '',
-        ddd: '' // OpenCage doesn't provide DDD
+        ddd: '' 
       });
     } catch (error) {
       console.error('Erro ao buscar o endereço:', error);
