@@ -97,8 +97,6 @@ describe('Auth Endpoints', () => {
   });
 
   afterAll(async () => {
-    await Funcionario.deleteMany({});
-    await Cliente.deleteMany({});
     await mongoose.disconnect();
   });
 
