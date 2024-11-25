@@ -116,7 +116,7 @@ export default function SignUpClient(props) {
     };
 
     try {
-      const response = await fetch('https://api-ada-company.vercel.app/api/auth/registerCliente', {
+      const response = await fetch('https://api-ada-company.vercel.app/api/auth/registerFuncionario', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -130,10 +130,10 @@ export default function SignUpClient(props) {
 
       const result = await response.json();
       console.log(result);
-      alert('Cliente cadastrado com sucesso!');
+      alert('Funcionário cadastrado com sucesso!');
     } catch (error) {
       console.error('Erro:', error);
-      alert('Erro ao cadastrar cliente.');
+      alert('Erro ao cadastrar funcionário.');
     }
   };
   return (
@@ -144,7 +144,7 @@ export default function SignUpClient(props) {
         <Card variant="outlined">
           <SitemarkIcon />
           <Typography component="h1" variant="h4">
-            Cadastrar Cliente
+            Cadastrar Funcionário
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {/* ID e Nome */}
@@ -153,8 +153,8 @@ export default function SignUpClient(props) {
               <TextField name="_id" required fullWidth id="_id" placeholder="ID" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="nomeCliente">Nome do Cliente</FormLabel>
-              <TextField name="nomeCliente" required fullWidth id="nomeCliente" placeholder="Nome do Cliente" />
+              <FormLabel htmlFor="nomeCliente">Nome do funcionário</FormLabel>
+              <TextField name="nomeCliente" required fullWidth id="nomeCliente" placeholder="Nome do funcionário" />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="telefone">Telefone</FormLabel>
