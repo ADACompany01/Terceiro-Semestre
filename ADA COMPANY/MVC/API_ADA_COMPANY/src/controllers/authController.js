@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv')
 const config = require('../config')
+const Servico = require('../models/servicoModel');
+const Orcamento = require('../models/orcamentoModel');
 
 // Carrega as variáveis de ambiente
 dotenv.config();
