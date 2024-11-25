@@ -41,7 +41,7 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-export default function SignUpClient(props) {
+export default function SignUpFuncionario(props) {
   const token = localStorage.getItem('token');
 
   //if (!token) {
@@ -88,8 +88,8 @@ export default function SignUpClient(props) {
     const data = new FormData(event.currentTarget);
 
     const formData = {
-      _id: data.get('_id'),
-      nomeCliente: data.get('nomeCliente'),
+      _id: parseInt(data.get('_id')),
+      nomeFuncionario: data.get('nomeFuncionario'),
       telefone: data.get('telefone'),
       endereco: {
         cep: data.get('cep'),
@@ -105,11 +105,11 @@ export default function SignUpClient(props) {
         type: 'Point',
         coordinates: [0,0] // Placeholder -  Latitude and Longitude will be added later.
       },
-      cnpj: data.get('cnpj'),
+      cargo: data.get('cargo'),
       usuario: {
         email: data.get('email'),
         senha: data.get('senha'),
-        tipoUsuario: 'cliente',
+        tipoUsuario: 'admin',
         telefone: data.get('telefoneUsuario'),
         nomeCompleto: data.get('nomeCompleto'),
       },
@@ -125,7 +125,8 @@ export default function SignUpClient(props) {
       });
 
       if (!response.ok) {
-        throw new Error('Erro ao registrar cliente');
+        const errorData = await response.json();
+        throw new Error(`Erro ao registrar funcionário: ${errorData.message || response.statusText}`);
       }
 
       const result = await response.json();
@@ -133,7 +134,7 @@ export default function SignUpClient(props) {
       alert('Funcionário cadastrado com sucesso!');
     } catch (error) {
       console.error('Erro:', error);
-      alert('Erro ao cadastrar funcionário.');
+      alert(`Erro ao cadastrar funcionário: ${error.message}`);
     }
   };
   return (
@@ -150,15 +151,19 @@ export default function SignUpClient(props) {
             {/* ID e Nome */}
             <FormControl>
               <FormLabel htmlFor="_id">ID</FormLabel>
-              <TextField name="_id" required fullWidth id="_id" placeholder="ID" />
+              <TextField name="_id" required fullWidth id="_id" type="number" placeholder="ID" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="nomeCliente">Nome do funcionário</FormLabel>
-              <TextField name="nomeCliente" required fullWidth id="nomeCliente" placeholder="Nome do funcionário" />
+              <FormLabel htmlFor="nomeFuncionario">Nome do funcionário</FormLabel>
+              <TextField name="nomeFuncionario" required fullWidth id="nomeFuncionario" placeholder="Nome do funcionário" />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="telefone">Telefone</FormLabel>
               <TextField name="telefone" required fullWidth id="telefone" placeholder="(11) 12345-6789" />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="cargo">Cargo</FormLabel>
+              <TextField name="cargo" required fullWidth id="cargo" placeholder="Cargo" />
             </FormControl>
 
             {/* CEP */}
@@ -235,10 +240,6 @@ export default function SignUpClient(props) {
             <FormControl>
               <FormLabel htmlFor="ddd">DDD</FormLabel>
               <TextField name="ddd" required fullWidth id="ddd" placeholder="11" value={endereco.ddd} />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="cnpj">CNPJ</FormLabel>
-              <TextField name="cnpj" fullWidth id="cnpj" placeholder="12.345.678/0001-99" />
             </FormControl>
             {/* Usuário */}
             <FormControl>
