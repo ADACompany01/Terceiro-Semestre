@@ -12,4 +12,7 @@ router.post('/registerFuncionario', authController.registerFuncionario);
 // Rota para login (tanto de Clientes quanto Funcionários)
 router.post('/login', authController.loginUser);
 
+router.post('/registerOrcamento', authController.registerOrcamento);
+
+router.post('/registerServico', authController.registerServico)
 module.exports = router;
