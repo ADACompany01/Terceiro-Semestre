@@ -9,6 +9,8 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
@@ -46,61 +48,15 @@ export default function SignUpServico(props) {
     return <Navigate to="/signin" />;
   }
 
-  const [endereco, setEndereco] = React.useState({
-    logradouro: '',
-    bairro: '',
-    localidade: '',
-    uf: '',
-    estado: '',
-    ddd: ''
-  });
-
-
-  const buscarEndereco = async (cep) => {
-    if (!cep) return;
-
-    try {
-      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-      const data = await response.json();
-
-      if (data.erro) {
-        alert('CEP não encontrado');
-        return;
-      }
-
-      setEndereco({
-        logradouro: data.logradouro || '',
-        bairro: data.bairro || '',
-        localidade: data.localidade || '',
-        uf: data.uf || '',
-        estado: data.estado || '', 
-        ddd: data.ddd || '' 
-      });
-    } catch (error) {
-      console.error('Erro ao buscar o endereço:', error);
-      alert('Erro ao buscar o endereço.');
-    }
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     const servicoData = {
-      _id: Number(data.get('_id')),
-      nomeServico: data.get('nomeServico'),
-      descricao: data.get('descricao'),
-      preco: Number(data.get('preco')),
-      endereco: {
-        cep: data.get('cep'),
-        logradouro: endereco.logradouro,
-        complemento: data.get('complemento'),
-        bairro: endereco.bairro,
-        localidade: endereco.localidade,
-        uf: endereco.uf,
-        estado: endereco.estado,
-        ddd: endereco.ddd
-      }
+      _id: parseInt(data.get('_id')),
+      nome: data.get('nome'),
+      valor: parseFloat(data.get('valor')),
+      tipoServico: data.get('tipoServico'),
     };
 
     try {
@@ -117,8 +73,9 @@ export default function SignUpServico(props) {
         console.log('Serviço cadastrado com sucesso:', result);
         alert('Serviço cadastrado com sucesso!');
       } else {
-        console.error('Erro ao cadastrar serviço:', response.statusText);
-        alert('Erro ao cadastrar serviço.');
+        const errorData = await response.json();
+        console.error('Erro ao cadastrar serviço:', errorData.message || response.statusText);
+        alert(`Erro ao cadastrar serviço: ${errorData.message || response.statusText}`);
       }
     } catch (error) {
       console.error('Erro na requisição:', error);
@@ -139,105 +96,22 @@ export default function SignUpServico(props) {
           <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <FormControl>
               <FormLabel htmlFor="_id">ID</FormLabel>
-              <TextField name="_id" required fullWidth id="_id" placeholder="ID" type="number" />
+              <TextField name="_id" required fullWidth id="_id" type="number" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="nomeServico">Nome do Serviço</FormLabel>
-              <TextField name="nomeServico" required fullWidth id="nomeServico" placeholder="Nome do Serviço" />
+              <FormLabel htmlFor="nome">Nome do Serviço</FormLabel>
+              <TextField name="nome" required fullWidth id="nome" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="descricao">Descrição</FormLabel>
-              <TextField name="descricao" required fullWidth id="descricao" placeholder="Descrição" />
+              <FormLabel htmlFor="valor">Preço</FormLabel>
+              <TextField name="valor" required fullWidth id="valor" type="number" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="preco">Preço</FormLabel>
-              <TextField name="preco" required fullWidth id="preco" placeholder="Preço" type="number" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="cep">CEP</FormLabel>
-              <TextField
-                name="cep"
-                required
-                fullWidth
-                id="cep"
-                placeholder="CEP"
-                onBlur={(e) => buscarEndereco(e.target.value)}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="logradouro">Logradouro</FormLabel>
-              <TextField
-                name="logradouro"
-                required
-                fullWidth
-                id="logradouro"
-                placeholder="Logradouro"
-                value={endereco.logradouro}
-                onChange={(e) => setEndereco({ ...endereco, logradouro: e.target.value })}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="complemento">Complemento</FormLabel>
-              <TextField name="complemento" fullWidth id="complemento" placeholder="Complemento" />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="bairro">Bairro</FormLabel>
-              <TextField
-                name="bairro"
-                required
-                fullWidth
-                id="bairro"
-                placeholder="Bairro"
-                value={endereco.bairro}
-                onChange={(e) => setEndereco({ ...endereco, bairro: e.target.value })}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="localidade">Localidade</FormLabel>
-              <TextField
-                name="localidade"
-                required
-                fullWidth
-                id="localidade"
-                placeholder="Localidade"
-                value={endereco.localidade}
-                onChange={(e) => setEndereco({ ...endereco, localidade: e.target.value })}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="uf">UF</FormLabel>
-              <TextField
-                name="uf"
-                required
-                fullWidth
-                id="uf"
-                placeholder="UF"
-                value={endereco.uf}
-                onChange={(e) => setEndereco({ ...endereco, uf: e.target.value })}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="estado">Estado</FormLabel>
-              <TextField
-                name="estado"
-                required
-                fullWidth
-                id="estado"
-                placeholder="Estado"
-                value={endereco.estado}
-                onChange={(e) => setEndereco({ ...endereco, estado: e.target.value })}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="ddd">DDD</FormLabel>
-              <TextField
-                name="ddd"
-                required
-                fullWidth
-                id="ddd"
-                placeholder="DDD"
-                value={endereco.ddd}
-              />
+              <FormLabel htmlFor="tipoServico">Tipo de Serviço</FormLabel>
+              <Select name="tipoServico" required fullWidth id="tipoServico">
+                <MenuItem value="Venda">Venda</MenuItem>
+                <MenuItem value="Serviço">Serviço</MenuItem>
+              </Select>
             </FormControl>
             <Button type="submit" fullWidth variant="contained">
               Cadastrar Serviço
