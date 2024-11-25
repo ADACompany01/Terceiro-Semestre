@@ -34,8 +34,7 @@ describe('Auth Endpoints', () => {
     await mongoose.connect(dbUri);
     console.log('Conexão com o MongoDB estabelecida.');
     await new Promise((resolve) => setTimeout(resolve, 2000)); // Aumentar tempo de espera
-    await Funcionario.deleteMany({});
-    await Cliente.deleteMany({});
+
 
     // Gerar e-mails dinâmicos para testes
     clientEmail = generateRandomEmail();

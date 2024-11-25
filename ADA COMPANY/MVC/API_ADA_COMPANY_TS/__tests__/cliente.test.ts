@@ -32,7 +32,6 @@ describe('Testes do endpoint /cliente', () => {
 
   afterAll(async () => {
     try {
-      await Cliente.deleteMany({});
       await mongoose.disconnect();
       console.log('Conexão com o banco de dados encerrada');
     } catch (error) {
@@ -42,7 +41,6 @@ describe('Testes do endpoint /cliente', () => {
 
   beforeEach(async () => {
     try {
-      await Cliente.deleteMany({});
       await Cliente.create({
         _id: 9001,
         nomeCliente: 'Cliente Teste 1',
