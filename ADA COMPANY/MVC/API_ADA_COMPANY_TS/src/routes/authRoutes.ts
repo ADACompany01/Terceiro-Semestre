@@ -1,5 +1,5 @@
 import express, { Request, Response, Router } from 'express';
-import { registerCliente, registerFuncionario, loginUser } from '../controllers/authController';
+import { registerCliente, registerFuncionario, loginUser, registerOrcamento, registerServico} from '../controllers/authController';
 
 const router: Router = express.Router();
 
@@ -30,6 +30,35 @@ router.post('/registerFuncionario', async (req: Request, res: Response) => {
     }
   }
 });
+
+// Rota para registro de Orçamentos
+router.post('/registerOrcamento', async (req: Request, res: Response) => {
+  try {
+    const result = await registerOrcamento(req, res);  // Espera um objeto { status, message }
+    res.status(result.status).json(result);  // Responde com status e a mensagem
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      res.status(500).json({ message: err.message });
+    } else {
+      res.status(500).json({ message: 'Erro desconhecido' });
+    }
+  }
+});
+
+// Rota para registro de Serviços
+router.post('/registerServico', async (req: Request, res: Response) => {
+  try {
+    const result = await registerServico(req, res);  // Espera um objeto { status, message }
+    res.status(result.status).json(result);  // Responde com status e a mensagem
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      res.status(500).json({ message: err.message });
+    } else {
+      res.status(500).json({ message: 'Erro desconhecido' });
+    }
+  }
+});
+
 
 // Rota para login (tanto de Clientes quanto Funcionários)
 router.post('/login', async (req: Request, res: Response) => {

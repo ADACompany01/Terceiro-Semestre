@@ -4,7 +4,7 @@ import Orcamento from '../models/orcamentoModel';
 // Método para listar todos os orçamentos
 export const getOrcamento = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const result = await Orcamento.find().populate('clienteId'); // Popula o campo clienteId com dados relacionados
+        const result = await Orcamento.find().limit(10).populate('clienteId'); // Popula o campo clienteId com dados relacionados
         return res.status(200).json(result);
     } catch (err: unknown) {
         if (err instanceof Error) {
@@ -14,29 +14,6 @@ export const getOrcamento = async (req: Request, res: Response): Promise<Respons
     }
 };
 
-// Método para criar um orçamento
-export const create = async (req: Request, res: Response): Promise<Response> => {
-    try {
-        const orcamento = new Orcamento({
-            clienteId: req.body.clienteId,
-            validadeOrcamento: req.body.validadeOrcamento,
-            dataCriacao: req.body.dataCriacao,
-            valorTotal: req.body.valorTotal,
-            tipoServico: req.body.tipoServico, // Espera um array de serviços
-            statusOrcamento: req.body.statusOrcamento,
-            descricao: req.body.descricao,
-            emailVendedor: req.body.emailVendedor,
-        });
-
-        await orcamento.save();
-        return res.status(201).json(orcamento);
-    } catch (err: unknown) {
-        if (err instanceof Error) {
-            return res.status(500).json({ message: `${err.message} - Falha ao cadastrar orçamento.` });
-        }
-        return res.status(500).json({ message: 'Erro desconhecido ao criar orçamento.' });
-    }
-};
 
 // Método para atualizar um orçamento (atualização parcial)
 export const updateOrcamento = async (req: Request, res: Response): Promise<Response> => {

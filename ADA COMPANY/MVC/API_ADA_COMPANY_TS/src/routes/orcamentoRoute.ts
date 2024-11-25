@@ -12,14 +12,6 @@ router.get('/orcamento', verifyToken, verifyFuncionarioRole, async (req: Request
     }
 });
 
-router.post('/orcamento', verifyToken, verifyFuncionarioRole, async (req: Request, res: Response) => {
-    try {
-        await orcamentoController.create(req, res);
-    } catch (err) {
-        res.status(500).json({ message: 'Erro ao criar orçamento', error: err });
-    }
-});
-
 router.put('/orcamento/:id', verifyToken, verifyFuncionarioRole, async (req: Request, res: Response) => {
     try {
         await orcamentoController.updateOrcamento(req, res);

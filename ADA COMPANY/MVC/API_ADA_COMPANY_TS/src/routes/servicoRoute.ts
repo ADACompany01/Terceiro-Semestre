@@ -12,14 +12,6 @@ router.get('/servico', verifyToken, verifyFuncionarioRole, async (req: Request, 
     }
 });
 
-router.post('/servico', verifyToken, verifyFuncionarioRole, async (req: Request, res: Response) => {
-    try {
-        await servicoController.create(req, res);
-    } catch (err) {
-        res.status(500).json({ message: 'Erro ao criar serviço', error: err });
-    }
-});
-
 router.put('/servico/:id', verifyToken, verifyFuncionarioRole, async (req: Request, res: Response) => {
     try {
         await servicoController.updateServico(req, res);

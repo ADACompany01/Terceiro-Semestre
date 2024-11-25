@@ -11,17 +11,6 @@ const getServico = async (req: Request, res: Response) => {
     }
 };
 
-// Função para criar um novo serviço
-const create = async (req: Request, res: Response) => {
-    try {
-        const novoServico = new Servico(req.body);
-        await novoServico.save();  // Salva o serviço no banco
-        res.status(201).json(novoServico);
-    } catch (err) {
-        res.status(500).json({ message: 'Erro ao criar serviço', error: err });
-    }
-};
-
 // Função para atualizar um serviço
 const updateServico = async (req: Request, res: Response) => {
     try {
@@ -63,7 +52,6 @@ const details = async (req: Request, res: Response) => {
 
 export default {
     getServico,
-    create,
     updateServico,
     deleteServico,
     details
