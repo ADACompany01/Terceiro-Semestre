@@ -9,6 +9,8 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
@@ -50,12 +52,12 @@ export default function SignUpOrcamento(props) {
     // Coleta os dados do formulário
     const data = new FormData(event.currentTarget);
     const formData = {
-      _id: data.get('_id'),
-      clienteId: data.get('clienteId'),
+      _id: parseInt(data.get('_id')),
+      clienteId: parseInt(data.get('clienteId')),
       validadeOrcamento: data.get('validadeOrcamento'),
       dataCriacao: data.get('dataCriacao'),
-      valorTotal: data.get('valorTotal'),
-      tipoServico: data.get('tipoServico').split(','), 
+      valorTotal: parseFloat(data.get('valorTotal')),
+      tipoServico: data.get('tipoServico'), 
       statusOrcamento: data.get('statusOrcamento'),
       descricao: data.get('descricao'),
       emailVendedor: data.get('emailVendedor'),
@@ -72,15 +74,16 @@ export default function SignUpOrcamento(props) {
 
    
       if (!response.ok) {
-        throw new Error('Erro ao cadastrar orçamento');
+        const errorData = await response.json();
+        throw new Error(`Erro ao cadastrar orçamento: ${errorData.message || response.statusText}`);
       }
 
       const result = await response.json();
       console.log('Orçamento cadastrado com sucesso:', result);
-      alert('Orçamento cadastrado com sucesso:')
+      alert('Orçamento cadastrado com sucesso!');
     } catch (error) {
       console.error('Erro ao enviar dados para a API:', error);
-      alert('Ocorreu um erro ao cadastrar o orçamento. Tente novamente.');
+      alert(`Erro ao cadastrar orçamento: ${error.message}`);
     }
   };
 
@@ -120,15 +123,10 @@ export default function SignUpOrcamento(props) {
               <TextField name="valorTotal" required fullWidth id="valorTotal" type="number" placeholder="1000" />
             </FormControl>
             <FormControl>
-            <Select
-                name="tipoServico"
-                required
-                fullWidth
-                id="tipoServico"
-                defaultValue=""
-              >
+              <FormLabel htmlFor="tipoServico">Tipo de Serviço</FormLabel>
+              <Select name="tipoServico" required fullWidth id="tipoServico">
                 <MenuItem value="Venda">Venda</MenuItem>
-                <MenuItem value="Servico">Serviço</MenuItem>
+                <MenuItem value="Serviço">Serviço</MenuItem>
               </Select>
             </FormControl>
             <FormControl>
