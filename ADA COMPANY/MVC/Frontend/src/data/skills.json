@@ -1,30 +1,30 @@
 [
   {
-    "title": "HTML",
-    "imageSrc": "skills/html.png"
+    "title": "Letras",
+    "imageSrc": "skills/Letras.png"
   },
   {
-    "title": "CSS",
-    "imageSrc": "skills/css.png"
+    "title": "Cores",
+    "imageSrc": "skills/Cores.png"
   },
   {
-    "title": "React",
-    "imageSrc": "skills/react.png"
+    "title": "Fácil",
+    "imageSrc": "skills/Facil.png"
   },
   {
-    "title": "Node",
-    "imageSrc": "skills/node.png"
+    "title": "Visual",
+    "imageSrc": "skills/Visual.png"
   },
   {
-    "title": "GraphQL",
-    "imageSrc": "skills/graphql.png"
+    "title": "Textos",
+    "imageSrc": "skills/Textos.png"
   },
   {
-    "title": "MongoDB",
-    "imageSrc": "skills/mongodb.png"
+    "title": "Sons",
+    "imageSrc": "skills/Sons.png"
   },
   {
-    "title": "Figma",
-    "imageSrc": "skills/figma.png"
+    "title": "Acessível",
+    "imageSrc": "skills/Acessivel.png"
   }
 ]
