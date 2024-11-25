@@ -104,7 +104,7 @@ export default function SignUpServico(props) {
     };
 
     try {
-      const response = await fetch('https://api-ada-company.vercel.app/api/auth/registerServico', {
+      const response = await fetch('https://api-ada-company.vercel.app/api/auth/servico', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
