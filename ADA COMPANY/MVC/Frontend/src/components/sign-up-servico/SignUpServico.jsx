@@ -63,19 +63,18 @@ export default function SignUpServico(props) {
       const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
       const data = await response.json();
 
-      if (data.results.length === 0) {
+      if (data.erro) {
         alert('CEP não encontrado');
         return;
       }
 
-      const result = data.results[0].components;
       setEndereco({
-        logradouro: result.road || '',
-        bairro: result.neighbourhood || '',
-        localidade: result.city || '',
-        uf: result.state_code || '',
-        estado: result.state || '',
-        ddd: '' 
+        logradouro: data.logradouro || '',
+        bairro: data.bairro || '',
+        localidade: data.localidade || '',
+        uf: data.uf || '',
+        estado: data.estado || '', 
+        ddd: data.ddd || '' 
       });
     } catch (error) {
       console.error('Erro ao buscar o endereço:', error);
