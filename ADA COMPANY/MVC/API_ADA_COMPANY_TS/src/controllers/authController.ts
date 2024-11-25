@@ -171,6 +171,8 @@ export const loginUser = async (req: Request): Promise<AuthResponse> => {
       tipoUsuario = 'admin';
     }
 
+    console.log("Usuário encontrado:", user); 
+
     if (!user) {
       return { status: 404, message: 'Usuário não encontrado' };
     }
@@ -180,6 +182,8 @@ export const loginUser = async (req: Request): Promise<AuthResponse> => {
     }
 
     const isMatch = await bcrypt.compare(senha, user.usuario.senha);
+    console.log("Senha correta:", isMatch); 
+
     if (!isMatch) {
       return { status: 400, message: 'Senha incorreta' };
     }

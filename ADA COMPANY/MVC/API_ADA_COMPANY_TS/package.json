@@ -19,6 +19,7 @@
     "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.2",
+    "uuid": "^11.0.3",
     "vercel": "^37.8.0"
   },
   "devDependencies": {

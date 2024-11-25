@@ -12,7 +12,7 @@ export const verifyToken = (req: AuthenticatedRequest, res: Response, next: Next
   const token = req.headers['authorization']?.split(' ')[1];
 
   if (!token) {
-    res.status(403).json({ message: 'Token não fornecido.' });
+    res.status(401).json({ message: 'Token não fornecido.' }); // Changed to 401
     return;
   }
 

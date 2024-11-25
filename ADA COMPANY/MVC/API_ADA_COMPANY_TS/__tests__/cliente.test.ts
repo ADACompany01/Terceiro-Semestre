@@ -44,11 +44,11 @@ describe('Testes do endpoint /cliente', () => {
     try {
       await Cliente.deleteMany({});
       await Cliente.create({
-        _id: 900,
+        _id: 9001,
         nomeCliente: 'Cliente Teste 1',
         telefone: '123456789',
         endereco: {
-          cep: '12345-678',
+          cep: '12345678',
           logradouro: 'Rua Teste',
           complemento: 'Apto 1',
           bairro: 'Bairro Teste',
@@ -61,7 +61,7 @@ describe('Testes do endpoint /cliente', () => {
           type: 'Point',
           coordinates: [-46.633309, -23.55052],
         },
-        cnpj: '12.345.678/0001-99',
+        cnpj: '12.345678000199',
         usuario: {
           email: 'cliente1@example.com',
           senha: 'senha123',
@@ -135,5 +135,10 @@ describe('Testes do endpoint /cliente', () => {
 
     expect(res.status).toBe(404);
     expect(res.body.message).toBe('Cliente não encontrado');
+  });
+
+  it('Deve retornar 401 ao acessar rota protegida sem token', async () => {
+    const res = await request(app).get('/cliente');
+    expect(res.status).toBe(401);
   });
 });

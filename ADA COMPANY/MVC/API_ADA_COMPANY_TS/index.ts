@@ -19,7 +19,7 @@ const app: Express = express();
 // Configurando CORS
 app.use(
   cors({
-    origin: 'https://adacompany.vercel.app', // Habilita CORS para esta origem
+    origin: ['http://localhost:3000', 'https://adacompany.vercel.app'], // Habilita CORS para esta origem
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
