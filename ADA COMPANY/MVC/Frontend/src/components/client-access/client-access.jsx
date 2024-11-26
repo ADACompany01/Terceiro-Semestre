@@ -12,6 +12,8 @@ import AppTheme from '../shared-theme/AppTheme';
 import { SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
 import { Navigate } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -39,19 +41,17 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 
 export default function ClientAccess(props) {
   const [clienteData, setClienteData] = React.useState(null);
-  const token = localStorage.getItem('token');
-
-  if (!token) {
-    return <Navigate to="/signin" />;
-  }
+  const [token, setToken] = React.useState(localStorage.getItem('token'));
 
   React.useEffect(() => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('token', result.token);
-    const decodedToken = jwtDecode(token);
-    const id = decodedToken.id;
+    if (!token) {
+      return;
+    }
+
     const fetchClientData = async () => {
       try {
+        const decodedToken = jwtDecode(token);
+        const id = decodedToken.id;
         const response = await fetch(`https://api-ada-company.vercel.app/cliente/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -66,9 +66,13 @@ export default function ClientAccess(props) {
         console.error('Erro ao buscar cliente:', error);
       }
     };
+
     fetchClientData();
   }, [token]);
 
+  if (!token) {
+    return <Navigate to="/signin" />;
+  }
 
   const formatValue = (value) => {
     if (Array.isArray(value)) {
@@ -98,15 +102,20 @@ export default function ClientAccess(props) {
               <TextField label="Telefone" fullWidth value={formatValue(clienteData.telefone)} disabled />
               <TextField label="CEP" fullWidth value={formatValue(clienteData.endereco?.[0]?.cep)} disabled />
               <TextField label="Logradouro" fullWidth value={formatValue(clienteData.endereco?.[0]?.logradouro)} disabled />
+              <TextField label="Complemento" fullWidth value={formatValue(clienteData.endereco?.[0]?.complemento)} disabled />
               <TextField label="Bairro" fullWidth value={formatValue(clienteData.endereco?.[0]?.bairro)} disabled />
               <TextField label="Localidade" fullWidth value={formatValue(clienteData.endereco?.[0]?.localidade)} disabled />
               <TextField label="UF" fullWidth value={formatValue(clienteData.endereco?.[0]?.uf)} disabled />
+              <TextField label="Estado" fullWidth value={formatValue(clienteData.endereco?.[0]?.estado)} disabled />
+              <TextField label="DDD" fullWidth value={formatValue(clienteData.endereco?.[0]?.ddd)} disabled />
+              <TextField label="CNPJ" fullWidth value={formatValue(clienteData.cnpj)} disabled />
+              <TextField label="E-mail do Usuário" fullWidth value={formatValue(clienteData.usuario?.[0]?.email)} disabled />
               <TextField label="Telefone do Usuário" fullWidth value={formatValue(clienteData.usuario?.[0]?.telefone)} disabled />
+              <TextField label="Nome Completo do Usuário" fullWidth value={formatValue(clienteData.usuario?.[0]?.nomeCompleto)} disabled />
             </Box>
           )}
-                  <Button href="mailto:ada2024fatec.mrs@outlook.com" variant="contained">Novo Orçamento</Button>
+          <Button href="mailto:ada2024fatec.mrs@outlook.com" variant="contained">Novo Orçamento</Button>
         </Card>
-        <Button href="mailto:ada2024fatec.mrs@outlook.com" variant="contained">Novo Orçamento</Button>
       </SignUpContainer>
     </AppTheme>
   );
