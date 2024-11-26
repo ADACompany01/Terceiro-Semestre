@@ -66,7 +66,7 @@ Confira a seguir uma demonstração das funcionalidades para cada tipo de usuár
 ## 👷 Backlogs & User Stories
 
 ### User Stories
-- **US01**: Como um usuário que quer comprar um serviço em uma plataforma online, eu quero que o sistema me mostre todas as informações sobre os serviços do meu pedido, para que eu saiba exatamente o que estou contratando.  
+- **US01**: Como um usuário que quer contratar um serviço em uma plataforma online, eu quero que o sistema me mostre todas as informações sobre os serviços do meu pedido, para que eu saiba exatamente o que estou contratando.  
    **Tarefa Relacionada**: Utilizar o operador $lookup em pelo menos 2 consultas para realizar junções entre coleções e obter informações relacionadas.
 
 - **US02**: Como alguém que vai usar o site, eu quero que a equipe descubra quem sou eu e como eu uso o site, para que ele fique mais fácil e útil para mim.  
@@ -92,7 +92,7 @@ Confira a seguir uma demonstração das funcionalidades para cada tipo de usuár
 ## Protótipo e Documentação 
 ### 🏠 Protótipo 
 <span id="prototipo">
-    Com base nos dados coletados em pesquisas, foi possível montar um protótipo de alta fidelidade com o uso da ferramenta Figma. Esta ferramenta possibilitou uma visualização prévia do front-end do projeto, o suficiente para obter o alinhamento entre a equipe de desenvolvimento e o cliente. Desta forma, o projeto prototipado possui algumas funções básicas de acesso a telas e respostas a cliques em botões, posteriormente sendo funcionalidades aplicadas na própria aplicação. O acesso ao protótipo pode ser feito <a href="https://www.figma.com/proto/cbgCZT0div1CDRti3LZKff/Prot%C3%B3tipo-ADA-Corporation?node-id=7-71&t=ZKA0FgGVfjmY0lXX-1">aqui</a>.
+    Com base nos dados coletados em pesquisas, foi possível montar um protótipo de alta fidelidade com o uso da ferramenta Figma. Esta ferramenta possibilitou uma visualização prévia do front-end do projeto, o suficiente para obter o alinhamento entre a equipe de desenvolvimento e o cliente. Desta forma, o projeto prototipado possui algumas funções básicas de acesso a telas e respostas a cliques em botões, posteriormente sendo funcionalidades aplicadas na própria aplicação. O acesso ao protótipo pode ser feito <a href="https://www.figma.com/design/cbgCZT0div1CDRti3LZKff/Prot%C3%B3tipo-ADA-Corporation?node-id=0-1&node-type=canvas&t=5d4dOImzhN6mprF5-0">aqui</a>.
 </span>
 
     

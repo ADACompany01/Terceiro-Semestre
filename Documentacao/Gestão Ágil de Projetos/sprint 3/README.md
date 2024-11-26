@@ -18,7 +18,7 @@
 
 ## :hammer_and_wrench: Atividades
 - Criar **componentes e formulários** para cadastro e login no frontend.  
-- Usar **Axios** ou **Fetch** para integrar as chamadas da API no frontend.  
+- Usar **Cors** para integrar as chamadas da API no frontend.  
 - Implementar **autenticação com JWT** na API.  
 - Proteger **rotas privadas** no React usando **ProtectedRoute** ou similar.  
 - Testar o sistema de autenticação tanto no frontend quanto no backend.  
@@ -27,7 +27,7 @@
 
 ## :gear: Recursos Necessários
 - **JWT** para autenticação.  
-- Ferramentas para realizar chamadas à API (**Axios**, **Fetch**).  
+- Ferramentas para realizar chamadas à API (**Cors**).  
 
 <span id="entregas"></span>
 
