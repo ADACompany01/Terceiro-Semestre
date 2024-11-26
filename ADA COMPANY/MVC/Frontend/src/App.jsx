@@ -12,7 +12,7 @@ import SignUpFuncionario from "./components/sign-up-funcionario/SignUpFuncionari
 import ListClient from "./components/list-client/ListClient";
 import SignUpServico from "./components/sign-up-servico/SignUpServico"
 import SignUpOrcamento from "./components/sign-up-orcamento/SignUpOrcamento"
-import { AcessoCliente } from "./components/client-access/client-access";
+import ClientAccess from "./components/client-access/client-access"; // Corrected import
 import { AcessoAdmin } from "./components/admin-access-consulta/admin-access";
 import { AcessoAdmin2 } from "./components/admin-access-cadastro/admin-access";
 import ListFunc from "./components/list-func/ListFunc";
@@ -56,7 +56,7 @@ function App() {
           <Route path="/listfunc" element={<ListFunc />} />
           <Route path="/signupservico" element={<SignUpServico />} />
           <Route path="/signuporcamento" element={<SignUpOrcamento />} />
-          <Route path="/client" element={<AcessoCliente />} />   
+          <Route path="/client" element={<ClientAccess />} />   {/* Corrected component name */}
           <Route path="/admin" element={<Admin />} />   
           <Route path="/listservice" element={<ListService />} />
           <Route path="/listbudget" element={<ListBudget />} />      
