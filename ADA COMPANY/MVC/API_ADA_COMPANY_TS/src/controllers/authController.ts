@@ -163,11 +163,11 @@ export const loginUser = async (req: Request): Promise<AuthResponse> => {
   const { email, senha } = req.body;
 
   try {
-    let user = await Cliente.findOne({ 'usuario.email': email });
+    let user = await Cliente.findOne({ 'usuario.email': email }).select('+usuario.senha');
     let tipoUsuario: 'cliente' | 'admin' = 'cliente';
 
     if (!user) {
-      user = await Funcionario.findOne({ 'usuario.email': email });
+      user = await Funcionario.findOne({ 'usuario.email': email }).select('+usuario.senha');
       tipoUsuario = 'admin';
     }
 

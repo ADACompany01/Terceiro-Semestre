@@ -27,6 +27,8 @@ function generateRandomEmail(): string {
 describe('Auth Endpoints', () => {
   let clientEmail: string;
   let employeeEmail: string;
+  let clientId: number;
+  let employeeId: number;
 
   beforeAll(async () => {
     const dbUri = process.env.MONGODB_URI || '';
@@ -39,10 +41,12 @@ describe('Auth Endpoints', () => {
     // Gerar e-mails dinâmicos para testes
     clientEmail = generateRandomEmail();
     employeeEmail = generateRandomEmail();
+    clientId = generateRandomId(100000, 999999);
+    employeeId = generateRandomId(100000, 999999);
 
     // Registrar o cliente para testes de login
     await request(app).post('/api/auth/registerCliente').send({
-      _id: generateRandomId(100000, 999999),
+      _id: clientId,
       nomeCliente: 'Teste Cliente',
       telefone: '123456789',
       endereco: {
@@ -71,7 +75,7 @@ describe('Auth Endpoints', () => {
 
     // Registrar o funcionário para testes de login
     await request(app).post('/api/auth/registerFuncionario').send({
-      _id: generateRandomId(100000, 999999),
+      _id: employeeId,
       nomeFuncionario: 'Teste Funcionario',
       endereco: {
         cep: '12345678',

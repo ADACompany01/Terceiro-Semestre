@@ -74,6 +74,15 @@ describe('Testes do endpoint /cliente', () => {
     }
   });
 
+  afterEach(async () => {
+    try {
+      await Cliente.deleteMany({ _id: 9001 });
+      console.log('Cliente de teste removido');
+    } catch (error) {
+      console.error('Erro ao remover cliente de teste:', error);
+    }
+  });
+
   it('Deve retornar todos os clientes', async () => {
     const res = await request(app)
       .get('/cliente')
