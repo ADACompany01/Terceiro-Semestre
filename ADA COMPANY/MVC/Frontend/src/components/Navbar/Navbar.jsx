@@ -26,8 +26,15 @@ export const Navbar = () => {
       navigate('/client');
     } else if (userRole === 'admin') {
       navigate('/admin');
+    }
   }
-  }
+
+  const handleScrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <nav className={styles.navbar}>
       <a className={styles.title} href="/">
@@ -49,10 +56,10 @@ export const Navbar = () => {
           onClick={() => setMenuOpen(false)}
         >
           <li>
-            <Link to="/about">Serviços</Link>
+            <a onClick={() => handleScrollToSection("servicos")}>Serviços</a>
           </li>
           <li>
-            <Link to="/projects">Exemplos</Link>
+            <a onClick={() => handleScrollToSection("projects")}>Exemplos</a>
           </li>
           {token ? (
             <>
