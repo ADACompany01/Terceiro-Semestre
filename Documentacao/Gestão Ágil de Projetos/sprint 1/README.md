@@ -1,6 +1,6 @@
 <span id="topo"></span>
 
-<h1 align="center">Sprint 1: 27/09/2024 a 05/10/2024</h1>
+<h1 align="center">Sprint 1: Desenvolvimento e Consultas (1 semana)</h1>
 
 <p align="center">
   <a href="#objetivos">Objetivos de Sprint</a> |
