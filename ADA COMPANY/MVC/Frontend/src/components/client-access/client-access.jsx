@@ -97,7 +97,7 @@ export default function ClientAccess(props) {
         <Card variant="outlined">
           <SitemarkIcon />
           <Typography component="h1" variant="h4">
-            Dados do Cliente
+            Cliente
           </Typography>
           {clienteData && (
             <Box sx={{ mt: 2 }}>
