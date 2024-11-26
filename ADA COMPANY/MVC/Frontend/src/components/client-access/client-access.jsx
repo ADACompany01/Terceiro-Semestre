@@ -46,14 +46,13 @@ export default function ClientAccess(props) {
   }
 
   React.useEffect(() => {
+    localStorage.setItem('token', token);
+    localStorage.setItem('token', result.token);
+    const decodedToken = jwtDecode(token);
+    const id = decodedToken.id;
     const fetchClientData = async () => {
       try {
-        localStorage.setItem('token', token);
-        localStorage.setItem('token', result.token);
-        const decodedToken = jwtDecode(token);
-        const id = decodedToken.id;
-        console.log(id);
-        const response = await fetch(`https://api-ada-company.vercel.app/cliente/${id}`, { 
+        const response = await fetch(`https://api-ada-company.vercel.app/cliente/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -107,7 +106,7 @@ export default function ClientAccess(props) {
           )}
                   <Button href="mailto:ada2024fatec.mrs@outlook.com" variant="contained">Novo Orçamento</Button>
         </Card>
-
+        <Button href="mailto:ada2024fatec.mrs@outlook.com" variant="contained">Novo Orçamento</Button>
       </SignUpContainer>
     </AppTheme>
   );
