@@ -51,8 +51,9 @@ export default function ClientAccess(props) {
         localStorage.setItem('token', token);
         localStorage.setItem('token', result.token);
         const decodedToken = jwtDecode(token);
-        const userRole = decodedToken.role;
-        const response = await fetch(`https://api-ada-company.vercel.app/cliente/${userRole}`, { 
+        const id = decodedToken.id;
+        console.log(id);
+        const response = await fetch(`https://api-ada-company.vercel.app/cliente/${id}`, { 
           headers: {
             Authorization: `Bearer ${token}`,
           },
