@@ -105,8 +105,9 @@ export default function ClientAccess(props) {
               <TextField label="Telefone do Usuário" fullWidth value={formatValue(clienteData.usuario?.[0]?.telefone)} disabled />
             </Box>
           )}
+                  <Button href="mailto:ada2024fatec.mrs@outlook.com" variant="contained">Novo Orçamento</Button>
         </Card>
-        <Button href="mailto:ada2024fatec.mrs@outlook.com" variant="contained">Novo Orçamento</Button>
+
       </SignUpContainer>
     </AppTheme>
   );
