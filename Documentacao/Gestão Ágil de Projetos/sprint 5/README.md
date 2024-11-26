@@ -16,16 +16,14 @@
 <span id="atividades"></span>
 
 ## :hammer_and_wrench: Atividades
-- Criar **slides** de apresentação.  
 - Revisar a aplicação e ajustar quaisquer **bugs restantes**.  
 - Realizar **testes de usabilidade e acessibilidade**.  
 - Realizar a entrega do link do **repositório público** via **Teams**.  
 
 <span id="recursos"></span>
 
-## :gear: Recursos Necessários
-- **Ferramentas de apresentação** (PowerPoint, Google Slides, etc.).  
-- Testes de **acessibilidade** (opcional).  
+## :gear: Recursos Necessários  
+- Testes de **acessibilidade** 
 
 <span id="entregas"></span>
 
