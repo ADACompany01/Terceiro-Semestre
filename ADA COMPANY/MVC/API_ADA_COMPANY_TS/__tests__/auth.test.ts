@@ -96,6 +96,12 @@ describe('Auth Endpoints', () => {
   });
 
   afterAll(async () => {
+    // Deletar o cliente criado no teste, usando o email gerado
+    await Cliente.deleteMany({ 'usuario.email': clientEmail });
+
+    // Deletar o funcionário criado no teste, usando o email gerado
+    await Funcionario.deleteMany({ 'usuario.email': employeeEmail });
+
     await mongoose.disconnect();
   });
 
