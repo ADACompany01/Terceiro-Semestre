@@ -1,9 +1,11 @@
+@import "../../vars.css";
+
 .link {
   text-decoration: none; /* Remove o sublinhado */
   color: inherit; /* Mantém a cor de texto do contexto */
 }
 
-@import "../../vars.css";
+
 
 .container {
   color: var(--color-text);

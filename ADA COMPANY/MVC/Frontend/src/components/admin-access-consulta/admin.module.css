@@ -1,9 +1,11 @@
+@import "../../vars.css";
+
 .link {
   text-decoration: none; 
   color: inherit; 
 }
 
-@import "../../vars.css";
+
 
 .container {
   color: var(--color-text);

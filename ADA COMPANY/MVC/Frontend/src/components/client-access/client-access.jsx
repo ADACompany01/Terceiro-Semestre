@@ -13,7 +13,7 @@ import { SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
 import { Navigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
-import jwtDecode from 'jwt-decode';
+
 
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -62,6 +62,7 @@ export default function ClientAccess(props) {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(JSON.stringify(response))
       if (!response.ok) {
         throw new Error('Erro ao buscar cliente');
       }
