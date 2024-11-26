@@ -13,6 +13,7 @@ import { SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
 import { Navigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
+import jwtDecode from 'jwt-decode';
 
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -50,7 +51,7 @@ export default function ClientAccess(props) {
 
     const fetchClientData = async () => {
       try {
-        const decodedToken = jwtDecode(token);
+        const decodedToken = decodeToken(token);
         const id = decodedToken.id;
         const response = await fetch(`https://api-ada-company.vercel.app/cliente/${id}`, {
           headers: {
