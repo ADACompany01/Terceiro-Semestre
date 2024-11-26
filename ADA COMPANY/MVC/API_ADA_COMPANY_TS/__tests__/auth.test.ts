@@ -47,7 +47,7 @@ describe('Auth Endpoints', () => {
     // Registrar o cliente para testes de login
     await request(app).post('/api/auth/registerCliente').send({
       _id: clientId,
-      nomeCliente: 'Teste Cliente',
+      nomeCliente: 'Cliente Teste 1',
       telefone: '123456789',
       endereco: {
         cep: '12345678',
@@ -116,7 +116,7 @@ describe('Auth Endpoints', () => {
         .post('/api/auth/registerCliente')
         .send({
           _id: generateRandomId(100000, 999999),
-          nomeCliente: 'Teste Cliente 2',
+          nomeCliente: 'Cliente Teste 1',
           telefone: '123456789',
           endereco: {
             cep: '12345678',
