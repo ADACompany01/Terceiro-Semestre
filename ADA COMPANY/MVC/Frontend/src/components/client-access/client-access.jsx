@@ -49,27 +49,31 @@ export default function ClientAccess(props) {
       return;
     }
 
-    const fetchClientData = async () => {
-      try {
-        const decodedToken = decodeToken(token);
-        const id = decodedToken.id;
-        const response = await fetch(`https://api-ada-company.vercel.app/cliente/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!response.ok) {
-          throw new Error('Erro ao buscar cliente');
-        }
-        const data = await response.json();
-        setClienteData(data);
-      } catch (error) {
-        console.error('Erro ao buscar cliente:', error);
+ const fetchClientData = async () => {
+    try {
+      const decodedToken = decodeToken(token);
+      const id = decodedToken?.id; // Verifica se o token foi decodificado corretamente
+      if (!id) {
+        throw new Error('Token inválido ou id ausente');
       }
-    };
 
-    fetchClientData();
-  }, [token]);
+      const response = await fetch(`https://api-ada-company.vercel.app/cliente/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Erro ao buscar cliente');
+      }
+      const data = await response.json();
+      setClienteData(data);
+    } catch (error) {
+      console.error('Erro ao buscar cliente:', error);
+    }
+  };
+
+  fetchClientData();
+}, [token]);
 
   if (!token) {
     return <Navigate to="/signin" />;
