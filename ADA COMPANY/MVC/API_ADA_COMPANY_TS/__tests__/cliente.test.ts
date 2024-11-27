@@ -104,10 +104,10 @@ describe('Testes do endpoint /cliente', () => {
     const res = await request(app)
       .put(`/cliente/${cliente._id}`)
       .set('Authorization', `Bearer ${token}`)
-      .send({ nomeCliente: 'Cliente Atualizado' });
+      .send({ nomeCliente: 'Cliente Teste 1' });
 
     expect(res.status).toBe(200);
-    expect(res.body.nomeCliente).toBe('Cliente Atualizado'); // Verificando a mudança do nome do cliente
+    expect(res.body.nomeCliente).toBe('Cliente Teste 1'); // Verificando a mudança do nome do cliente
 });
 
   it('Deve retornar 404 se o cliente não for encontrado', async () => {
