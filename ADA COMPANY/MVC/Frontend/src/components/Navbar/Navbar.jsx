@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";  
 
 
@@ -8,6 +8,7 @@ import { getImageUrl } from "../../utils";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const user = JSON.parse(localStorage.getItem('user'));
@@ -19,15 +20,21 @@ export const Navbar = () => {
 
   const handleMenu = () => {
     const decodedToken = jwtDecode(token);
-    const userRole = decodedToken.role;
-    console.log(decodedToken)
-    console.log(userRole);
+    const userRole = decodedToken?.role; // Handle potential null value
     if (userRole === 'cliente') {
       navigate('/client');
     } else if (userRole === 'admin') {
       navigate('/admin');
     }
   }
+
+  const handleNavigateToSection = (sectionId) => {
+    if (location.pathname === '/' || location.pathname === '/signin') {
+      handleScrollToSection(sectionId);
+    } else {
+      navigate(`/${sectionId}`);
+    }
+  };
 
   const handleScrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -56,10 +63,10 @@ export const Navbar = () => {
           onClick={() => setMenuOpen(false)}
         >
           <li>
-            <a onClick={() => handleScrollToSection("servicos")}>Serviços</a>
+            <a onClick={() => handleNavigateToSection("About")}>Serviços</a>
           </li>
           <li>
-            <a onClick={() => handleScrollToSection("projects")}>Exemplos</a>
+            <a onClick={() => handleNavigateToSection("projects")}>Exemplos</a>
           </li>
           {token ? (
             <>
