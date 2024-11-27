@@ -33,5 +33,4 @@ const servicoSchema: Schema<IServico> = new Schema({
   }
 });
 
-// Exportando o modelo
 export default mongoose.model<IServico>('Servico', servicoSchema);

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Servico from '../models/servicoModel';  // Presumindo que você tenha um modelo de serviço no seu projeto
+import Servico from '../models/servicoModel'; 
 
 // Função para obter todos os serviços
 const getServico = async (req: Request, res: Response) => {

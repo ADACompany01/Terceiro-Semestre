@@ -113,7 +113,7 @@ export const registerFuncionario = async (req: Request, res: Response): Promise<
 export const registerOrcamento = async (req: Request, res: Response): Promise<AuthResponse> => {
   const { _id, clienteId, validadeOrcamento, dataCriacao, valorTotal, TipoServico, statusOrcamento, descricao, emailVendedor } = req.body;
   try {
-      // Assuming you have an Orcamento model
+      
       const orcamento = new Orcamento({
           _id,
           clienteId,
@@ -140,7 +140,7 @@ export const registerOrcamento = async (req: Request, res: Response): Promise<Au
 export const registerServico = async (req: Request, res: Response): Promise<AuthResponse> => {
   const { _id, nome, valor, tipoServico } = req.body;
   try {
-      // Assuming you have a Servico model
+      
       const servico = new Servico({
           _id,
           nome,

@@ -6,8 +6,8 @@ const router: Router = express.Router();
 // Rota para registro de Clientes
 router.post('/registerCliente', async (req: Request, res: Response) => {
   try {
-    const result = await registerCliente(req, res);  // Espera um objeto { status, message }
-    res.status(result.status).json(result);  // Responde com status e a mensagem
+    const result = await registerCliente(req, res);  
+    res.status(result.status).json(result);  
   } catch (err: unknown) {
     if (err instanceof Error) {
       res.status(500).json({ message: err.message });
@@ -20,8 +20,8 @@ router.post('/registerCliente', async (req: Request, res: Response) => {
 // Rota para registro de Funcionários
 router.post('/registerFuncionario', async (req: Request, res: Response) => {
   try {
-    const result = await registerFuncionario(req, res);  // Espera um objeto { status, message }
-    res.status(result.status).json(result);  // Responde com status e a mensagem
+    const result = await registerFuncionario(req, res);  
+    res.status(result.status).json(result);  
   } catch (err: unknown) {
     if (err instanceof Error) {
       res.status(500).json({ message: err.message });
@@ -34,8 +34,8 @@ router.post('/registerFuncionario', async (req: Request, res: Response) => {
 // Rota para registro de Orçamentos
 router.post('/registerOrcamento', async (req: Request, res: Response) => {
   try {
-    const result = await registerOrcamento(req, res);  // Espera um objeto { status, message }
-    res.status(result.status).json(result);  // Responde com status e a mensagem
+    const result = await registerOrcamento(req, res);  
+    res.status(result.status).json(result);  
   } catch (err: unknown) {
     if (err instanceof Error) {
       res.status(500).json({ message: err.message });
@@ -48,8 +48,8 @@ router.post('/registerOrcamento', async (req: Request, res: Response) => {
 // Rota para registro de Serviços
 router.post('/registerServico', async (req: Request, res: Response) => {
   try {
-    const result = await registerServico(req, res);  // Espera um objeto { status, message }
-    res.status(result.status).json(result);  // Responde com status e a mensagem
+    const result = await registerServico(req, res);  
+    res.status(result.status).json(result);  
   } catch (err: unknown) {
     if (err instanceof Error) {
       res.status(500).json({ message: err.message });
@@ -63,8 +63,8 @@ router.post('/registerServico', async (req: Request, res: Response) => {
 // Rota para login (tanto de Clientes quanto Funcionários)
 router.post('/login', async (req: Request, res: Response) => {
   try {
-    const result = await loginUser(req);  // Agora passa apenas `req`
-    res.status(result.status).json(result);  // Responde com status e a mensagem
+    const result = await loginUser(req);  
+    res.status(result.status).json(result);  
   } catch (err: unknown) {
     if (err instanceof Error) {
       res.status(500).json({ message: err.message });

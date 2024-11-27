@@ -4,7 +4,7 @@ import config from '../config';
 
 // Estende a interface Request para incluir a propriedade user
 interface AuthenticatedRequest extends Request {
-  user?: any; // Adicione o tipo correto para req.user conforme necessário, ex: { role: string, id: number }
+  user?: any; 
 }
 
 // Middleware para verificar se o token é válido

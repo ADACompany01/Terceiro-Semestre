@@ -12,7 +12,7 @@ describe('Testes do endpoint /cliente', () => {
 
   beforeAll(async () => {
     try {
-      // Certifique-se de que a string de conexão no arquivo .env está correta
+     
       const dbUri = process.env.MONGODB_URI; // Pega diretamente a string de conexão do arquivo .env
   
       if (!dbUri) {
@@ -20,7 +20,7 @@ describe('Testes do endpoint /cliente', () => {
       }
   
       // Conecta ao MongoDB na nuvem
-      await mongoose.connect(dbUri); // Agora sem opções adicionais
+      await mongoose.connect(dbUri); 
   
       token = gerarTokenValido();
       console.log('Conexão com o banco de dados estabelecida');
