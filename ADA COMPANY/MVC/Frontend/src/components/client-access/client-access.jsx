@@ -181,11 +181,10 @@ export default function ClientAccess(props) {
               margin="normal"
               required
               fullWidth
-              id="prazo"
-              label="Prazo (dias)"
-              name="prazo"
-              type="number"
-              autoComplete="prazo"
+              id="email"
+              label="Email Corporativo"
+              name="email"
+              autoComplete="email"
               onChange={handleChange}
             />
             <TextField
